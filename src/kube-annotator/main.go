@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"go/ast"
 	"go/build"
+	"go/doc"
 	"go/parser"
 	"go/token"
 	"golang.org/x/tools/go/types"
@@ -124,16 +125,16 @@ func getConsts(named *types.Named) string {
 	return strings.Join(s, "|")
 }
 
-func importPkg(pkgname string) (*types.Package, error) {
+func importPkg(pkgname string) (*types.Package, *ast.Package, error) {
 	pkg, err := build.Import(pkgname, "", 0)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	fset := token.NewFileSet()
-	pkgmap, err := parser.ParseDir(fset, pkg.Dir, nil, 0)
+	pkgmap, err := parser.ParseDir(fset, pkg.Dir, nil, parser.ParseComments)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	filelist := make([]*ast.File, 0, len(pkgmap[pkg.Name].Files))
@@ -142,12 +143,14 @@ func importPkg(pkgname string) (*types.Package, error) {
 	}
 
 	config := types.Config{}
-	return config.Check(pkg.Dir, fset, filelist, nil)
+	typpkg, err := config.Check(pkg.Dir, fset, filelist, nil)
+
+	return typpkg, pkgmap[pkg.Name], err
 }
 
-func walkPkg(pkg *types.Package) {
-	for _, name := range pkg.Scope().Names() {
-		obj := pkg.Scope().Lookup(name)
+func walkPkg(typpkg *types.Package, docpkg *doc.Package) {
+	for _, name := range typpkg.Scope().Names() {
+		obj := typpkg.Scope().Lookup(name)
 
 		if typename, ok := obj.(*types.TypeName); ok {
 			named := typename.Type().(*types.Named)
@@ -158,6 +161,13 @@ func walkPkg(pkg *types.Package) {
 			}
 
 			fmt.Printf("%s\n%s\n\n", typename.Name(), strings.Repeat("=", len(typename.Name())))
+
+			for _, t := range docpkg.Types {
+				if t.Name == typename.Name() {
+					fmt.Printf("%v\n", t.Doc)
+				}
+			}
+
 			dump(strukt, "", typename)
 			fmt.Printf("\n\n")
 		}
@@ -170,11 +180,13 @@ func main() {
 		return
 	}
 
-	pkg, err := importPkg(os.Args[1])
+	typpkg, astpkg, err := importPkg(os.Args[1])
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
 		return
 	}
 	
-	walkPkg(pkg)
+	docpkg := doc.New(astpkg, os.Args[1], 0)
+
+	walkPkg(typpkg, docpkg)
 }

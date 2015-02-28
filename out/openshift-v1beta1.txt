@@ -1,6 +1,9 @@
 Policy
 ======
 
+Policy is a object that holds all the Roles for a particular namespace.  There is at most
+one Policy document per namespace.
+
 kind: Policy                                                          # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -50,6 +53,9 @@ roles:                                                                # []github
 
 PolicyBinding
 =============
+
+PolicyBinding is a object that holds all the RoleBindings for a particular namespace.  There is
+one PolicyBinding document per referenced Policy namespace
 
 kind: PolicyBinding                                                   # string
 apiVersion: v1beta1                                                   # string
@@ -107,6 +113,8 @@ roleBindings:                                                         # []github
 
 PolicyBindingList
 =================
+
+PolicyBindingList is a collection of PolicyBindings
 
 kind: PolicyBindingList                                               # string
 apiVersion: v1beta1                                                   # string
@@ -171,6 +179,8 @@ items:                                                                # []github
 PolicyList
 ==========
 
+PolicyList is a collection of Policies
+
 kind: PolicyList                                                      # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ListMeta
@@ -227,6 +237,9 @@ items:                                                                # []github
 ResourceAccessReview
 ====================
 
+ResourceAccessReview is a means to request a list of which users and groups are authorized to perform the
+action specified by spec
+
 kind: ResourceAccessReview                                            # string
 apiVersion: v1beta1                                                   # string
 verb:                                                                 # string
@@ -239,6 +252,8 @@ resourceName:                                                         # string
 ResourceAccessReviewResponse
 ============================
 
+ResourceAccessReviewResponse describes who can perform the action
+
 kind: ResourceAccessReviewResponse                                    # string
 apiVersion: v1beta1                                                   # string
 namespace:                                                            # string
@@ -250,6 +265,8 @@ groups:                                                               # []string
 
 Role
 ====
+
+Role is a logical grouping of PolicyRules that can be referenced as a unit by RoleBindings.
 
 kind: Role                                                            # string
 apiVersion: v1beta1                                                   # string
@@ -283,6 +300,10 @@ rules:                                                                # []github
 RoleBinding
 ===========
 
+RoleBinding references a Role, but not contain it.  It can reference any Role in the same namespace or in the global namespace.
+It adds who information via Users and Groups and namespace information by which namespace it exists in.  RoleBindings in a given
+namespace only have effect in that namespace (excepting the master namespace which has power in all namespaces).
+
 kind: RoleBinding                                                     # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -313,6 +334,8 @@ roleRef:                                                              # github.c
 
 RoleBindingList
 ===============
+
+RoleBindingList is a collection of PolicyBindings
 
 kind: RoleBindingList                                                 # string
 apiVersion: v1beta1                                                   # string
@@ -349,6 +372,8 @@ resourceVersion:                                                      # string
 SubjectAccessReview
 ===================
 
+SubjectAccessReview is an object for requesting information about whether a user or group can perform an action
+
 kind: SubjectAccessReview                                             # string
 apiVersion: v1beta1                                                   # string
 verb:                                                                 # string
@@ -364,6 +389,8 @@ resourceName:                                                         # string
 SubjectAccessReviewResponse
 ===========================
 
+SubjectAccessReviewResponse describes whether or not a user or group can perform an action
+
 kind: SubjectAccessReviewResponse                                     # string
 apiVersion: v1beta1                                                   # string
 namespace:                                                            # string
@@ -373,6 +400,9 @@ reason:                                                               # string
 
 Build
 =====
+
+Build encapsulates the inputs needed to produce a new deployable image, as well as
+the status of the execution and a reference to the Pod which executed the build.
 
 kind: Build                                                           # string
 apiVersion: v1beta1                                                   # string
@@ -448,6 +478,8 @@ cancelled:                                                            # bool
 
 BuildConfig
 ===========
+
+BuildConfig is a template which can be used to create new builds.
 
 kind: BuildConfig                                                     # string
 apiVersion: v1beta1                                                   # string
@@ -546,6 +578,8 @@ parameters:                                                           # github.c
 
 BuildConfigList
 ===============
+
+BuildConfigList is a collection of BuildConfigs.
 
 kind: BuildConfigList                                                 # string
 apiVersion: v1beta1                                                   # string
@@ -651,6 +685,8 @@ items:                                                                # []github
 BuildList
 =========
 
+BuildList is a collection of Builds.
+
 kind: BuildList                                                       # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ListMeta
@@ -732,6 +768,8 @@ items:                                                                # []github
 BuildLog
 ========
 
+BuildLog is the (unused) resource associated with the build log redirector
+
 kind: BuildLog                                                        # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ListMeta
@@ -741,6 +779,9 @@ metadata:                                                             # github.c
 
 Config
 ======
+
+Config contains a list of Kubernetes resources to be applied.
+DEPRECATED: All clients should use Kubernetes api.List instead of Config.
 
 kind: Config                                                          # string
 apiVersion: v1beta1                                                   # string
@@ -762,6 +803,12 @@ items:                                                                # []github
 
 Deployment
 ==========
+
+A deployment represents a single configuration of a pod deployed into the cluster, and may
+represent both a current deployment or a historical deployment.
+
+DEPRECATED: This type longer drives any system behavior. Deployments are now represented directly
+by ReplicationControllers. Use DeploymentConfig to drive deployments.
 
 kind: Deployment                                                      # string
 apiVersion: v1beta1                                                   # string
@@ -920,6 +967,11 @@ details:                                                              # *github.
 
 DeploymentConfig
 ================
+
+DeploymentConfig represents a configuration for a single deployment (represented as a
+ReplicationController). It also contains details about changes which resulted in the current
+state of the DeploymentConfig. Each change to the DeploymentConfig which should result in
+a new deployment results in an increment of LatestVersion.
 
 kind: DeploymentConfig                                                # string
 apiVersion: v1beta1                                                   # string
@@ -1095,6 +1147,8 @@ details:                                                              # *github.
 
 DeploymentConfigList
 ====================
+
+A DeploymentConfigList is a collection of deployment configs.
 
 kind: DeploymentConfigList                                            # string
 apiVersion: v1beta1                                                   # string
@@ -1277,6 +1331,8 @@ items:                                                                # []github
 DeploymentConfigRollback
 ========================
 
+DeploymentConfigRollback provides the input to rollback generation.
+
 kind: DeploymentConfigRollback                                        # string
 apiVersion: v1beta1                                                   # string
 spec:                                                                 # github.com/openshift/origin/pkg/deploy/api/v1beta1.DeploymentConfigRollbackSpec
@@ -1292,6 +1348,9 @@ spec:                                                                 # github.c
 
 DeploymentList
 ==============
+
+A DeploymentList is a collection of deployments.
+DEPRECATED: Like Deployment, this is no longer used.
 
 kind: DeploymentList                                                  # string
 apiVersion: v1beta1                                                   # string
@@ -1457,6 +1516,8 @@ items:                                                                # []github
 Image
 =====
 
+Image is an immutable representation of a Docker image and metadata at a point in time.
+
 kind: Image                                                           # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -1479,6 +1540,8 @@ dockerImageMetadataVersion:                                           # string
 
 ImageList
 =========
+
+ImageList is a list of Image objects.
 
 kind: ImageList                                                       # string
 apiVersion: v1beta1                                                   # string
@@ -1509,6 +1572,10 @@ items:                                                                # []github
 ImageRepository
 ===============
 
+ImageRepository stores a mapping of tags to images, metadata overrides that are applied
+when images are tagged in a repository, and an optional reference to a Docker image
+repository on a registry.
+
 kind: ImageRepository                                                 # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -1532,6 +1599,8 @@ status:                                                               # github.c
 
 ImageRepositoryList
 ===================
+
+ImageRepositoryList is a list of ImageRepository objects.
 
 kind: ImageRepositoryList                                             # string
 apiVersion: v1beta1                                                   # string
@@ -1562,6 +1631,9 @@ items:                                                                # []github
 
 ImageRepositoryMapping
 ======================
+
+ImageRepositoryMapping represents a mapping from a single tag to a Docker image as
+well as the reference to the Docker image repository the image came from.
 
 kind: ImageRepositoryMapping                                          # string
 apiVersion: v1beta1                                                   # string
@@ -1603,6 +1675,7 @@ tag:                                                                  # string
 OAuthAccessToken
 ================
 
+
 kind: OAuthAccessToken                                                # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -1630,6 +1703,7 @@ refreshToken:                                                         # string
 
 OAuthAccessTokenList
 ====================
+
 
 kind: OAuthAccessTokenList                                            # string
 apiVersion: v1beta1                                                   # string
@@ -1665,6 +1739,7 @@ items:                                                                # []github
 OAuthAuthorizeToken
 ===================
 
+
 kind: OAuthAuthorizeToken                                             # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -1691,6 +1766,7 @@ userUID:                                                              # string
 
 OAuthAuthorizeTokenList
 =======================
+
 
 kind: OAuthAuthorizeTokenList                                         # string
 apiVersion: v1beta1                                                   # string
@@ -1725,6 +1801,7 @@ items:                                                                # []github
 OAuthClient
 ===========
 
+
 kind: OAuthClient                                                     # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -1747,6 +1824,7 @@ redirectURIs:                                                         # []string
 
 OAuthClientAuthorization
 ========================
+
 
 kind: OAuthClientAuthorization                                        # string
 apiVersion: v1beta1                                                   # string
@@ -1771,6 +1849,7 @@ scopes:                                                               # []string
 
 OAuthClientAuthorizationList
 ============================
+
 
 kind: OAuthClientAuthorizationList                                    # string
 apiVersion: v1beta1                                                   # string
@@ -1802,6 +1881,7 @@ items:                                                                # []github
 OAuthClientList
 ===============
 
+
 kind: OAuthClientList                                                 # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ListMeta
@@ -1831,6 +1911,8 @@ items:                                                                # []github
 Project
 =======
 
+Project is a logical top-level container for a set of origin resources
+
 kind: Project                                                         # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -1850,6 +1932,8 @@ displayName:                                                          # string
 
 ProjectList
 ===========
+
+ProjectList is a list of Project objects.
 
 kind: ProjectList                                                     # string
 apiVersion: v1beta1                                                   # string
@@ -1876,6 +1960,8 @@ items:                                                                # []github
 
 Route
 =====
+
+Route encapsulates the inputs needed to connect an alias to endpoints.
 
 kind: Route                                                           # string
 apiVersion: v1beta1                                                   # string
@@ -1904,6 +1990,8 @@ tls:                                                                  # *github.
 
 RouteList
 =========
+
+RouteList is a collection of Routes.
 
 kind: RouteList                                                       # string
 apiVersion: v1beta1                                                   # string
@@ -1939,6 +2027,8 @@ items:                                                                # []github
 Template
 ========
 
+Template contains the inputs needed to produce a Config.
+
 kind: Template                                                        # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -1967,6 +2057,8 @@ labels:                                                               # map[stri
 
 TemplateList
 ============
+
+TemplateList is a list of Template objects.
 
 kind: TemplateList                                                    # string
 apiVersion: v1beta1                                                   # string
@@ -2003,6 +2095,7 @@ items:                                                                # []github
 Identity
 ========
 
+
 kind: Identity                                                        # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -2026,6 +2119,7 @@ extra:                                                                # map[stri
 User
 ====
 
+
 kind: User                                                            # string
 apiVersion: v1beta1                                                   # string
 metadata:                                                             # github.com/GoogleCloudPlatform/kubernetes/pkg/api/v1beta3.ObjectMeta
@@ -2045,6 +2139,7 @@ fullName:                                                             # string
 
 UserIdentityMapping
 ===================
+
 
 kind: UserIdentityMapping                                             # string
 apiVersion: v1beta1                                                   # string
@@ -2099,6 +2194,7 @@ user:                                                                 # github.c
 
 UserList
 ========
+
 
 kind: UserList                                                        # string
 apiVersion: v1beta1                                                   # string
