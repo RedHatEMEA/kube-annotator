@@ -165,6 +165,11 @@ func walkPkg(pkg *types.Package) {
 }
 
 func main() {
+	if len(os.Args) != 2 {
+		fmt.Fprintf(os.Stderr, "usage: %s package\n", os.Args[0])
+		return
+	}
+
 	pkg, err := importPkg(os.Args[1])
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
