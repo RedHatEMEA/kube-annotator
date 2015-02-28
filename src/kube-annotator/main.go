@@ -45,10 +45,10 @@ func typefmt(typ types.Type) string {
 }
 
 func print(s1 string, s2 string) {
-	fmt.Printf("%-39s # %s\n", s1, s2)
+	fmt.Printf("%-69s # %s\n", s1, s2)
 }
 
-func dump(typ types.Type, indent string) {
+func dump(typ types.Type, indent string, typename *types.TypeName) {
 	if _, ok := typ.(*types.Named); ok {
 		typ = typ.Underlying()
 	}
@@ -64,11 +64,22 @@ func dump(typ types.Type, indent string) {
 			}
 			
 			if name == "" {
-				dump(u.Field(i).Type(), indent)
+				dump(u.Field(i).Type(), indent, typename)
 			} else {
-				print(indent + name + ":", typefmt(u.Field(i).Type()) + desc)
+				options := ""
+				if named, ok := u.Field(i).Type().(*types.Named); ok {
+					options = getConsts(named)
+				}
+				if typename != nil && name == "kind" {
+					options = typename.Name()
+				}
+				if typename != nil && name == "apiVersion" {
+					options = typename.Pkg().Name()
+				}
+
+				print(indent + name + ": " + options, typefmt(u.Field(i).Type()) + desc)
 				if !blacklist[typefmt(u.Field(i).Type())] {
-					dump(u.Field(i).Type(), indent + "  ")
+					dump(u.Field(i).Type(), indent + "  ", nil)
 				}
 			}
 
@@ -79,12 +90,12 @@ func dump(typ types.Type, indent string) {
 		print(indent + "[" + typefmt(u.Key()) + "]:", typefmt(u.Elem()))
 
 	case *types.Pointer:
-		dump(u.Elem().Underlying(), indent)
+		dump(u.Elem().Underlying(), indent, nil)
 		
 	case *types.Slice:
 		indent = strings.TrimSuffix(indent, "  ") + "- "
 		if _, ok := u.Elem().Underlying().(*types.Struct); ok {
-			dump(u.Elem().Underlying(), indent)
+			dump(u.Elem().Underlying(), indent, nil)
 		} else {
 			print(indent + "[" + typefmt(u.Elem()) + "]", "")
 		}
@@ -94,6 +105,23 @@ func dump(typ types.Type, indent string) {
 	default:
 		panic("unsupported")
 	}
+}
+
+func getConsts(named *types.Named) string {
+	pkg := named.Obj().Pkg()
+
+	s := make([]string, 0)
+	for _, name := range pkg.Scope().Names() {
+		obj := pkg.Scope().Lookup(name)
+
+		if konst, ok := obj.(*types.Const); ok {
+			if konst.Type() == named {
+				s = append(s, strings.Replace(konst.Val().String(), "\"", "", -1))
+			}
+		}
+	}
+
+	return strings.Join(s, "|")
 }
 
 func importPkg(pkgname string) (*types.Package, error) {
@@ -130,7 +158,7 @@ func walkPkg(pkg *types.Package) {
 			}
 
 			fmt.Printf("%s\n%s\n\n", typename.Name(), strings.Repeat("=", len(typename.Name())))
-			dump(strukt, "")
+			dump(strukt, "", typename)
 			fmt.Printf("\n\n")
 		}
 	}
