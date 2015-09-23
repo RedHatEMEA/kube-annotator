@@ -30,12 +30,6 @@ import (
 	_ "golang.org/x/tools/go/gcimporter"
 )
 
-// Don't recurse into structs of this type
-var blacklist = map[string]bool{
-	"github.com/GoogleCloudPlatform/kubernetes/pkg/util.Time": true,
-	"github.com/GoogleCloudPlatform/kubernetes/pkg/util.IntOrString": true,
-}
-
 func typefmt(typ types.Type) string {
 	// Ugh.
 	typename := typ.String()
@@ -79,9 +73,7 @@ func dump(typ types.Type, indent string, typename *types.TypeName) {
 				}
 
 				print(indent + name + ": " + options, typefmt(u.Field(i).Type()) + desc)
-				if !blacklist[typefmt(u.Field(i).Type())] {
-					dump(u.Field(i).Type(), indent + "  ", nil)
-				}
+				dump(u.Field(i).Type(), indent + "  ", nil)
 			}
 
 			indent = strings.Replace(indent, "-", " ", -1)
