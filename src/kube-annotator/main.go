@@ -39,61 +39,81 @@ func typefmt(typ types.Type) string {
 	return typename
 }
 
-func print(s1 string, s2 string) {
-	fmt.Printf("%-69s # %s\n", s1, s2)
+func print(indent, s1, options, s2, desc string) {
+	if desc != "" {
+		desc = " (" + desc + ")"
+	}
+	if options != "" {
+		options = " " + options
+	}
+
+	fmt.Printf("%-69s # %s\n", indent + s1 + options, s2 + desc)
 }
 
-func dump(typ types.Type, indent string, typename *types.TypeName) {
-	if _, ok := typ.(*types.Named); ok {
+func dump(basename *types.TypeName, indent string, typ types.Type, st reflect.StructTag) {
+	tn := typefmt(typ)
+	options := ""
+	if named, ok := typ.(*types.Named); ok {
+		tn = typefmt(named)
+		options = getConsts(named)
 		typ = typ.Underlying()
+	}
+
+	name := strings.Split(st.Get("json"), ",")[0]
+	if _, ok := typ.(*types.Struct); !ok {
+		if name == "" {
+			return
+		}
 	}
 
 	switch u := typ.(type) {
 	case *types.Struct:
-		for i := 0; i < u.NumFields(); i++ {
-			st := reflect.StructTag(u.Tag(i))
-			name := strings.Split(st.Get("json"), ",")[0]
-			desc := st.Get("description")
-			if desc != "" {
-				desc = " (" + desc + ")"
-			}
-			
-			if name == "" {
-				dump(u.Field(i).Type(), indent, typename)
-			} else {
-				options := ""
-				if named, ok := u.Field(i).Type().(*types.Named); ok {
-					options = getConsts(named)
-				}
-				if typename != nil && name == "kind" {
-					options = typename.Name()
-				}
-				if typename != nil && name == "apiVersion" {
-					options = typename.Pkg().Name()
-				}
+		if name != "" && name != basename.Name() {
+			print(indent, name + ":", "", tn, st.Get("description"))
+		}
 
-				print(indent + name + ": " + options, typefmt(u.Field(i).Type()) + desc)
-				dump(u.Field(i).Type(), indent + "  ", nil)
+		for i := 0; i < u.NumFields(); i++ {
+			if name == "" || basename.Name() == name {
+				dump(basename, indent, u.Field(i).Type(), reflect.StructTag(u.Tag(i)))
+			} else {
+				dump(basename, indent + "  ", u.Field(i).Type(), reflect.StructTag(u.Tag(i)))
 			}
 
 			indent = strings.Replace(indent, "-", " ", -1)
 		}
 
 	case *types.Map:
-		print(indent + "[" + typefmt(u.Key()) + "]:", typefmt(u.Elem()))
+		print(indent, name + ":", options, tn, st.Get("description"))
+		print(indent + "  ", "[" + typefmt(u.Key()) + "]:", "", typefmt(u.Elem()), "")
 
-	case *types.Pointer:
-		dump(u.Elem().Underlying(), indent, nil)
-		
 	case *types.Slice:
-		indent = strings.TrimSuffix(indent, "  ") + "- "
-		if _, ok := u.Elem().Underlying().(*types.Struct); ok {
-			dump(u.Elem().Underlying(), indent, nil)
-		} else {
-			print(indent + "[" + typefmt(u.Elem()) + "]", "")
+		und := u.Elem()
+		if p, ok := und.(*types.Pointer); ok {
+			und = p.Elem()
 		}
 
+		print(indent, name + ":", options, "[]" + typefmt(und), st.Get("description"))
+
+		if _, ok := und.Underlying().(*types.Struct); ok {
+			dump(basename, indent + "- ", und, reflect.StructTag("json:\"\""))
+		} else {
+			print(indent + "- ", "[" + typefmt(und) + "]", "", "", "")
+		}
+
+	case *types.Pointer:
+		dump(basename, indent, u.Elem(), st)
+
 	case *types.Basic:
+		if indent == "" {
+			switch name {
+			case "kind":
+				options = basename.Name()
+			case "apiVersion":
+				options = basename.Pkg().Name()
+			}
+		}
+
+		print(indent, name + ":", options, tn, st.Get("description"))
 
 	default:
 		panic("unsupported")
@@ -160,7 +180,7 @@ func walkPkg(typpkg *types.Package, docpkg *doc.Package) {
 				}
 			}
 
-			dump(strukt, "", typename)
+			dump(typename, "", strukt, reflect.StructTag("json:\"" + typename.Name() + "\""))
 			fmt.Printf("\n\n")
 		}
 	}
@@ -177,7 +197,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
 		return
 	}
-	
+
 	docpkg := doc.New(astpkg, os.Args[1], 0)
 
 	walkPkg(typpkg, docpkg)
