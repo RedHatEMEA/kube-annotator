@@ -1,4 +1,4 @@
-kube-annotator
-origin
-pkg
-src/golang.org
+/kube-annotator
+/origin
+/pkg
+/src/golang.org

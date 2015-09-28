@@ -30,6 +30,14 @@ import (
 	_ "golang.org/x/tools/go/gcimporter"
 )
 
+type outputer interface {
+	Struct(basename *types.TypeName, st reflect.StructTag, u *types.Struct, options string, tn string)
+	Map(basename *types.TypeName, st reflect.StructTag, u *types.Map, options string, tn string)
+	Slice(basename *types.TypeName, st reflect.StructTag, u *types.Slice, options string)
+	Pointer(basename *types.TypeName, st reflect.StructTag, u *types.Pointer)
+	Basic(basename *types.TypeName, st reflect.StructTag, u *types.Basic, options string, tn string)
+}
+
 func typefmt(typ types.Type) string {
 	// Ugh.
 	typename := typ.String()
@@ -39,18 +47,7 @@ func typefmt(typ types.Type) string {
 	return typename
 }
 
-func print(indent, s1, options, s2, desc string) {
-	if desc != "" {
-		desc = " (" + desc + ")"
-	}
-	if options != "" {
-		options = " " + options
-	}
-
-	fmt.Printf("%-69s # %s\n", indent + s1 + options, s2 + desc)
-}
-
-func dump(basename *types.TypeName, indent string, typ types.Type, st reflect.StructTag) {
+func dump(o outputer, basename *types.TypeName, typ types.Type, st reflect.StructTag) {
 	tn := typefmt(typ)
 	options := ""
 	if named, ok := typ.(*types.Named); ok {
@@ -60,60 +57,25 @@ func dump(basename *types.TypeName, indent string, typ types.Type, st reflect.St
 	}
 
 	name := strings.Split(st.Get("json"), ",")[0]
-	if _, ok := typ.(*types.Struct); !ok {
-		if name == "" {
-			return
-		}
+	if _, ok := typ.(*types.Struct); !ok && name == "" {
+		return
 	}
 
 	switch u := typ.(type) {
 	case *types.Struct:
-		if name != "" && name != basename.Name() {
-			print(indent, name + ":", "", tn, st.Get("description"))
-		}
-
-		for i := 0; i < u.NumFields(); i++ {
-			if name == "" || basename.Name() == name {
-				dump(basename, indent, u.Field(i).Type(), reflect.StructTag(u.Tag(i)))
-			} else {
-				dump(basename, indent + "  ", u.Field(i).Type(), reflect.StructTag(u.Tag(i)))
-			}
-
-			indent = strings.Replace(indent, "-", " ", -1)
-		}
+		o.Struct(basename, st, u, options, tn)
 
 	case *types.Map:
-		print(indent, name + ":", options, tn, st.Get("description"))
-		print(indent + "  ", "[" + typefmt(u.Key()) + "]:", "", typefmt(u.Elem()), "")
+		o.Map(basename, st, u, options, tn)
 
 	case *types.Slice:
-		und := u.Elem()
-		if p, ok := und.(*types.Pointer); ok {
-			und = p.Elem()
-		}
-
-		print(indent, name + ":", options, "[]" + typefmt(und), st.Get("description"))
-
-		if _, ok := und.Underlying().(*types.Struct); ok {
-			dump(basename, indent + "- ", und, reflect.StructTag("json:\"\""))
-		} else {
-			print(indent + "- ", "[" + typefmt(und) + "]", "", "", "")
-		}
+		o.Slice(basename, st, u, options)
 
 	case *types.Pointer:
-		dump(basename, indent, u.Elem(), st)
+		o.Pointer(basename, st, u)
 
 	case *types.Basic:
-		if indent == "" {
-			switch name {
-			case "kind":
-				options = basename.Name()
-			case "apiVersion":
-				options = basename.Pkg().Name()
-			}
-		}
-
-		print(indent, name + ":", options, tn, st.Get("description"))
+		o.Basic(basename, st, u, options, tn)
 
 	default:
 		panic("unsupported")
@@ -180,7 +142,8 @@ func walkPkg(typpkg *types.Package, docpkg *doc.Package) {
 				}
 			}
 
-			dump(typename, "", strukt, reflect.StructTag("json:\"" + typename.Name() + "\""))
+			o := DocOutput{}
+			dump(&o, typename, strukt, reflect.StructTag("json:\"" + typename.Name() + "\""))
 			fmt.Printf("\n\n")
 		}
 	}
