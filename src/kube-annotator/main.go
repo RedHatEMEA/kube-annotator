@@ -31,11 +31,11 @@ import (
 )
 
 type outputer interface {
-	Struct(basename *types.TypeName, st reflect.StructTag, u *types.Struct, options string, tn string)
-	Map(basename *types.TypeName, st reflect.StructTag, u *types.Map, options string, tn string)
-	Slice(basename *types.TypeName, st reflect.StructTag, u *types.Slice, options string)
-	Pointer(basename *types.TypeName, st reflect.StructTag, u *types.Pointer)
-	Basic(basename *types.TypeName, st reflect.StructTag, u *types.Basic, options string, tn string)
+	Struct(st reflect.StructTag, u *types.Struct, tn string) interface{}
+	Map(st reflect.StructTag, u *types.Map, tn string) interface{}
+	Slice(st reflect.StructTag, u *types.Slice) interface{}
+	Pointer(st reflect.StructTag, u *types.Pointer) interface{}
+	Basic(st reflect.StructTag, u *types.Basic, options string, tn string) interface{}
 }
 
 func typefmt(typ types.Type) string {
@@ -47,7 +47,7 @@ func typefmt(typ types.Type) string {
 	return typename
 }
 
-func dump(o outputer, basename *types.TypeName, typ types.Type, st reflect.StructTag) {
+func dump(o outputer, typ types.Type, st reflect.StructTag) interface{} {
 	tn := typefmt(typ)
 	options := ""
 	if named, ok := typ.(*types.Named); ok {
@@ -58,24 +58,26 @@ func dump(o outputer, basename *types.TypeName, typ types.Type, st reflect.Struc
 
 	name := strings.Split(st.Get("json"), ",")[0]
 	if _, ok := typ.(*types.Struct); !ok && name == "" {
-		return
+		if _, ok := typ.(*types.Pointer); !ok && name == "" {
+			return nil
+		}
 	}
 
 	switch u := typ.(type) {
 	case *types.Struct:
-		o.Struct(basename, st, u, options, tn)
+		return o.Struct(st, u, tn)
 
 	case *types.Map:
-		o.Map(basename, st, u, options, tn)
+		return o.Map(st, u, tn)
 
 	case *types.Slice:
-		o.Slice(basename, st, u, options)
+		return o.Slice(st, u)
 
 	case *types.Pointer:
-		o.Pointer(basename, st, u)
+		return o.Pointer(st, u)
 
 	case *types.Basic:
-		o.Basic(basename, st, u, options, tn)
+		return o.Basic(st, u, options, tn)
 
 	default:
 		panic("unsupported")
@@ -142,8 +144,22 @@ func walkPkg(typpkg *types.Package, docpkg *doc.Package) {
 				}
 			}
 
-			o := DocOutput{}
-			dump(&o, typename, strukt, reflect.StructTag("json:\"" + typename.Name() + "\""))
+			o := IOutput{}
+			rv := dump(&o, strukt, reflect.StructTag("json:\"" + typename.Name() + "\""))
+			srv := rv.(IStruct)
+			for i := range srv.items {
+				if it, ok := srv.items[i].(IBasic); ok {
+					switch it.name {
+					case "kind":
+						it.options = typename.Name()
+						srv.items[i] = it
+					case "apiVersion":
+						it.options = typename.Pkg().Name()
+						srv.items[i] = it
+					}
+				}
+			}
+			fmt.Printf("%s", do2(rv))
 			fmt.Printf("\n\n")
 		}
 	}

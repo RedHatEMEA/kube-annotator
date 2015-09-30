@@ -170,7 +170,7 @@ spec:                                                                 # k8s.io/k
           readOnly:                                                   # bool (mount volume as read-only when true; default false)
         rbd:                                                          # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
           monitors:                                                   # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-          - [string]                                                  # 
+          - [string]                                                  #
           image:                                                      # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           fsType:                                                     # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           pool:                                                       # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -181,7 +181,7 @@ spec:                                                                 # k8s.io/k
           readOnly:                                                   # bool (rbd volume to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
         cephfs:                                                       # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
           monitors:                                                   # []string (a collection of Ceph monitors)
-          - [string]                                                  # 
+          - [string]                                                  #
           user:                                                       # string (rados user name; default is admin; optional)
           secretFile:                                                 # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
           secretRef:                                                  # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
@@ -197,9 +197,9 @@ spec:                                                                 # k8s.io/k
       - name:                                                         # string (name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated)
         image:                                                        # string (Docker image name; see http://releases.k8s.io/HEAD/docs/user-guide/images.md)
         command:                                                      # []string (entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-        - [string]                                                    # 
+        - [string]                                                    #
         args:                                                         # []string (command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-        - [string]                                                    # 
+        - [string]                                                    #
         workingDir:                                                   # string (container's working directory; defaults to image's default; cannot be updated)
         ports:                                                        # []k8s.io/kubernetes/pkg/api/v1.ContainerPort (list of ports to expose from the container; cannot be updated)
         - name:                                                       # string (name for the port that can be referred to by services; must be an IANA_SVC_NAME and unique within the pod)
@@ -226,7 +226,7 @@ spec:                                                                 # k8s.io/k
         livenessProbe:                                                # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -239,7 +239,7 @@ spec:                                                                 # k8s.io/k
         readinessProbe:                                               # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -253,7 +253,7 @@ spec:                                                                 # k8s.io/k
           postStart:                                                  # k8s.io/kubernetes/pkg/api/v1.Handler (called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -264,7 +264,7 @@ spec:                                                                 # k8s.io/k
           preStop:                                                    # k8s.io/kubernetes/pkg/api/v1.Handler (called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -277,9 +277,9 @@ spec:                                                                 # k8s.io/k
         securityContext:                                              # k8s.io/kubernetes/pkg/api/v1.SecurityContext (security options the pod should run with; see http://releases.k8s.io/HEAD/docs/design/security_context.md)
           capabilities:                                               # k8s.io/kubernetes/pkg/api/v1.Capabilities (the linux capabilites that should be added or removed; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             add:                                                      # []k8s.io/kubernetes/pkg/api/v1.Capability (added capabilities)
-            - [k8s.io/kubernetes/pkg/api/v1.Capability]               # 
+            - [k8s.io/kubernetes/pkg/api/v1.Capability]               #
             drop:                                                     # []k8s.io/kubernetes/pkg/api/v1.Capability (droped capabilities)
-            - [k8s.io/kubernetes/pkg/api/v1.Capability]               # 
+            - [k8s.io/kubernetes/pkg/api/v1.Capability]               #
           privileged:                                                 # bool (run the container in privileged mode; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
           seLinuxOptions:                                             # k8s.io/kubernetes/pkg/api/v1.SELinuxOptions (options that control the SELinux labels applied; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             user:                                                     # string (the user label to apply to the container; see http://releases.k8s.io/HEAD/docs/user-guide/labels.md)
@@ -395,7 +395,7 @@ items:                                                                # []k8s.io
             readOnly:                                                 # bool (mount volume as read-only when true; default false)
           rbd:                                                        # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
             monitors:                                                 # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-            - [string]                                                # 
+            - [string]                                                #
             image:                                                    # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
             fsType:                                                   # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
             pool:                                                     # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -406,7 +406,7 @@ items:                                                                # []k8s.io
             readOnly:                                                 # bool (rbd volume to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           cephfs:                                                     # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
             monitors:                                                 # []string (a collection of Ceph monitors)
-            - [string]                                                # 
+            - [string]                                                #
             user:                                                     # string (rados user name; default is admin; optional)
             secretFile:                                               # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
             secretRef:                                                # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
@@ -422,9 +422,9 @@ items:                                                                # []k8s.io
         - name:                                                       # string (name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated)
           image:                                                      # string (Docker image name; see http://releases.k8s.io/HEAD/docs/user-guide/images.md)
           command:                                                    # []string (entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-          - [string]                                                  # 
+          - [string]                                                  #
           args:                                                       # []string (command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-          - [string]                                                  # 
+          - [string]                                                  #
           workingDir:                                                 # string (container's working directory; defaults to image's default; cannot be updated)
           ports:                                                      # []k8s.io/kubernetes/pkg/api/v1.ContainerPort (list of ports to expose from the container; cannot be updated)
           - name:                                                     # string (name for the port that can be referred to by services; must be an IANA_SVC_NAME and unique within the pod)
@@ -451,7 +451,7 @@ items:                                                                # []k8s.io
           livenessProbe:                                              # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -464,7 +464,7 @@ items:                                                                # []k8s.io
           readinessProbe:                                             # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -478,7 +478,7 @@ items:                                                                # []k8s.io
             postStart:                                                # k8s.io/kubernetes/pkg/api/v1.Handler (called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
               exec:                                                   # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
                 command:                                              # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-                - [string]                                            # 
+                - [string]                                            #
               httpGet:                                                # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
                 path:                                                 # string (path to access on the HTTP server)
                 port:                                                 # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -489,7 +489,7 @@ items:                                                                # []k8s.io
             preStop:                                                  # k8s.io/kubernetes/pkg/api/v1.Handler (called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
               exec:                                                   # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
                 command:                                              # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-                - [string]                                            # 
+                - [string]                                            #
               httpGet:                                                # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
                 path:                                                 # string (path to access on the HTTP server)
                 port:                                                 # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -502,9 +502,9 @@ items:                                                                # []k8s.io
           securityContext:                                            # k8s.io/kubernetes/pkg/api/v1.SecurityContext (security options the pod should run with; see http://releases.k8s.io/HEAD/docs/design/security_context.md)
             capabilities:                                             # k8s.io/kubernetes/pkg/api/v1.Capabilities (the linux capabilites that should be added or removed; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
               add:                                                    # []k8s.io/kubernetes/pkg/api/v1.Capability (added capabilities)
-              - [k8s.io/kubernetes/pkg/api/v1.Capability]             # 
+              - [k8s.io/kubernetes/pkg/api/v1.Capability]             #
               drop:                                                   # []k8s.io/kubernetes/pkg/api/v1.Capability (droped capabilities)
-              - [k8s.io/kubernetes/pkg/api/v1.Capability]             # 
+              - [k8s.io/kubernetes/pkg/api/v1.Capability]             #
             privileged:                                               # bool (run the container in privileged mode; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             seLinuxOptions:                                           # k8s.io/kubernetes/pkg/api/v1.SELinuxOptions (options that control the SELinux labels applied; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
               user:                                                   # string (the user label to apply to the container; see http://releases.k8s.io/HEAD/docs/user-guide/labels.md)
@@ -578,7 +578,7 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 subsets:                                                              # []k8s.io/kubernetes/pkg/api/v1.EndpointSubset (sets of addresses and ports that comprise a service)
 - addresses:                                                          # []k8s.io/kubernetes/pkg/api/v1.EndpointAddress (IP addresses which offer the related ports)
-- - ip:                                                               # string (IP address of the endpoint)
+  - ip:                                                               # string (IP address of the endpoint)
     targetRef:                                                        # k8s.io/kubernetes/pkg/api/v1.ObjectReference (reference to object providing the endpoint)
       kind:                                                           # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
       namespace:                                                      # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -622,7 +622,7 @@ items:                                                                # []k8s.io
       [string]:                                                       # string
   subsets:                                                            # []k8s.io/kubernetes/pkg/api/v1.EndpointSubset (sets of addresses and ports that comprise a service)
   - addresses:                                                        # []k8s.io/kubernetes/pkg/api/v1.EndpointAddress (IP addresses which offer the related ports)
-  - - ip:                                                             # string (IP address of the endpoint)
+    - ip:                                                             # string (IP address of the endpoint)
       targetRef:                                                      # k8s.io/kubernetes/pkg/api/v1.ObjectReference (reference to object providing the endpoint)
         kind:                                                         # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
         namespace:                                                    # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -842,7 +842,7 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 spec:                                                                 # k8s.io/kubernetes/pkg/api/v1.NamespaceSpec (spec defines the behavior of the Namespace; http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#spec-and-status)
   finalizers:                                                         # []k8s.io/kubernetes/pkg/api/v1.FinalizerName (an opaque list of values that must be empty to permanently remove object from storage; see http://releases.k8s.io/HEAD/docs/design/namespaces.md#finalizers)
-  - [k8s.io/kubernetes/pkg/api/v1.FinalizerName]                      # 
+  - [k8s.io/kubernetes/pkg/api/v1.FinalizerName]                      #
 status:                                                               # k8s.io/kubernetes/pkg/api/v1.NamespaceStatus (status describes the current status of a Namespace; http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#spec-and-status)
   phase: Active|Terminating                                           # k8s.io/kubernetes/pkg/api/v1.NamespacePhase (phase is the current lifecycle phase of the namespace; see http://releases.k8s.io/HEAD/docs/design/namespaces.md#phases)
 
@@ -876,7 +876,7 @@ items:                                                                # []k8s.io
       [string]:                                                       # string
   spec:                                                               # k8s.io/kubernetes/pkg/api/v1.NamespaceSpec (spec defines the behavior of the Namespace; http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#spec-and-status)
     finalizers:                                                       # []k8s.io/kubernetes/pkg/api/v1.FinalizerName (an opaque list of values that must be empty to permanently remove object from storage; see http://releases.k8s.io/HEAD/docs/design/namespaces.md#finalizers)
-    - [k8s.io/kubernetes/pkg/api/v1.FinalizerName]                    # 
+    - [k8s.io/kubernetes/pkg/api/v1.FinalizerName]                    #
   status:                                                             # k8s.io/kubernetes/pkg/api/v1.NamespaceStatus (status describes the current status of a Namespace; http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#spec-and-status)
     phase: Active|Terminating                                         # k8s.io/kubernetes/pkg/api/v1.NamespacePhase (phase is the current lifecycle phase of the namespace; see http://releases.k8s.io/HEAD/docs/design/namespaces.md#phases)
 
@@ -1035,7 +1035,7 @@ spec:                                                                 # k8s.io/k
     readOnly:                                                         # bool (forces the NFS export to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/docs/user-guide/volumes.md#nfs)
   rbd:                                                                # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
     monitors:                                                         # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-    - [string]                                                        # 
+    - [string]                                                        #
     image:                                                            # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
     fsType:                                                           # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
     pool:                                                             # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -1052,14 +1052,14 @@ spec:                                                                 # k8s.io/k
     readOnly:                                                         # bool (read-only if true, read-write otherwise (false or unspecified))
   cephfs:                                                             # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
     monitors:                                                         # []string (a collection of Ceph monitors)
-    - [string]                                                        # 
+    - [string]                                                        #
     user:                                                             # string (rados user name; default is admin; optional)
     secretFile:                                                       # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
     secretRef:                                                        # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
       name:                                                           # string (name of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names)
     readOnly:                                                         # bool (Ceph fs to be mounted with read-only permissions)
   accessModes:                                                        # []k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode (all ways the volume can be mounted; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#access-modes)
-  - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]         # 
+  - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]         #
   claimRef:                                                           # k8s.io/kubernetes/pkg/api/v1.ObjectReference (when bound, a reference to the bound claim; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#binding)
     kind:                                                             # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
     namespace:                                                        # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -1098,7 +1098,7 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 spec:                                                                 # k8s.io/kubernetes/pkg/api/v1.PersistentVolumeClaimSpec (the desired characteristics of a volume; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#persistentvolumeclaims)
   accessModes:                                                        # []k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode (the desired access modes the volume should have; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#access-modes-1)
-  - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]         # 
+  - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]         #
   resources:                                                          # k8s.io/kubernetes/pkg/api/v1.ResourceRequirements (the desired resources the volume should have; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#resources)
     limits:                                                           # k8s.io/kubernetes/pkg/api/v1.ResourceList (Maximum amount of compute resources allowed; see http://releases.k8s.io/HEAD/docs/design/resources.md#resource-specifications)
       [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                    # k8s.io/kubernetes/pkg/api/resource.Quantity
@@ -1108,7 +1108,7 @@ spec:                                                                 # k8s.io/k
 status:                                                               # k8s.io/kubernetes/pkg/api/v1.PersistentVolumeClaimStatus (the current status of a persistent volume claim; read-only; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#persistentvolumeclaims)
   phase: Bound|Pending                                                # k8s.io/kubernetes/pkg/api/v1.PersistentVolumeClaimPhase (the current phase of the claim)
   accessModes:                                                        # []k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode (the actual access modes the volume has; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#access-modes-1)
-  - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]         # 
+  - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]         #
   capacity:                                                           # k8s.io/kubernetes/pkg/api/v1.ResourceList (the actual resources the volume has)
     [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                      # k8s.io/kubernetes/pkg/api/resource.Quantity
 
@@ -1141,7 +1141,7 @@ items:                                                                # []k8s.io
       [string]:                                                       # string
   spec:                                                               # k8s.io/kubernetes/pkg/api/v1.PersistentVolumeClaimSpec (the desired characteristics of a volume; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#persistentvolumeclaims)
     accessModes:                                                      # []k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode (the desired access modes the volume should have; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#access-modes-1)
-    - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]       # 
+    - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]       #
     resources:                                                        # k8s.io/kubernetes/pkg/api/v1.ResourceRequirements (the desired resources the volume should have; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#resources)
       limits:                                                         # k8s.io/kubernetes/pkg/api/v1.ResourceList (Maximum amount of compute resources allowed; see http://releases.k8s.io/HEAD/docs/design/resources.md#resource-specifications)
         [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                  # k8s.io/kubernetes/pkg/api/resource.Quantity
@@ -1151,7 +1151,7 @@ items:                                                                # []k8s.io
   status:                                                             # k8s.io/kubernetes/pkg/api/v1.PersistentVolumeClaimStatus (the current status of a persistent volume claim; read-only; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#persistentvolumeclaims)
     phase: Bound|Pending                                              # k8s.io/kubernetes/pkg/api/v1.PersistentVolumeClaimPhase (the current phase of the claim)
     accessModes:                                                      # []k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode (the actual access modes the volume has; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#access-modes-1)
-    - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]       # 
+    - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]       #
     capacity:                                                         # k8s.io/kubernetes/pkg/api/v1.ResourceList (the actual resources the volume has)
       [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                    # k8s.io/kubernetes/pkg/api/resource.Quantity
 
@@ -1207,7 +1207,7 @@ items:                                                                # []k8s.io
       readOnly:                                                       # bool (forces the NFS export to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/docs/user-guide/volumes.md#nfs)
     rbd:                                                              # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
       monitors:                                                       # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-      - [string]                                                      # 
+      - [string]                                                      #
       image:                                                          # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
       fsType:                                                         # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
       pool:                                                           # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -1224,14 +1224,14 @@ items:                                                                # []k8s.io
       readOnly:                                                       # bool (read-only if true, read-write otherwise (false or unspecified))
     cephfs:                                                           # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
       monitors:                                                       # []string (a collection of Ceph monitors)
-      - [string]                                                      # 
+      - [string]                                                      #
       user:                                                           # string (rados user name; default is admin; optional)
       secretFile:                                                     # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
       secretRef:                                                      # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
         name:                                                         # string (name of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names)
       readOnly:                                                       # bool (Ceph fs to be mounted with read-only permissions)
     accessModes:                                                      # []k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode (all ways the volume can be mounted; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#access-modes)
-    - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]       # 
+    - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]       #
     claimRef:                                                         # k8s.io/kubernetes/pkg/api/v1.ObjectReference (when bound, a reference to the bound claim; see http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md#binding)
       kind:                                                           # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
       namespace:                                                      # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -1310,7 +1310,7 @@ spec:                                                                 # k8s.io/k
       readOnly:                                                       # bool (mount volume as read-only when true; default false)
     rbd:                                                              # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
       monitors:                                                       # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-      - [string]                                                      # 
+      - [string]                                                      #
       image:                                                          # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
       fsType:                                                         # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
       pool:                                                           # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -1321,7 +1321,7 @@ spec:                                                                 # k8s.io/k
       readOnly:                                                       # bool (rbd volume to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
     cephfs:                                                           # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
       monitors:                                                       # []string (a collection of Ceph monitors)
-      - [string]                                                      # 
+      - [string]                                                      #
       user:                                                           # string (rados user name; default is admin; optional)
       secretFile:                                                     # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
       secretRef:                                                      # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
@@ -1337,9 +1337,9 @@ spec:                                                                 # k8s.io/k
   - name:                                                             # string (name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated)
     image:                                                            # string (Docker image name; see http://releases.k8s.io/HEAD/docs/user-guide/images.md)
     command:                                                          # []string (entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-    - [string]                                                        # 
+    - [string]                                                        #
     args:                                                             # []string (command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-    - [string]                                                        # 
+    - [string]                                                        #
     workingDir:                                                       # string (container's working directory; defaults to image's default; cannot be updated)
     ports:                                                            # []k8s.io/kubernetes/pkg/api/v1.ContainerPort (list of ports to expose from the container; cannot be updated)
     - name:                                                           # string (name for the port that can be referred to by services; must be an IANA_SVC_NAME and unique within the pod)
@@ -1366,7 +1366,7 @@ spec:                                                                 # k8s.io/k
     livenessProbe:                                                    # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
       exec:                                                           # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
         command:                                                      # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-        - [string]                                                    # 
+        - [string]                                                    #
       httpGet:                                                        # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
         path:                                                         # string (path to access on the HTTP server)
         port:                                                         # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1379,7 +1379,7 @@ spec:                                                                 # k8s.io/k
     readinessProbe:                                                   # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
       exec:                                                           # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
         command:                                                      # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-        - [string]                                                    # 
+        - [string]                                                    #
       httpGet:                                                        # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
         path:                                                         # string (path to access on the HTTP server)
         port:                                                         # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1393,7 +1393,7 @@ spec:                                                                 # k8s.io/k
       postStart:                                                      # k8s.io/kubernetes/pkg/api/v1.Handler (called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
         exec:                                                         # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
           command:                                                    # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-          - [string]                                                  # 
+          - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
           path:                                                       # string (path to access on the HTTP server)
           port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1404,7 +1404,7 @@ spec:                                                                 # k8s.io/k
       preStop:                                                        # k8s.io/kubernetes/pkg/api/v1.Handler (called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
         exec:                                                         # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
           command:                                                    # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-          - [string]                                                  # 
+          - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
           path:                                                       # string (path to access on the HTTP server)
           port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1417,9 +1417,9 @@ spec:                                                                 # k8s.io/k
     securityContext:                                                  # k8s.io/kubernetes/pkg/api/v1.SecurityContext (security options the pod should run with; see http://releases.k8s.io/HEAD/docs/design/security_context.md)
       capabilities:                                                   # k8s.io/kubernetes/pkg/api/v1.Capabilities (the linux capabilites that should be added or removed; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
         add:                                                          # []k8s.io/kubernetes/pkg/api/v1.Capability (added capabilities)
-        - [k8s.io/kubernetes/pkg/api/v1.Capability]                   # 
+        - [k8s.io/kubernetes/pkg/api/v1.Capability]                   #
         drop:                                                         # []k8s.io/kubernetes/pkg/api/v1.Capability (droped capabilities)
-        - [k8s.io/kubernetes/pkg/api/v1.Capability]                   # 
+        - [k8s.io/kubernetes/pkg/api/v1.Capability]                   #
       privileged:                                                     # bool (run the container in privileged mode; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
       seLinuxOptions:                                                 # k8s.io/kubernetes/pkg/api/v1.SELinuxOptions (options that control the SELinux labels applied; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
         user:                                                         # string (the user label to apply to the container; see http://releases.k8s.io/HEAD/docs/user-guide/labels.md)
@@ -1519,7 +1519,7 @@ stderr:                                                               # bool (re
 tty:                                                                  # bool (allocate a terminal for this exec call; defaults to false)
 container:                                                            # string (the container in which to execute the command. Defaults to only container if there is only one container in the pod.)
 command:                                                              # []string (the command to execute; argv array; not executed within a shell)
-- [string]                                                            # 
+- [string]                                                            #
 
 
 PodList
@@ -1590,7 +1590,7 @@ items:                                                                # []k8s.io
         readOnly:                                                     # bool (mount volume as read-only when true; default false)
       rbd:                                                            # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
         monitors:                                                     # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-        - [string]                                                    # 
+        - [string]                                                    #
         image:                                                        # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
         fsType:                                                       # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
         pool:                                                         # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -1601,7 +1601,7 @@ items:                                                                # []k8s.io
         readOnly:                                                     # bool (rbd volume to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
       cephfs:                                                         # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
         monitors:                                                     # []string (a collection of Ceph monitors)
-        - [string]                                                    # 
+        - [string]                                                    #
         user:                                                         # string (rados user name; default is admin; optional)
         secretFile:                                                   # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
         secretRef:                                                    # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
@@ -1617,9 +1617,9 @@ items:                                                                # []k8s.io
     - name:                                                           # string (name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated)
       image:                                                          # string (Docker image name; see http://releases.k8s.io/HEAD/docs/user-guide/images.md)
       command:                                                        # []string (entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-      - [string]                                                      # 
+      - [string]                                                      #
       args:                                                           # []string (command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-      - [string]                                                      # 
+      - [string]                                                      #
       workingDir:                                                     # string (container's working directory; defaults to image's default; cannot be updated)
       ports:                                                          # []k8s.io/kubernetes/pkg/api/v1.ContainerPort (list of ports to expose from the container; cannot be updated)
       - name:                                                         # string (name for the port that can be referred to by services; must be an IANA_SVC_NAME and unique within the pod)
@@ -1646,7 +1646,7 @@ items:                                                                # []k8s.io
       livenessProbe:                                                  # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
         exec:                                                         # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
           command:                                                    # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-          - [string]                                                  # 
+          - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
           path:                                                       # string (path to access on the HTTP server)
           port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1659,7 +1659,7 @@ items:                                                                # []k8s.io
       readinessProbe:                                                 # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
         exec:                                                         # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
           command:                                                    # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-          - [string]                                                  # 
+          - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
           path:                                                       # string (path to access on the HTTP server)
           port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1673,7 +1673,7 @@ items:                                                                # []k8s.io
         postStart:                                                    # k8s.io/kubernetes/pkg/api/v1.Handler (called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1684,7 +1684,7 @@ items:                                                                # []k8s.io
         preStop:                                                      # k8s.io/kubernetes/pkg/api/v1.Handler (called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1697,9 +1697,9 @@ items:                                                                # []k8s.io
       securityContext:                                                # k8s.io/kubernetes/pkg/api/v1.SecurityContext (security options the pod should run with; see http://releases.k8s.io/HEAD/docs/design/security_context.md)
         capabilities:                                                 # k8s.io/kubernetes/pkg/api/v1.Capabilities (the linux capabilites that should be added or removed; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
           add:                                                        # []k8s.io/kubernetes/pkg/api/v1.Capability (added capabilities)
-          - [k8s.io/kubernetes/pkg/api/v1.Capability]                 # 
+          - [k8s.io/kubernetes/pkg/api/v1.Capability]                 #
           drop:                                                       # []k8s.io/kubernetes/pkg/api/v1.Capability (droped capabilities)
-          - [k8s.io/kubernetes/pkg/api/v1.Capability]                 # 
+          - [k8s.io/kubernetes/pkg/api/v1.Capability]                 #
         privileged:                                                   # bool (run the container in privileged mode; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
         seLinuxOptions:                                               # k8s.io/kubernetes/pkg/api/v1.SELinuxOptions (options that control the SELinux labels applied; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
           user:                                                       # string (the user label to apply to the container; see http://releases.k8s.io/HEAD/docs/user-guide/labels.md)
@@ -1933,7 +1933,7 @@ template:                                                             # k8s.io/k
         readOnly:                                                     # bool (mount volume as read-only when true; default false)
       rbd:                                                            # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
         monitors:                                                     # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-        - [string]                                                    # 
+        - [string]                                                    #
         image:                                                        # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
         fsType:                                                       # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
         pool:                                                         # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -1944,7 +1944,7 @@ template:                                                             # k8s.io/k
         readOnly:                                                     # bool (rbd volume to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
       cephfs:                                                         # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
         monitors:                                                     # []string (a collection of Ceph monitors)
-        - [string]                                                    # 
+        - [string]                                                    #
         user:                                                         # string (rados user name; default is admin; optional)
         secretFile:                                                   # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
         secretRef:                                                    # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
@@ -1960,9 +1960,9 @@ template:                                                             # k8s.io/k
     - name:                                                           # string (name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated)
       image:                                                          # string (Docker image name; see http://releases.k8s.io/HEAD/docs/user-guide/images.md)
       command:                                                        # []string (entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-      - [string]                                                      # 
+      - [string]                                                      #
       args:                                                           # []string (command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-      - [string]                                                      # 
+      - [string]                                                      #
       workingDir:                                                     # string (container's working directory; defaults to image's default; cannot be updated)
       ports:                                                          # []k8s.io/kubernetes/pkg/api/v1.ContainerPort (list of ports to expose from the container; cannot be updated)
       - name:                                                         # string (name for the port that can be referred to by services; must be an IANA_SVC_NAME and unique within the pod)
@@ -1989,7 +1989,7 @@ template:                                                             # k8s.io/k
       livenessProbe:                                                  # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
         exec:                                                         # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
           command:                                                    # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-          - [string]                                                  # 
+          - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
           path:                                                       # string (path to access on the HTTP server)
           port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2002,7 +2002,7 @@ template:                                                             # k8s.io/k
       readinessProbe:                                                 # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
         exec:                                                         # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
           command:                                                    # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-          - [string]                                                  # 
+          - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
           path:                                                       # string (path to access on the HTTP server)
           port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2016,7 +2016,7 @@ template:                                                             # k8s.io/k
         postStart:                                                    # k8s.io/kubernetes/pkg/api/v1.Handler (called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2027,7 +2027,7 @@ template:                                                             # k8s.io/k
         preStop:                                                      # k8s.io/kubernetes/pkg/api/v1.Handler (called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2040,9 +2040,9 @@ template:                                                             # k8s.io/k
       securityContext:                                                # k8s.io/kubernetes/pkg/api/v1.SecurityContext (security options the pod should run with; see http://releases.k8s.io/HEAD/docs/design/security_context.md)
         capabilities:                                                 # k8s.io/kubernetes/pkg/api/v1.Capabilities (the linux capabilites that should be added or removed; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
           add:                                                        # []k8s.io/kubernetes/pkg/api/v1.Capability (added capabilities)
-          - [k8s.io/kubernetes/pkg/api/v1.Capability]                 # 
+          - [k8s.io/kubernetes/pkg/api/v1.Capability]                 #
           drop:                                                       # []k8s.io/kubernetes/pkg/api/v1.Capability (droped capabilities)
-          - [k8s.io/kubernetes/pkg/api/v1.Capability]                 # 
+          - [k8s.io/kubernetes/pkg/api/v1.Capability]                 #
         privileged:                                                   # bool (run the container in privileged mode; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
         seLinuxOptions:                                               # k8s.io/kubernetes/pkg/api/v1.SELinuxOptions (options that control the SELinux labels applied; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
           user:                                                       # string (the user label to apply to the container; see http://releases.k8s.io/HEAD/docs/user-guide/labels.md)
@@ -2151,7 +2151,7 @@ items:                                                                # []k8s.io
           readOnly:                                                   # bool (mount volume as read-only when true; default false)
         rbd:                                                          # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
           monitors:                                                   # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-          - [string]                                                  # 
+          - [string]                                                  #
           image:                                                      # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           fsType:                                                     # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           pool:                                                       # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -2162,7 +2162,7 @@ items:                                                                # []k8s.io
           readOnly:                                                   # bool (rbd volume to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
         cephfs:                                                       # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
           monitors:                                                   # []string (a collection of Ceph monitors)
-          - [string]                                                  # 
+          - [string]                                                  #
           user:                                                       # string (rados user name; default is admin; optional)
           secretFile:                                                 # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
           secretRef:                                                  # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
@@ -2178,9 +2178,9 @@ items:                                                                # []k8s.io
       - name:                                                         # string (name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated)
         image:                                                        # string (Docker image name; see http://releases.k8s.io/HEAD/docs/user-guide/images.md)
         command:                                                      # []string (entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-        - [string]                                                    # 
+        - [string]                                                    #
         args:                                                         # []string (command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-        - [string]                                                    # 
+        - [string]                                                    #
         workingDir:                                                   # string (container's working directory; defaults to image's default; cannot be updated)
         ports:                                                        # []k8s.io/kubernetes/pkg/api/v1.ContainerPort (list of ports to expose from the container; cannot be updated)
         - name:                                                       # string (name for the port that can be referred to by services; must be an IANA_SVC_NAME and unique within the pod)
@@ -2207,7 +2207,7 @@ items:                                                                # []k8s.io
         livenessProbe:                                                # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2220,7 +2220,7 @@ items:                                                                # []k8s.io
         readinessProbe:                                               # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2234,7 +2234,7 @@ items:                                                                # []k8s.io
           postStart:                                                  # k8s.io/kubernetes/pkg/api/v1.Handler (called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2245,7 +2245,7 @@ items:                                                                # []k8s.io
           preStop:                                                    # k8s.io/kubernetes/pkg/api/v1.Handler (called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2258,9 +2258,9 @@ items:                                                                # []k8s.io
         securityContext:                                              # k8s.io/kubernetes/pkg/api/v1.SecurityContext (security options the pod should run with; see http://releases.k8s.io/HEAD/docs/design/security_context.md)
           capabilities:                                               # k8s.io/kubernetes/pkg/api/v1.Capabilities (the linux capabilites that should be added or removed; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             add:                                                      # []k8s.io/kubernetes/pkg/api/v1.Capability (added capabilities)
-            - [k8s.io/kubernetes/pkg/api/v1.Capability]               # 
+            - [k8s.io/kubernetes/pkg/api/v1.Capability]               #
             drop:                                                     # []k8s.io/kubernetes/pkg/api/v1.Capability (droped capabilities)
-            - [k8s.io/kubernetes/pkg/api/v1.Capability]               # 
+            - [k8s.io/kubernetes/pkg/api/v1.Capability]               #
           privileged:                                                 # bool (run the container in privileged mode; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
           seLinuxOptions:                                             # k8s.io/kubernetes/pkg/api/v1.SELinuxOptions (options that control the SELinux labels applied; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             user:                                                     # string (the user label to apply to the container; see http://releases.k8s.io/HEAD/docs/user-guide/labels.md)
@@ -2309,7 +2309,7 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 range:                                                                # string (a range string that identifies the range represented by 'data'; required)
 data:                                                                 # []byte (a bit array containing all allocated addresses in the previous segment)
-- [byte]                                                              # 
+- [byte]                                                              #
 
 
 ReplicationController
@@ -2393,7 +2393,7 @@ spec:                                                                 # k8s.io/k
           readOnly:                                                   # bool (mount volume as read-only when true; default false)
         rbd:                                                          # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
           monitors:                                                   # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-          - [string]                                                  # 
+          - [string]                                                  #
           image:                                                      # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           fsType:                                                     # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           pool:                                                       # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -2404,7 +2404,7 @@ spec:                                                                 # k8s.io/k
           readOnly:                                                   # bool (rbd volume to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
         cephfs:                                                       # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
           monitors:                                                   # []string (a collection of Ceph monitors)
-          - [string]                                                  # 
+          - [string]                                                  #
           user:                                                       # string (rados user name; default is admin; optional)
           secretFile:                                                 # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
           secretRef:                                                  # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
@@ -2420,9 +2420,9 @@ spec:                                                                 # k8s.io/k
       - name:                                                         # string (name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated)
         image:                                                        # string (Docker image name; see http://releases.k8s.io/HEAD/docs/user-guide/images.md)
         command:                                                      # []string (entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-        - [string]                                                    # 
+        - [string]                                                    #
         args:                                                         # []string (command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-        - [string]                                                    # 
+        - [string]                                                    #
         workingDir:                                                   # string (container's working directory; defaults to image's default; cannot be updated)
         ports:                                                        # []k8s.io/kubernetes/pkg/api/v1.ContainerPort (list of ports to expose from the container; cannot be updated)
         - name:                                                       # string (name for the port that can be referred to by services; must be an IANA_SVC_NAME and unique within the pod)
@@ -2449,7 +2449,7 @@ spec:                                                                 # k8s.io/k
         livenessProbe:                                                # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2462,7 +2462,7 @@ spec:                                                                 # k8s.io/k
         readinessProbe:                                               # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2476,7 +2476,7 @@ spec:                                                                 # k8s.io/k
           postStart:                                                  # k8s.io/kubernetes/pkg/api/v1.Handler (called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2487,7 +2487,7 @@ spec:                                                                 # k8s.io/k
           preStop:                                                    # k8s.io/kubernetes/pkg/api/v1.Handler (called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2500,9 +2500,9 @@ spec:                                                                 # k8s.io/k
         securityContext:                                              # k8s.io/kubernetes/pkg/api/v1.SecurityContext (security options the pod should run with; see http://releases.k8s.io/HEAD/docs/design/security_context.md)
           capabilities:                                               # k8s.io/kubernetes/pkg/api/v1.Capabilities (the linux capabilites that should be added or removed; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             add:                                                      # []k8s.io/kubernetes/pkg/api/v1.Capability (added capabilities)
-            - [k8s.io/kubernetes/pkg/api/v1.Capability]               # 
+            - [k8s.io/kubernetes/pkg/api/v1.Capability]               #
             drop:                                                     # []k8s.io/kubernetes/pkg/api/v1.Capability (droped capabilities)
-            - [k8s.io/kubernetes/pkg/api/v1.Capability]               # 
+            - [k8s.io/kubernetes/pkg/api/v1.Capability]               #
           privileged:                                                 # bool (run the container in privileged mode; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
           seLinuxOptions:                                             # k8s.io/kubernetes/pkg/api/v1.SELinuxOptions (options that control the SELinux labels applied; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             user:                                                     # string (the user label to apply to the container; see http://releases.k8s.io/HEAD/docs/user-guide/labels.md)
@@ -2618,7 +2618,7 @@ items:                                                                # []k8s.io
             readOnly:                                                 # bool (mount volume as read-only when true; default false)
           rbd:                                                        # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
             monitors:                                                 # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-            - [string]                                                # 
+            - [string]                                                #
             image:                                                    # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
             fsType:                                                   # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
             pool:                                                     # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -2629,7 +2629,7 @@ items:                                                                # []k8s.io
             readOnly:                                                 # bool (rbd volume to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           cephfs:                                                     # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
             monitors:                                                 # []string (a collection of Ceph monitors)
-            - [string]                                                # 
+            - [string]                                                #
             user:                                                     # string (rados user name; default is admin; optional)
             secretFile:                                               # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
             secretRef:                                                # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
@@ -2645,9 +2645,9 @@ items:                                                                # []k8s.io
         - name:                                                       # string (name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated)
           image:                                                      # string (Docker image name; see http://releases.k8s.io/HEAD/docs/user-guide/images.md)
           command:                                                    # []string (entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-          - [string]                                                  # 
+          - [string]                                                  #
           args:                                                       # []string (command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-          - [string]                                                  # 
+          - [string]                                                  #
           workingDir:                                                 # string (container's working directory; defaults to image's default; cannot be updated)
           ports:                                                      # []k8s.io/kubernetes/pkg/api/v1.ContainerPort (list of ports to expose from the container; cannot be updated)
           - name:                                                     # string (name for the port that can be referred to by services; must be an IANA_SVC_NAME and unique within the pod)
@@ -2674,7 +2674,7 @@ items:                                                                # []k8s.io
           livenessProbe:                                              # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2687,7 +2687,7 @@ items:                                                                # []k8s.io
           readinessProbe:                                             # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2701,7 +2701,7 @@ items:                                                                # []k8s.io
             postStart:                                                # k8s.io/kubernetes/pkg/api/v1.Handler (called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
               exec:                                                   # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
                 command:                                              # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-                - [string]                                            # 
+                - [string]                                            #
               httpGet:                                                # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
                 path:                                                 # string (path to access on the HTTP server)
                 port:                                                 # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2712,7 +2712,7 @@ items:                                                                # []k8s.io
             preStop:                                                  # k8s.io/kubernetes/pkg/api/v1.Handler (called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
               exec:                                                   # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
                 command:                                              # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-                - [string]                                            # 
+                - [string]                                            #
               httpGet:                                                # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
                 path:                                                 # string (path to access on the HTTP server)
                 port:                                                 # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2725,9 +2725,9 @@ items:                                                                # []k8s.io
           securityContext:                                            # k8s.io/kubernetes/pkg/api/v1.SecurityContext (security options the pod should run with; see http://releases.k8s.io/HEAD/docs/design/security_context.md)
             capabilities:                                             # k8s.io/kubernetes/pkg/api/v1.Capabilities (the linux capabilites that should be added or removed; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
               add:                                                    # []k8s.io/kubernetes/pkg/api/v1.Capability (added capabilities)
-              - [k8s.io/kubernetes/pkg/api/v1.Capability]             # 
+              - [k8s.io/kubernetes/pkg/api/v1.Capability]             #
               drop:                                                   # []k8s.io/kubernetes/pkg/api/v1.Capability (droped capabilities)
-              - [k8s.io/kubernetes/pkg/api/v1.Capability]             # 
+              - [k8s.io/kubernetes/pkg/api/v1.Capability]             #
             privileged:                                               # bool (run the container in privileged mode; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             seLinuxOptions:                                           # k8s.io/kubernetes/pkg/api/v1.SELinuxOptions (options that control the SELinux labels applied; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
               user:                                                   # string (the user label to apply to the container; see http://releases.k8s.io/HEAD/docs/user-guide/labels.md)
@@ -2906,7 +2906,7 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 allowPrivilegedContainer:                                             # bool (allow containers to run as privileged)
 allowedCapabilities:                                                  # []k8s.io/kubernetes/pkg/api/v1.Capability (capabilities that are allowed to be added)
-- [k8s.io/kubernetes/pkg/api/v1.Capability]                           # 
+- [k8s.io/kubernetes/pkg/api/v1.Capability]                           #
 allowHostDirVolumePlugin:                                             # bool (allow the use of the host dir volume plugin)
 allowHostNetwork:                                                     # bool (allow the use of the hostNetwork in the pod spec)
 allowHostPorts:                                                       # bool (allow the use of the host ports in the containers)
@@ -2923,9 +2923,9 @@ runAsUser:                                                            # k8s.io/k
   uidRangeMin:                                                        # int64 (min value for range based allocators)
   uidRangeMax:                                                        # int64 (max value for range based allocators)
 users:                                                                # []string (users allowed to use this SecurityContextConstraints)
-- [string]                                                            # 
+- [string]                                                            #
 groups:                                                               # []string (groups allowed to use this SecurityContextConstraints)
-- [string]                                                            # 
+- [string]                                                            #
 
 
 SecurityContextConstraintsList
@@ -2957,7 +2957,7 @@ items:                                                                # []k8s.io
       [string]:                                                       # string
   allowPrivilegedContainer:                                           # bool (allow containers to run as privileged)
   allowedCapabilities:                                                # []k8s.io/kubernetes/pkg/api/v1.Capability (capabilities that are allowed to be added)
-  - [k8s.io/kubernetes/pkg/api/v1.Capability]                         # 
+  - [k8s.io/kubernetes/pkg/api/v1.Capability]                         #
   allowHostDirVolumePlugin:                                           # bool (allow the use of the host dir volume plugin)
   allowHostNetwork:                                                   # bool (allow the use of the hostNetwork in the pod spec)
   allowHostPorts:                                                     # bool (allow the use of the host ports in the containers)
@@ -2974,9 +2974,9 @@ items:                                                                # []k8s.io
     uidRangeMin:                                                      # int64 (min value for range based allocators)
     uidRangeMax:                                                      # int64 (max value for range based allocators)
   users:                                                              # []string (users allowed to use this SecurityContextConstraints)
-  - [string]                                                          # 
+  - [string]                                                          #
   groups:                                                             # []string (groups allowed to use this SecurityContextConstraints)
-  - [string]                                                          # 
+  - [string]                                                          #
 
 
 SerializedReference
@@ -3031,7 +3031,7 @@ spec:                                                                 # k8s.io/k
   clusterIP:                                                          # string (IP address of the service; usually assigned by the system; if specified, it will be allocated to the service if unused or else creation of the service will fail; cannot be updated; 'None' can be specified for a headless service when proxying is not required; see http://releases.k8s.io/HEAD/docs/user-guide/services.md#virtual-ips-and-service-proxies)
   type: ClusterIP|LoadBalancer|NodePort                               # k8s.io/kubernetes/pkg/api/v1.ServiceType (type of this service; must be ClusterIP, NodePort, or LoadBalancer; defaults to ClusterIP; see http://releases.k8s.io/HEAD/docs/user-guide/services.md#external-services)
   deprecatedPublicIPs:                                                # []string (deprecated. externally visible IPs (e.g. load balancers) that should be proxied to this service)
-  - [string]                                                          # 
+  - [string]                                                          #
   sessionAffinity: ClientIP|None                                      # k8s.io/kubernetes/pkg/api/v1.ServiceAffinity (enable client IP based session affinity; must be ClientIP or None; defaults to None; see http://releases.k8s.io/HEAD/docs/user-guide/services.md#virtual-ips-and-service-proxies)
 status:                                                               # k8s.io/kubernetes/pkg/api/v1.ServiceStatus (most recently observed status of the service; populated by the system, read-only; http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#spec-and-status)
   loadBalancer:                                                       # k8s.io/kubernetes/pkg/api/v1.LoadBalancerStatus (status of load-balancer)
@@ -3155,7 +3155,7 @@ items:                                                                # []k8s.io
     clusterIP:                                                        # string (IP address of the service; usually assigned by the system; if specified, it will be allocated to the service if unused or else creation of the service will fail; cannot be updated; 'None' can be specified for a headless service when proxying is not required; see http://releases.k8s.io/HEAD/docs/user-guide/services.md#virtual-ips-and-service-proxies)
     type: ClusterIP|LoadBalancer|NodePort                             # k8s.io/kubernetes/pkg/api/v1.ServiceType (type of this service; must be ClusterIP, NodePort, or LoadBalancer; defaults to ClusterIP; see http://releases.k8s.io/HEAD/docs/user-guide/services.md#external-services)
     deprecatedPublicIPs:                                              # []string (deprecated. externally visible IPs (e.g. load balancers) that should be proxied to this service)
-    - [string]                                                        # 
+    - [string]                                                        #
     sessionAffinity: ClientIP|None                                    # k8s.io/kubernetes/pkg/api/v1.ServiceAffinity (enable client IP based session affinity; must be ClientIP or None; defaults to None; see http://releases.k8s.io/HEAD/docs/user-guide/services.md#virtual-ips-and-service-proxies)
   status:                                                             # k8s.io/kubernetes/pkg/api/v1.ServiceStatus (most recently observed status of the service; populated by the system, read-only; http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#spec-and-status)
     loadBalancer:                                                     # k8s.io/kubernetes/pkg/api/v1.LoadBalancerStatus (status of load-balancer)

@@ -42,14 +42,14 @@ roles:                                                                # []github
         [string]:                                                     # string
     rules:                                                            # []github.com/openshift/origin/pkg/authorization/api/v1.PolicyRule (list of policy rules)
     - verbs:                                                          # []string (list of verbs that apply to ALL the resourceKinds and attributeRestrictions contained in this rule.  The verb * represents all kinds.)
-    - - [string]                                                      # 
+      - [string]                                                      #
       attributeRestrictions:                                          # k8s.io/kubernetes/pkg/runtime.RawExtension (vary depending on what the authorizer supports.  If the authorizer does not recognize how to handle the specified value, it should report an error.)
       resources:                                                      # []string (list of resources this rule applies to.  * represents all resources.)
-      - [string]                                                      # 
+      - [string]                                                      #
       resourceNames:                                                  # []string (optional white list of names that the rule applies to.  An empty set means that everything is allowed.)
-      - [string]                                                      # 
+      - [string]                                                      #
       nonResourceURLs:                                                # []string (set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path.)
-      - [string]                                                      # 
+      - [string]                                                      #
 
 
 ClusterPolicyBinding
@@ -103,9 +103,9 @@ roleBindings:                                                         # []github
       annotations:                                                    # map[string]string (map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects; see http://releases.k8s.io/HEAD/docs/user-guide/annotations.md)
         [string]:                                                     # string
     userNames:                                                        # []string (all user names directly bound to the role)
-    - [string]                                                        # 
+    - [string]                                                        #
     groupNames:                                                       # []string (all the groups directly bound to the role)
-    - [string]                                                        # 
+    - [string]                                                        #
     subjects:                                                         # []k8s.io/kubernetes/pkg/api/v1.ObjectReference (references to subjects bound to the role.  Only User, Group, SystemUser, SystemGroup, and ServiceAccount are allowed.)
     - kind:                                                           # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
       namespace:                                                      # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -180,9 +180,9 @@ items:                                                                # []github
         annotations:                                                  # map[string]string (map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects; see http://releases.k8s.io/HEAD/docs/user-guide/annotations.md)
           [string]:                                                   # string
       userNames:                                                      # []string (all user names directly bound to the role)
-      - [string]                                                      # 
+      - [string]                                                      #
       groupNames:                                                     # []string (all the groups directly bound to the role)
-      - [string]                                                      # 
+      - [string]                                                      #
       subjects:                                                       # []k8s.io/kubernetes/pkg/api/v1.ObjectReference (references to subjects bound to the role.  Only User, Group, SystemUser, SystemGroup, and ServiceAccount are allowed.)
       - kind:                                                         # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
         namespace:                                                    # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -250,14 +250,14 @@ items:                                                                # []github
           [string]:                                                   # string
       rules:                                                          # []github.com/openshift/origin/pkg/authorization/api/v1.PolicyRule (list of policy rules)
       - verbs:                                                        # []string (list of verbs that apply to ALL the resourceKinds and attributeRestrictions contained in this rule.  The verb * represents all kinds.)
-      - - [string]                                                    # 
+        - [string]                                                    #
         attributeRestrictions:                                        # k8s.io/kubernetes/pkg/runtime.RawExtension (vary depending on what the authorizer supports.  If the authorizer does not recognize how to handle the specified value, it should report an error.)
         resources:                                                    # []string (list of resources this rule applies to.  * represents all resources.)
-        - [string]                                                    # 
+        - [string]                                                    #
         resourceNames:                                                # []string (optional white list of names that the rule applies to.  An empty set means that everything is allowed.)
-        - [string]                                                    # 
+        - [string]                                                    #
         nonResourceURLs:                                              # []string (set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path.)
-        - [string]                                                    # 
+        - [string]                                                    #
 
 
 ClusterRole
@@ -283,14 +283,14 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 rules:                                                                # []github.com/openshift/origin/pkg/authorization/api/v1.PolicyRule (list of policy rules)
 - verbs:                                                              # []string (list of verbs that apply to ALL the resourceKinds and attributeRestrictions contained in this rule.  The verb * represents all kinds.)
-- - [string]                                                          # 
+  - [string]                                                          #
   attributeRestrictions:                                              # k8s.io/kubernetes/pkg/runtime.RawExtension (vary depending on what the authorizer supports.  If the authorizer does not recognize how to handle the specified value, it should report an error.)
   resources:                                                          # []string (list of resources this rule applies to.  * represents all resources.)
-  - [string]                                                          # 
+  - [string]                                                          #
   resourceNames:                                                      # []string (optional white list of names that the rule applies to.  An empty set means that everything is allowed.)
-  - [string]                                                          # 
+  - [string]                                                          #
   nonResourceURLs:                                                    # []string (set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path.)
-  - [string]                                                          # 
+  - [string]                                                          #
 
 
 ClusterRoleBinding
@@ -317,9 +317,9 @@ metadata:                                                             # k8s.io/k
   annotations:                                                        # map[string]string (map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects; see http://releases.k8s.io/HEAD/docs/user-guide/annotations.md)
     [string]:                                                         # string
 userNames:                                                            # []string (all user names directly bound to the role)
-- [string]                                                            # 
+- [string]                                                            #
 groupNames:                                                           # []string (all the groups directly bound to the role)
-- [string]                                                            # 
+- [string]                                                            #
 subjects:                                                             # []k8s.io/kubernetes/pkg/api/v1.ObjectReference (references to subjects bound to the role.  Only User, Group, SystemUser, SystemGroup, and ServiceAccount are allowed.)
 - kind:                                                               # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
   namespace:                                                          # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -366,9 +366,9 @@ items:                                                                # []github
     annotations:                                                      # map[string]string (map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects; see http://releases.k8s.io/HEAD/docs/user-guide/annotations.md)
       [string]:                                                       # string
   userNames:                                                          # []string (all user names directly bound to the role)
-  - [string]                                                          # 
+  - [string]                                                          #
   groupNames:                                                         # []string (all the groups directly bound to the role)
-  - [string]                                                          # 
+  - [string]                                                          #
   subjects:                                                           # []k8s.io/kubernetes/pkg/api/v1.ObjectReference (references to subjects bound to the role.  Only User, Group, SystemUser, SystemGroup, and ServiceAccount are allowed.)
   - kind:                                                             # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
     namespace:                                                        # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -416,14 +416,14 @@ items:                                                                # []github
       [string]:                                                       # string
   rules:                                                              # []github.com/openshift/origin/pkg/authorization/api/v1.PolicyRule (list of policy rules)
   - verbs:                                                            # []string (list of verbs that apply to ALL the resourceKinds and attributeRestrictions contained in this rule.  The verb * represents all kinds.)
-  - - [string]                                                        # 
+    - [string]                                                        #
     attributeRestrictions:                                            # k8s.io/kubernetes/pkg/runtime.RawExtension (vary depending on what the authorizer supports.  If the authorizer does not recognize how to handle the specified value, it should report an error.)
     resources:                                                        # []string (list of resources this rule applies to.  * represents all resources.)
-    - [string]                                                        # 
+    - [string]                                                        #
     resourceNames:                                                    # []string (optional white list of names that the rule applies to.  An empty set means that everything is allowed.)
-    - [string]                                                        # 
+    - [string]                                                        #
     nonResourceURLs:                                                  # []string (set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path.)
-    - [string]                                                        # 
+    - [string]                                                        #
 
 
 IsPersonalSubjectAccessReview
@@ -463,7 +463,7 @@ resourceName:                                                         # string (
 content:                                                              # k8s.io/kubernetes/pkg/runtime.RawExtension (actual content of the request for create and update)
 user:                                                                 # string (optional, if both user and groups are empty, the current authenticated user is used)
 groups:                                                               # []string (optional, list of groups to which the user belongs)
-- [string]                                                            # 
+- [string]                                                            #
 
 
 Policy
@@ -510,14 +510,14 @@ roles:                                                                # []github
         [string]:                                                     # string
     rules:                                                            # []github.com/openshift/origin/pkg/authorization/api/v1.PolicyRule (all the rules for this role)
     - verbs:                                                          # []string (list of verbs that apply to ALL the resourceKinds and attributeRestrictions contained in this rule.  The verb * represents all kinds.)
-    - - [string]                                                      # 
+      - [string]                                                      #
       attributeRestrictions:                                          # k8s.io/kubernetes/pkg/runtime.RawExtension (vary depending on what the authorizer supports.  If the authorizer does not recognize how to handle the specified value, it should report an error.)
       resources:                                                      # []string (list of resources this rule applies to.  * represents all resources.)
-      - [string]                                                      # 
+      - [string]                                                      #
       resourceNames:                                                  # []string (optional white list of names that the rule applies to.  An empty set means that everything is allowed.)
-      - [string]                                                      # 
+      - [string]                                                      #
       nonResourceURLs:                                                # []string (set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path.)
-      - [string]                                                      # 
+      - [string]                                                      #
 
 
 PolicyBinding
@@ -571,9 +571,9 @@ roleBindings:                                                         # []github
       annotations:                                                    # map[string]string (map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects; see http://releases.k8s.io/HEAD/docs/user-guide/annotations.md)
         [string]:                                                     # string
     userNames:                                                        # []string (all the usernames directly bound to the role)
-    - [string]                                                        # 
+    - [string]                                                        #
     groupNames:                                                       # []string (all the groups directly bound to the role)
-    - [string]                                                        # 
+    - [string]                                                        #
     subjects:                                                         # []k8s.io/kubernetes/pkg/api/v1.ObjectReference (references to subjects bound to the role.  Only User, Group, SystemUser, SystemGroup, and ServiceAccount are allowed.)
     - kind:                                                           # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
       namespace:                                                      # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -648,9 +648,9 @@ items:                                                                # []github
         annotations:                                                  # map[string]string (map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects; see http://releases.k8s.io/HEAD/docs/user-guide/annotations.md)
           [string]:                                                   # string
       userNames:                                                      # []string (all the usernames directly bound to the role)
-      - [string]                                                      # 
+      - [string]                                                      #
       groupNames:                                                     # []string (all the groups directly bound to the role)
-      - [string]                                                      # 
+      - [string]                                                      #
       subjects:                                                       # []k8s.io/kubernetes/pkg/api/v1.ObjectReference (references to subjects bound to the role.  Only User, Group, SystemUser, SystemGroup, and ServiceAccount are allowed.)
       - kind:                                                         # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
         namespace:                                                    # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -718,14 +718,14 @@ items:                                                                # []github
           [string]:                                                   # string
       rules:                                                          # []github.com/openshift/origin/pkg/authorization/api/v1.PolicyRule (all the rules for this role)
       - verbs:                                                        # []string (list of verbs that apply to ALL the resourceKinds and attributeRestrictions contained in this rule.  The verb * represents all kinds.)
-      - - [string]                                                    # 
+        - [string]                                                    #
         attributeRestrictions:                                        # k8s.io/kubernetes/pkg/runtime.RawExtension (vary depending on what the authorizer supports.  If the authorizer does not recognize how to handle the specified value, it should report an error.)
         resources:                                                    # []string (list of resources this rule applies to.  * represents all resources.)
-        - [string]                                                    # 
+        - [string]                                                    #
         resourceNames:                                                # []string (optional white list of names that the rule applies to.  An empty set means that everything is allowed.)
-        - [string]                                                    # 
+        - [string]                                                    #
         nonResourceURLs:                                              # []string (set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path.)
-        - [string]                                                    # 
+        - [string]                                                    #
 
 
 ResourceAccessReview
@@ -752,9 +752,9 @@ kind: ResourceAccessReviewResponse                                    # string (
 apiVersion: v1                                                        # string (version of the schema the object should have; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#resources)
 namespace:                                                            # string (namespace used for the access review)
 users:                                                                # []string (list of users who can perform the action)
-- [string]                                                            # 
+- [string]                                                            #
 groups:                                                               # []string (list of groups who can perform the action)
-- [string]                                                            # 
+- [string]                                                            #
 
 
 Role
@@ -780,14 +780,14 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 rules:                                                                # []github.com/openshift/origin/pkg/authorization/api/v1.PolicyRule (all the rules for this role)
 - verbs:                                                              # []string (list of verbs that apply to ALL the resourceKinds and attributeRestrictions contained in this rule.  The verb * represents all kinds.)
-- - [string]                                                          # 
+  - [string]                                                          #
   attributeRestrictions:                                              # k8s.io/kubernetes/pkg/runtime.RawExtension (vary depending on what the authorizer supports.  If the authorizer does not recognize how to handle the specified value, it should report an error.)
   resources:                                                          # []string (list of resources this rule applies to.  * represents all resources.)
-  - [string]                                                          # 
+  - [string]                                                          #
   resourceNames:                                                      # []string (optional white list of names that the rule applies to.  An empty set means that everything is allowed.)
-  - [string]                                                          # 
+  - [string]                                                          #
   nonResourceURLs:                                                    # []string (set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path.)
-  - [string]                                                          # 
+  - [string]                                                          #
 
 
 RoleBinding
@@ -814,9 +814,9 @@ metadata:                                                             # k8s.io/k
   annotations:                                                        # map[string]string (map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects; see http://releases.k8s.io/HEAD/docs/user-guide/annotations.md)
     [string]:                                                         # string
 userNames:                                                            # []string (all the usernames directly bound to the role)
-- [string]                                                            # 
+- [string]                                                            #
 groupNames:                                                           # []string (all the groups directly bound to the role)
-- [string]                                                            # 
+- [string]                                                            #
 subjects:                                                             # []k8s.io/kubernetes/pkg/api/v1.ObjectReference (references to subjects bound to the role.  Only User, Group, SystemUser, SystemGroup, and ServiceAccount are allowed.)
 - kind:                                                               # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
   namespace:                                                          # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -863,9 +863,9 @@ items:                                                                # []github
     annotations:                                                      # map[string]string (map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects; see http://releases.k8s.io/HEAD/docs/user-guide/annotations.md)
       [string]:                                                       # string
   userNames:                                                          # []string (all the usernames directly bound to the role)
-  - [string]                                                          # 
+  - [string]                                                          #
   groupNames:                                                         # []string (all the groups directly bound to the role)
-  - [string]                                                          # 
+  - [string]                                                          #
   subjects:                                                           # []k8s.io/kubernetes/pkg/api/v1.ObjectReference (references to subjects bound to the role.  Only User, Group, SystemUser, SystemGroup, and ServiceAccount are allowed.)
   - kind:                                                             # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
     namespace:                                                        # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -913,14 +913,14 @@ items:                                                                # []github
       [string]:                                                       # string
   rules:                                                              # []github.com/openshift/origin/pkg/authorization/api/v1.PolicyRule (all the rules for this role)
   - verbs:                                                            # []string (list of verbs that apply to ALL the resourceKinds and attributeRestrictions contained in this rule.  The verb * represents all kinds.)
-  - - [string]                                                        # 
+    - [string]                                                        #
     attributeRestrictions:                                            # k8s.io/kubernetes/pkg/runtime.RawExtension (vary depending on what the authorizer supports.  If the authorizer does not recognize how to handle the specified value, it should report an error.)
     resources:                                                        # []string (list of resources this rule applies to.  * represents all resources.)
-    - [string]                                                        # 
+    - [string]                                                        #
     resourceNames:                                                    # []string (optional white list of names that the rule applies to.  An empty set means that everything is allowed.)
-    - [string]                                                        # 
+    - [string]                                                        #
     nonResourceURLs:                                                  # []string (set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path.)
-    - [string]                                                        # 
+    - [string]                                                        #
 
 
 SubjectAccessReview
@@ -937,7 +937,7 @@ resourceName:                                                         # string (
 content:                                                              # k8s.io/kubernetes/pkg/runtime.RawExtension (actual content of the request for create and update)
 user:                                                                 # string (optional, if both user and groups are empty, the current authenticated user is used)
 groups:                                                               # []string (optional, list of groups to which the user belongs)
-- [string]                                                            # 
+- [string]                                                            #
 
 
 SubjectAccessReviewResponse
@@ -1062,7 +1062,7 @@ spec:                                                                 # github.c
       forcePull:                                                      # bool (forces pulling of builder image from remote registry if true)
       secrets:                                                        # []github.com/openshift/origin/pkg/build/api/v1.SecretSpec (a list of secrets to include in the build pod in addition to pull, push and source secrets)
       - secretSource:                                                 # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (a reference to a secret)
-      -   name:                                                       # string (name of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names)
+          name:                                                       # string (name of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names)
         mountPath:                                                    # string (path within the container at which the secret should be mounted)
   output:                                                             # github.com/openshift/origin/pkg/build/api/v1.BuildOutput (describes the output of a build that a strategy should produce)
     to:                                                               # k8s.io/kubernetes/pkg/api/v1.ObjectReference (The optional image stream to push the output of this build.  The namespace may be empty, in which case, the image stream will be looked up based on the namespace of the build.)
@@ -1222,7 +1222,7 @@ spec:                                                                 # github.c
       forcePull:                                                      # bool (forces pulling of builder image from remote registry if true)
       secrets:                                                        # []github.com/openshift/origin/pkg/build/api/v1.SecretSpec (a list of secrets to include in the build pod in addition to pull, push and source secrets)
       - secretSource:                                                 # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (a reference to a secret)
-      -   name:                                                       # string (name of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names)
+          name:                                                       # string (name of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names)
         mountPath:                                                    # string (path within the container at which the secret should be mounted)
   output:                                                             # github.com/openshift/origin/pkg/build/api/v1.BuildOutput (describes the output of a build that a strategy should produce)
     to:                                                               # k8s.io/kubernetes/pkg/api/v1.ObjectReference (The optional image stream to push the output of this build.  The namespace may be empty, in which case, the image stream will be looked up based on the namespace of the build.)
@@ -1375,7 +1375,7 @@ items:                                                                # []github
         forcePull:                                                    # bool (forces pulling of builder image from remote registry if true)
         secrets:                                                      # []github.com/openshift/origin/pkg/build/api/v1.SecretSpec (a list of secrets to include in the build pod in addition to pull, push and source secrets)
         - secretSource:                                               # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (a reference to a secret)
-        -   name:                                                     # string (name of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names)
+            name:                                                     # string (name of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names)
           mountPath:                                                  # string (path within the container at which the secret should be mounted)
     output:                                                           # github.com/openshift/origin/pkg/build/api/v1.BuildOutput (describes the output of a build that a strategy should produce)
       to:                                                             # k8s.io/kubernetes/pkg/api/v1.ObjectReference (The optional image stream to push the output of this build.  The namespace may be empty, in which case, the image stream will be looked up based on the namespace of the build.)
@@ -1512,7 +1512,7 @@ items:                                                                # []github
         forcePull:                                                    # bool (forces pulling of builder image from remote registry if true)
         secrets:                                                      # []github.com/openshift/origin/pkg/build/api/v1.SecretSpec (a list of secrets to include in the build pod in addition to pull, push and source secrets)
         - secretSource:                                               # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (a reference to a secret)
-        -   name:                                                     # string (name of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names)
+            name:                                                     # string (name of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/identifiers.md#names)
           mountPath:                                                  # string (path within the container at which the secret should be mounted)
     output:                                                           # github.com/openshift/origin/pkg/build/api/v1.BuildOutput (describes the output of a build that a strategy should produce)
       to:                                                             # k8s.io/kubernetes/pkg/api/v1.ObjectReference (The optional image stream to push the output of this build.  The namespace may be empty, in which case, the image stream will be looked up based on the namespace of the build.)
@@ -1658,13 +1658,13 @@ spec:                                                                 # github.c
             apiVersion:                                               # string (version of the schema that fieldPath is written in terms of; defaults to v1)
             fieldPath:                                                # string (path of the field to select in the specified API version)
       command:                                                        # []string (optionally overrides the container command (default is specified by the image))
-      - [string]                                                      # 
+      - [string]                                                      #
     recreateParams:                                                   # github.com/openshift/origin/pkg/deploy/api/v1.RecreateDeploymentStrategyParams (input to the Recreate deployment strategy)
       pre:                                                            # github.com/openshift/origin/pkg/deploy/api/v1.LifecycleHook (a hook executed before the strategy starts the deployment)
         failurePolicy: Abort|Ignore|Retry                             # github.com/openshift/origin/pkg/deploy/api/v1.LifecycleHookFailurePolicy (what action to take if the hook fails)
         execNewPod:                                                   # github.com/openshift/origin/pkg/deploy/api/v1.ExecNewPodHook (options for an ExecNewPodHook)
           command:                                                    # []string (the hook command and its arguments)
-          - [string]                                                  # 
+          - [string]                                                  #
           env:                                                        # []k8s.io/kubernetes/pkg/api/v1.EnvVar (environment variables provided to the hook container)
           - name:                                                     # string (name of the environment variable; must be a C_IDENTIFIER)
             value:                                                    # string (value of the environment variable; defaults to empty string; variable references $(VAR_NAME) are expanded using the previously defined environment varibles in the container and any service environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not)
@@ -1677,7 +1677,7 @@ spec:                                                                 # github.c
         failurePolicy: Abort|Ignore|Retry                             # github.com/openshift/origin/pkg/deploy/api/v1.LifecycleHookFailurePolicy (what action to take if the hook fails)
         execNewPod:                                                   # github.com/openshift/origin/pkg/deploy/api/v1.ExecNewPodHook (options for an ExecNewPodHook)
           command:                                                    # []string (the hook command and its arguments)
-          - [string]                                                  # 
+          - [string]                                                  #
           env:                                                        # []k8s.io/kubernetes/pkg/api/v1.EnvVar (environment variables provided to the hook container)
           - name:                                                     # string (name of the environment variable; must be a C_IDENTIFIER)
             value:                                                    # string (value of the environment variable; defaults to empty string; variable references $(VAR_NAME) are expanded using the previously defined environment varibles in the container and any service environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not)
@@ -1697,7 +1697,7 @@ spec:                                                                 # github.c
         failurePolicy: Abort|Ignore|Retry                             # github.com/openshift/origin/pkg/deploy/api/v1.LifecycleHookFailurePolicy (what action to take if the hook fails)
         execNewPod:                                                   # github.com/openshift/origin/pkg/deploy/api/v1.ExecNewPodHook (options for an ExecNewPodHook)
           command:                                                    # []string (the hook command and its arguments)
-          - [string]                                                  # 
+          - [string]                                                  #
           env:                                                        # []k8s.io/kubernetes/pkg/api/v1.EnvVar (environment variables provided to the hook container)
           - name:                                                     # string (name of the environment variable; must be a C_IDENTIFIER)
             value:                                                    # string (value of the environment variable; defaults to empty string; variable references $(VAR_NAME) are expanded using the previously defined environment varibles in the container and any service environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not)
@@ -1710,7 +1710,7 @@ spec:                                                                 # github.c
         failurePolicy: Abort|Ignore|Retry                             # github.com/openshift/origin/pkg/deploy/api/v1.LifecycleHookFailurePolicy (what action to take if the hook fails)
         execNewPod:                                                   # github.com/openshift/origin/pkg/deploy/api/v1.ExecNewPodHook (options for an ExecNewPodHook)
           command:                                                    # []string (the hook command and its arguments)
-          - [string]                                                  # 
+          - [string]                                                  #
           env:                                                        # []k8s.io/kubernetes/pkg/api/v1.EnvVar (environment variables provided to the hook container)
           - name:                                                     # string (name of the environment variable; must be a C_IDENTIFIER)
             value:                                                    # string (value of the environment variable; defaults to empty string; variable references $(VAR_NAME) are expanded using the previously defined environment varibles in the container and any service environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not)
@@ -1729,7 +1729,7 @@ spec:                                                                 # github.c
     imageChangeParams:                                                # github.com/openshift/origin/pkg/deploy/api/v1.DeploymentTriggerImageChangeParams (input to the ImageChange trigger)
       automatic:                                                      # bool (whether detection of a new tag value should trigger a deployment)
       containerNames:                                                 # []string (restricts tag updates to a set of container names in the pod)
-      - [string]                                                      # 
+      - [string]                                                      #
       from:                                                           # k8s.io/kubernetes/pkg/api/v1.ObjectReference (a reference to an ImageRepository, ImageStream, or ImageStreamTag to watch for changes)
         kind:                                                         # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
         namespace:                                                    # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -1798,7 +1798,7 @@ spec:                                                                 # github.c
           readOnly:                                                   # bool (mount volume as read-only when true; default false)
         rbd:                                                          # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
           monitors:                                                   # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-          - [string]                                                  # 
+          - [string]                                                  #
           image:                                                      # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           fsType:                                                     # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           pool:                                                       # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -1809,7 +1809,7 @@ spec:                                                                 # github.c
           readOnly:                                                   # bool (rbd volume to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
         cephfs:                                                       # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
           monitors:                                                   # []string (a collection of Ceph monitors)
-          - [string]                                                  # 
+          - [string]                                                  #
           user:                                                       # string (rados user name; default is admin; optional)
           secretFile:                                                 # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
           secretRef:                                                  # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
@@ -1825,9 +1825,9 @@ spec:                                                                 # github.c
       - name:                                                         # string (name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated)
         image:                                                        # string (Docker image name; see http://releases.k8s.io/HEAD/docs/user-guide/images.md)
         command:                                                      # []string (entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-        - [string]                                                    # 
+        - [string]                                                    #
         args:                                                         # []string (command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-        - [string]                                                    # 
+        - [string]                                                    #
         workingDir:                                                   # string (container's working directory; defaults to image's default; cannot be updated)
         ports:                                                        # []k8s.io/kubernetes/pkg/api/v1.ContainerPort (list of ports to expose from the container; cannot be updated)
         - name:                                                       # string (name for the port that can be referred to by services; must be an IANA_SVC_NAME and unique within the pod)
@@ -1854,7 +1854,7 @@ spec:                                                                 # github.c
         livenessProbe:                                                # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1867,7 +1867,7 @@ spec:                                                                 # github.c
         readinessProbe:                                               # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
             command:                                                  # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-            - [string]                                                # 
+            - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
             path:                                                     # string (path to access on the HTTP server)
             port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1881,7 +1881,7 @@ spec:                                                                 # github.c
           postStart:                                                  # k8s.io/kubernetes/pkg/api/v1.Handler (called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1892,7 +1892,7 @@ spec:                                                                 # github.c
           preStop:                                                    # k8s.io/kubernetes/pkg/api/v1.Handler (called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -1905,9 +1905,9 @@ spec:                                                                 # github.c
         securityContext:                                              # k8s.io/kubernetes/pkg/api/v1.SecurityContext (security options the pod should run with; see http://releases.k8s.io/HEAD/docs/design/security_context.md)
           capabilities:                                               # k8s.io/kubernetes/pkg/api/v1.Capabilities (the linux capabilites that should be added or removed; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             add:                                                      # []k8s.io/kubernetes/pkg/api/v1.Capability (added capabilities)
-            - [k8s.io/kubernetes/pkg/api/v1.Capability]               # 
+            - [k8s.io/kubernetes/pkg/api/v1.Capability]               #
             drop:                                                     # []k8s.io/kubernetes/pkg/api/v1.Capability (droped capabilities)
-            - [k8s.io/kubernetes/pkg/api/v1.Capability]               # 
+            - [k8s.io/kubernetes/pkg/api/v1.Capability]               #
           privileged:                                                 # bool (run the container in privileged mode; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
           seLinuxOptions:                                             # k8s.io/kubernetes/pkg/api/v1.SELinuxOptions (options that control the SELinux labels applied; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             user:                                                     # string (the user label to apply to the container; see http://releases.k8s.io/HEAD/docs/user-guide/labels.md)
@@ -1988,13 +1988,13 @@ items:                                                                # []github
               apiVersion:                                             # string (version of the schema that fieldPath is written in terms of; defaults to v1)
               fieldPath:                                              # string (path of the field to select in the specified API version)
         command:                                                      # []string (optionally overrides the container command (default is specified by the image))
-        - [string]                                                    # 
+        - [string]                                                    #
       recreateParams:                                                 # github.com/openshift/origin/pkg/deploy/api/v1.RecreateDeploymentStrategyParams (input to the Recreate deployment strategy)
         pre:                                                          # github.com/openshift/origin/pkg/deploy/api/v1.LifecycleHook (a hook executed before the strategy starts the deployment)
           failurePolicy: Abort|Ignore|Retry                           # github.com/openshift/origin/pkg/deploy/api/v1.LifecycleHookFailurePolicy (what action to take if the hook fails)
           execNewPod:                                                 # github.com/openshift/origin/pkg/deploy/api/v1.ExecNewPodHook (options for an ExecNewPodHook)
             command:                                                  # []string (the hook command and its arguments)
-            - [string]                                                # 
+            - [string]                                                #
             env:                                                      # []k8s.io/kubernetes/pkg/api/v1.EnvVar (environment variables provided to the hook container)
             - name:                                                   # string (name of the environment variable; must be a C_IDENTIFIER)
               value:                                                  # string (value of the environment variable; defaults to empty string; variable references $(VAR_NAME) are expanded using the previously defined environment varibles in the container and any service environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not)
@@ -2007,7 +2007,7 @@ items:                                                                # []github
           failurePolicy: Abort|Ignore|Retry                           # github.com/openshift/origin/pkg/deploy/api/v1.LifecycleHookFailurePolicy (what action to take if the hook fails)
           execNewPod:                                                 # github.com/openshift/origin/pkg/deploy/api/v1.ExecNewPodHook (options for an ExecNewPodHook)
             command:                                                  # []string (the hook command and its arguments)
-            - [string]                                                # 
+            - [string]                                                #
             env:                                                      # []k8s.io/kubernetes/pkg/api/v1.EnvVar (environment variables provided to the hook container)
             - name:                                                   # string (name of the environment variable; must be a C_IDENTIFIER)
               value:                                                  # string (value of the environment variable; defaults to empty string; variable references $(VAR_NAME) are expanded using the previously defined environment varibles in the container and any service environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not)
@@ -2027,7 +2027,7 @@ items:                                                                # []github
           failurePolicy: Abort|Ignore|Retry                           # github.com/openshift/origin/pkg/deploy/api/v1.LifecycleHookFailurePolicy (what action to take if the hook fails)
           execNewPod:                                                 # github.com/openshift/origin/pkg/deploy/api/v1.ExecNewPodHook (options for an ExecNewPodHook)
             command:                                                  # []string (the hook command and its arguments)
-            - [string]                                                # 
+            - [string]                                                #
             env:                                                      # []k8s.io/kubernetes/pkg/api/v1.EnvVar (environment variables provided to the hook container)
             - name:                                                   # string (name of the environment variable; must be a C_IDENTIFIER)
               value:                                                  # string (value of the environment variable; defaults to empty string; variable references $(VAR_NAME) are expanded using the previously defined environment varibles in the container and any service environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not)
@@ -2040,7 +2040,7 @@ items:                                                                # []github
           failurePolicy: Abort|Ignore|Retry                           # github.com/openshift/origin/pkg/deploy/api/v1.LifecycleHookFailurePolicy (what action to take if the hook fails)
           execNewPod:                                                 # github.com/openshift/origin/pkg/deploy/api/v1.ExecNewPodHook (options for an ExecNewPodHook)
             command:                                                  # []string (the hook command and its arguments)
-            - [string]                                                # 
+            - [string]                                                #
             env:                                                      # []k8s.io/kubernetes/pkg/api/v1.EnvVar (environment variables provided to the hook container)
             - name:                                                   # string (name of the environment variable; must be a C_IDENTIFIER)
               value:                                                  # string (value of the environment variable; defaults to empty string; variable references $(VAR_NAME) are expanded using the previously defined environment varibles in the container and any service environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not)
@@ -2059,7 +2059,7 @@ items:                                                                # []github
       imageChangeParams:                                              # github.com/openshift/origin/pkg/deploy/api/v1.DeploymentTriggerImageChangeParams (input to the ImageChange trigger)
         automatic:                                                    # bool (whether detection of a new tag value should trigger a deployment)
         containerNames:                                               # []string (restricts tag updates to a set of container names in the pod)
-        - [string]                                                    # 
+        - [string]                                                    #
         from:                                                         # k8s.io/kubernetes/pkg/api/v1.ObjectReference (a reference to an ImageRepository, ImageStream, or ImageStreamTag to watch for changes)
           kind:                                                       # string (kind of the referent; see http://releases.k8s.io/HEAD/docs/devel/api-conventions.md#types-kinds)
           namespace:                                                  # string (namespace of the referent; see http://releases.k8s.io/HEAD/docs/user-guide/namespaces.md)
@@ -2128,7 +2128,7 @@ items:                                                                # []github
             readOnly:                                                 # bool (mount volume as read-only when true; default false)
           rbd:                                                        # k8s.io/kubernetes/pkg/api/v1.RBDVolumeSource (rados block volume that will be mounted on the host machine; see http://releases.k8s.io/HEAD/examples/rbd/README.md)
             monitors:                                                 # []string (a collection of Ceph monitors; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
-            - [string]                                                # 
+            - [string]                                                #
             image:                                                    # string (rados image name; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
             fsType:                                                   # string (file system type to mount, such as ext4, xfs, ntfs; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
             pool:                                                     # string (rados pool name; default is rbd; optional; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
@@ -2139,7 +2139,7 @@ items:                                                                # []github
             readOnly:                                                 # bool (rbd volume to be mounted with read-only permissions; see http://releases.k8s.io/HEAD/examples/rbd/README.md#how-to-use-it)
           cephfs:                                                     # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource (Ceph filesystem that will be mounted on the host machine)
             monitors:                                                 # []string (a collection of Ceph monitors)
-            - [string]                                                # 
+            - [string]                                                #
             user:                                                     # string (rados user name; default is admin; optional)
             secretFile:                                               # string (path to secret for rados user; default is /etc/ceph/user.secret; optional)
             secretRef:                                                # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference (name of a secret to authenticate the user; if provided overrides keyring; optional)
@@ -2155,9 +2155,9 @@ items:                                                                # []github
         - name:                                                       # string (name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated)
           image:                                                      # string (Docker image name; see http://releases.k8s.io/HEAD/docs/user-guide/images.md)
           command:                                                    # []string (entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-          - [string]                                                  # 
+          - [string]                                                  #
           args:                                                       # []string (command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not; see http://releases.k8s.io/HEAD/docs/user-guide/containers.md#containers-and-commands)
-          - [string]                                                  # 
+          - [string]                                                  #
           workingDir:                                                 # string (container's working directory; defaults to image's default; cannot be updated)
           ports:                                                      # []k8s.io/kubernetes/pkg/api/v1.ContainerPort (list of ports to expose from the container; cannot be updated)
           - name:                                                     # string (name for the port that can be referred to by services; must be an IANA_SVC_NAME and unique within the pod)
@@ -2184,7 +2184,7 @@ items:                                                                # []github
           livenessProbe:                                              # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2197,7 +2197,7 @@ items:                                                                # []github
           readinessProbe:                                             # k8s.io/kubernetes/pkg/api/v1.Probe (periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated; see http://releases.k8s.io/HEAD/docs/user-guide/pod-states.md#container-probes)
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
               command:                                                # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-              - [string]                                              # 
+              - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
               path:                                                   # string (path to access on the HTTP server)
               port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2211,7 +2211,7 @@ items:                                                                # []github
             postStart:                                                # k8s.io/kubernetes/pkg/api/v1.Handler (called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
               exec:                                                   # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
                 command:                                              # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-                - [string]                                            # 
+                - [string]                                            #
               httpGet:                                                # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
                 path:                                                 # string (path to access on the HTTP server)
                 port:                                                 # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2222,7 +2222,7 @@ items:                                                                # []github
             preStop:                                                  # k8s.io/kubernetes/pkg/api/v1.Handler (called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes; see http://releases.k8s.io/HEAD/docs/user-guide/container-environment.md#hook-details)
               exec:                                                   # k8s.io/kubernetes/pkg/api/v1.ExecAction (exec-based handler)
                 command:                                              # []string (command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy)
-                - [string]                                            # 
+                - [string]                                            #
               httpGet:                                                # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction (HTTP-based handler)
                 path:                                                 # string (path to access on the HTTP server)
                 port:                                                 # k8s.io/kubernetes/pkg/util.IntOrString (number or name of the port to access on the container; number must be in the range 1 to 65535; name must be an IANA_SVC_NAME)
@@ -2235,9 +2235,9 @@ items:                                                                # []github
           securityContext:                                            # k8s.io/kubernetes/pkg/api/v1.SecurityContext (security options the pod should run with; see http://releases.k8s.io/HEAD/docs/design/security_context.md)
             capabilities:                                             # k8s.io/kubernetes/pkg/api/v1.Capabilities (the linux capabilites that should be added or removed; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
               add:                                                    # []k8s.io/kubernetes/pkg/api/v1.Capability (added capabilities)
-              - [k8s.io/kubernetes/pkg/api/v1.Capability]             # 
+              - [k8s.io/kubernetes/pkg/api/v1.Capability]             #
               drop:                                                   # []k8s.io/kubernetes/pkg/api/v1.Capability (droped capabilities)
-              - [k8s.io/kubernetes/pkg/api/v1.Capability]             # 
+              - [k8s.io/kubernetes/pkg/api/v1.Capability]             #
             privileged:                                               # bool (run the container in privileged mode; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
             seLinuxOptions:                                           # k8s.io/kubernetes/pkg/api/v1.SELinuxOptions (options that control the SELinux labels applied; see http://releases.k8s.io/HEAD/docs/design/security_context.md#security-context)
               user:                                                   # string (the user label to apply to the container; see http://releases.k8s.io/HEAD/docs/user-guide/labels.md)
@@ -2615,7 +2615,7 @@ metadata:                                                             # k8s.io/k
 clientName:                                                           # string (references the client that created this token)
 expiresIn:                                                            # int64 (is the seconds from creation time before this token expires)
 scopes:                                                               # []string (list of requested scopes)
-- [string]                                                            # 
+- [string]                                                            #
 redirectURI:                                                          # string (redirection URI associated with the token)
 userName:                                                             # string (user name associated with this token)
 userUID:                                                              # string (unique UID associated with this token)
@@ -2652,7 +2652,7 @@ items:                                                                # []github
   clientName:                                                         # string (references the client that created this token)
   expiresIn:                                                          # int64 (is the seconds from creation time before this token expires)
   scopes:                                                             # []string (list of requested scopes)
-  - [string]                                                          # 
+  - [string]                                                          #
   redirectURI:                                                        # string (redirection URI associated with the token)
   userName:                                                           # string (user name associated with this token)
   userUID:                                                            # string (unique UID associated with this token)
@@ -2683,7 +2683,7 @@ metadata:                                                             # k8s.io/k
 clientName:                                                           # string (references the client that created this token)
 expiresIn:                                                            # int64 (seconds from creation time before this token expires)
 scopes:                                                               # []string (list of requested scopes)
-- [string]                                                            # 
+- [string]                                                            #
 redirectURI:                                                          # string (redirection URI associated with the token)
 state:                                                                # string (state data from request)
 userName:                                                             # string (user name associated with this token)
@@ -2719,7 +2719,7 @@ items:                                                                # []github
   clientName:                                                         # string (references the client that created this token)
   expiresIn:                                                          # int64 (seconds from creation time before this token expires)
   scopes:                                                             # []string (list of requested scopes)
-  - [string]                                                          # 
+  - [string]                                                          #
   redirectURI:                                                        # string (redirection URI associated with the token)
   state:                                                              # string (state data from request)
   userName:                                                           # string (user name associated with this token)
@@ -2749,7 +2749,7 @@ metadata:                                                             # k8s.io/k
 secret:                                                               # string (unique secret associated with a client)
 respondWithChallenges:                                                # bool (indicates whether the client wants authentication needed responses made in the form of challenges instead of redirects)
 redirectURIs:                                                         # []string (valid redirection URIs associated with a client)
-- [string]                                                            # 
+- [string]                                                            #
 
 
 OAuthClientAuthorization
@@ -2776,7 +2776,7 @@ clientName:                                                           # string (
 userName:                                                             # string (user name that authorized this client)
 userUID:                                                              # string (unique UID associated with this authorization. userUID and userName must both match for this authorization to be valid)
 scopes:                                                               # []string (list of granted scopes)
-- [string]                                                            # 
+- [string]                                                            #
 
 
 OAuthClientAuthorizationList
@@ -2809,7 +2809,7 @@ items:                                                                # []github
   userName:                                                           # string (user name that authorized this client)
   userUID:                                                            # string (unique UID associated with this authorization. userUID and userName must both match for this authorization to be valid)
   scopes:                                                             # []string (list of granted scopes)
-  - [string]                                                          # 
+  - [string]                                                          #
 
 
 OAuthClientList
@@ -2841,7 +2841,7 @@ items:                                                                # []github
   secret:                                                             # string (unique secret associated with a client)
   respondWithChallenges:                                              # bool (indicates whether the client wants authentication needed responses made in the form of challenges instead of redirects)
   redirectURIs:                                                       # []string (valid redirection URIs associated with a client)
-  - [string]                                                          # 
+  - [string]                                                          #
 
 
 Project
@@ -2867,7 +2867,7 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 spec:                                                                 # github.com/openshift/origin/pkg/project/api/v1.ProjectSpec (spec defines the behavior of the Project)
   finalizers:                                                         # []k8s.io/kubernetes/pkg/api/v1.FinalizerName (an opaque list of values that must be empty to permanently remove object from storage)
-  - [k8s.io/kubernetes/pkg/api/v1.FinalizerName]                      # 
+  - [k8s.io/kubernetes/pkg/api/v1.FinalizerName]                      #
 status:                                                               # github.com/openshift/origin/pkg/project/api/v1.ProjectStatus (status describes the current status of a Project; read-only)
   phase: Active|Terminating                                           # k8s.io/kubernetes/pkg/api/v1.NamespacePhase (phase is the current lifecycle phase of the project)
 
@@ -2901,7 +2901,7 @@ items:                                                                # []github
       [string]:                                                       # string
   spec:                                                               # github.com/openshift/origin/pkg/project/api/v1.ProjectSpec (spec defines the behavior of the Project)
     finalizers:                                                       # []k8s.io/kubernetes/pkg/api/v1.FinalizerName (an opaque list of values that must be empty to permanently remove object from storage)
-    - [k8s.io/kubernetes/pkg/api/v1.FinalizerName]                    # 
+    - [k8s.io/kubernetes/pkg/api/v1.FinalizerName]                    #
   status:                                                             # github.com/openshift/origin/pkg/project/api/v1.ProjectStatus (status describes the current status of a Project; read-only)
     phase: Active|Terminating                                         # k8s.io/kubernetes/pkg/api/v1.NamespacePhase (phase is the current lifecycle phase of the project)
 
@@ -3284,7 +3284,7 @@ metadata:                                                             # k8s.io/k
   annotations:                                                        # map[string]string (map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects; see http://releases.k8s.io/HEAD/docs/user-guide/annotations.md)
     [string]:                                                         # string
 users:                                                                # []string (list of users in this group)
-- [string]                                                            # 
+- [string]                                                            #
 
 
 GroupList
@@ -3314,7 +3314,7 @@ items:                                                                # []github
     annotations:                                                      # map[string]string (map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects; see http://releases.k8s.io/HEAD/docs/user-guide/annotations.md)
       [string]:                                                       # string
   users:                                                              # []string (list of users in this group)
-  - [string]                                                          # 
+  - [string]                                                          #
 
 
 Identity
@@ -3413,9 +3413,9 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 fullName:                                                             # string (full name of user)
 identities:                                                           # []string (list of identities)
-- [string]                                                            # 
+- [string]                                                            #
 groups:                                                               # []string (list of groups)
-- [string]                                                            # 
+- [string]                                                            #
 
 
 UserIdentityMapping
@@ -3484,8 +3484,8 @@ items:                                                                # []github
       [string]:                                                       # string
   fullName:                                                           # string (full name of user)
   identities:                                                         # []string (list of identities)
-  - [string]                                                          # 
+  - [string]                                                          #
   groups:                                                             # []string (list of groups)
-  - [string]                                                          # 
+  - [string]                                                          #
 
 

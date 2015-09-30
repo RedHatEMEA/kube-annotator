@@ -18,89 +18,63 @@ package main
 
 import (
 	"fmt"
-	"golang.org/x/tools/go/types"
-	"reflect"
 	"strings"
 )
 
-type DocOutput struct {
-	indent string
-}
-
-func (o *DocOutput) Struct(basename *types.TypeName, st reflect.StructTag, u *types.Struct, options string, tn string) {
-	name := strings.Split(st.Get("json"), ",")[0]
-
-	if name != "" && name != basename.Name() {
-		print(o.indent, name + ":", "", tn, st.Get("description"))
-	}
-	
-	for i := 0; i < u.NumFields(); i++ {
-		if name != "" && basename.Name() != name {
-			o.indent = o.indent + "  "
-		}
-
-		dump(o, basename, u.Field(i).Type(), reflect.StructTag(u.Tag(i)))
-
-		if name != "" && basename.Name() != name {
-			o.indent = o.indent[:len(o.indent) - 2]
-		}
-		
-		o.indent = strings.Replace(o.indent, "-", " ", -1)
-	}
-}
-
-func (o *DocOutput) Map(basename *types.TypeName, st reflect.StructTag, u *types.Map, options string, tn string) {
-	name := strings.Split(st.Get("json"), ",")[0]
-
-	print(o.indent, name + ":", options, tn, st.Get("description"))
-	print(o.indent + "  ", "[" + typefmt(u.Key()) + "]:", "", typefmt(u.Elem()), "")
-}
-
-func (o *DocOutput) Slice(basename *types.TypeName, st reflect.StructTag, u *types.Slice, options string) {
-	name := strings.Split(st.Get("json"), ",")[0]
-
-	und := u.Elem()
-	if p, ok := und.(*types.Pointer); ok {
-		und = p.Elem()
-	}
-	
-	print(o.indent, name + ":", options, "[]" + typefmt(und), st.Get("description"))
-	
-	if _, ok := und.Underlying().(*types.Struct); ok {
-		o.indent = o.indent + "- "
-		dump(o, basename, und, reflect.StructTag("json:\"\""))
-		o.indent = o.indent[:len(o.indent) - 2]
-	} else {
-		print(o.indent + "- ", "[" + typefmt(und) + "]", "", "", "")
-	}
-}
-
-func (o *DocOutput) Pointer(basename *types.TypeName, st reflect.StructTag, u *types.Pointer) {
-	dump(o, basename, u.Elem(), st)
-}
-
-func (o *DocOutput) Basic(basename *types.TypeName, st reflect.StructTag, u *types.Basic, options string, tn string) {
-	name := strings.Split(st.Get("json"), ",")[0]
-
-	if o.indent == "" {
-		switch name {
-		case "kind":
-			options = basename.Name()
-		case "apiVersion":
-			options = basename.Pkg().Name()
+func do2(o interface{}) string {
+	rv := ""
+	switch u := o.(type) {
+	case IStruct:
+		for _, i := range u.items {
+			rv += do3("", i)
 		}
 	}
-	
-	print(o.indent, name + ":", options, tn, st.Get("description"))
+
+	return rv
 }
 
-func print(indent, s1, options, s2, desc string) {
+func do3(indent string, o interface{}) string {
+	rv := ""
+	switch u := o.(type) {
+	case IStruct:
+		rv = sprint(indent, u.name + ":", "", u.typ, u.description)
+		for _, i := range u.items {
+			rv += do3(indent + "  ", i)
+		}
+
+	case IMap:
+		rv = sprint(indent, u.name + ":", "", u.typ, u.description)
+		rv += sprint(indent + "  ", "[" + u.keytyp + "]:", "", u.valtyp, "")
+
+	case ISlice:
+		rv = sprint(indent, u.name + ":", "", u.typ, u.description)
+		rv2 := ""
+		if len(u.items) > 0 {
+			for i := range u.items {
+				rv2 += do3(indent + "  ", u.items[i])
+			}
+			rv += strings.Replace(rv2, indent + "  ", indent + "- ", 1)
+		} else {
+			rv += sprint(indent + "- ", "[" + u.valtyp + "]", "", "", "")
+		}
+
+	case IBasic:
+		rv = sprint(indent, u.name + ":", u.options, u.typ, u.description)
+	}
+
+	return rv
+}
+
+func sprint(indent, s1, options, s2, desc string) string {
 	if desc != "" {
 		desc = " (" + desc + ")"
 	}
 	if options != "" {
 		options = " " + options
 	}
+	if s2 != "" {
+		s2 = " " + s2
+	}
 
-	fmt.Printf("%-69s # %s\n", indent + s1 + options, s2 + desc)
+	return fmt.Sprintf("%-69s #%s\n", indent + s1 + options, s2 + desc)
 }
