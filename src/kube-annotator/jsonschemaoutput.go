@@ -30,7 +30,7 @@ func jsonf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) 
 	obj := make(JsonObject)
 	obj["schema"] = js["properties"]
 	delete(obj["schema"].(JsonObject), "status")
-	
+
 	s, _ := json.MarshalIndent(obj, "", "  ")
 	return string(s)
 }
@@ -52,7 +52,7 @@ func makeJsonObject(iobj IObj) JsonObject {
 			jsobj["properties"] = properties
 		} else {
 			jsobj["type"] = "string"
-		}			
+		}
 
 		return jsobj
 
@@ -76,7 +76,7 @@ func makeJsonObject(iobj IObj) JsonObject {
 		jsobj["items"] = items
 
 		return jsobj
-		
+
 	case IBasic:
 		jsobj := make(JsonObject)
 		jsobj["type"] = "string"

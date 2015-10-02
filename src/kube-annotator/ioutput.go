@@ -29,8 +29,8 @@ type IObj interface {
 }
 
 type IBase struct {
-	name string
-	typ string
+	name        string
+	typ         string
 	description string
 }
 
@@ -47,7 +47,7 @@ type IMap struct {
 
 type ISlice struct {
 	IBase
-	items []IObj
+	items  []IObj
 	valtyp string
 }
 
@@ -57,9 +57,9 @@ type IBasic struct {
 }
 
 func (o IStruct) Name() string { return o.name }
-func (o IMap) Name() string { return o.name }
-func (o ISlice) Name() string { return o.name }
-func (o IBasic) Name() string { return o.name }
+func (o IMap) Name() string    { return o.name }
+func (o ISlice) Name() string  { return o.name }
+func (o IBasic) Name() string  { return o.name }
 
 func Struct(st reflect.StructTag, u *types.Struct, named *types.Named) IObj {
 	rv := IStruct{}
@@ -142,7 +142,7 @@ func typefmt(typ types.Type) string {
 	// Ugh.
 	typename := typ.String()
 	for _, p := range strings.Split(os.Getenv("GOPATH"), ":") {
-		typename = strings.Replace(typename, p + "/src/", "", -1)
+		typename = strings.Replace(typename, p+"/src/", "", -1)
 	}
 	return typename
 }

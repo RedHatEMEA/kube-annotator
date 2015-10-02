@@ -46,29 +46,29 @@ func makeDoc(indent string, iobj IObj) string {
 	s := ""
 	switch iobj := iobj.(type) {
 	case IStruct:
-		s = sprint(indent, iobj.name + ":", "", iobj.typ, iobj.description)
+		s = sprint(indent, iobj.name+":", "", iobj.typ, iobj.description)
 		for _, item := range iobj.items {
-			s += makeDoc(indent + "  ", item)
+			s += makeDoc(indent+"  ", item)
 		}
 
 	case IMap:
-		s = sprint(indent, iobj.name + ":", "", iobj.typ, iobj.description)
-		s += sprint(indent + "  ", "[" + iobj.keytyp + "]:", "", iobj.valtyp, "")
+		s = sprint(indent, iobj.name+":", "", iobj.typ, iobj.description)
+		s += sprint(indent+"  ", "["+iobj.keytyp+"]:", "", iobj.valtyp, "")
 
 	case ISlice:
-		s = sprint(indent, iobj.name + ":", "", iobj.typ, iobj.description)
+		s = sprint(indent, iobj.name+":", "", iobj.typ, iobj.description)
 		if len(iobj.items) > 0 {
 			s2 := ""
 			for _, item := range iobj.items {
-				s2 += makeDoc(indent + "  ", item)
+				s2 += makeDoc(indent+"  ", item)
 			}
-			s += strings.Replace(s2, indent + "  ", indent + "- ", 1)
+			s += strings.Replace(s2, indent+"  ", indent+"- ", 1)
 		} else if iobj.valtyp != "" {
-			s += sprint(indent + "- ", "[" + iobj.valtyp + "]", "", "", "")
+			s += sprint(indent+"- ", "["+iobj.valtyp+"]", "", "", "")
 		}
 
 	case IBasic:
-		s = sprint(indent, iobj.name + ":", iobj.options, iobj.typ, iobj.description)
+		s = sprint(indent, iobj.name+":", iobj.options, iobj.typ, iobj.description)
 	}
 
 	return s
@@ -85,5 +85,5 @@ func sprint(indent, s1, options, s2, desc string) string {
 		s2 = " " + s2
 	}
 
-	return fmt.Sprintf("%-69s #%s\n", indent + s1 + options, s2 + desc)
+	return fmt.Sprintf("%-69s #%s\n", indent+s1+options, s2+desc)
 }

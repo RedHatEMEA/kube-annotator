@@ -23,9 +23,9 @@ import (
 	"go/doc"
 	"go/parser"
 	"go/token"
+	_ "golang.org/x/tools/go/gcimporter"
 	"golang.org/x/tools/go/types"
 	"os"
-	_ "golang.org/x/tools/go/gcimporter"
 )
 
 func importPkg(pkgname string) (*types.Package, *ast.Package, error) {
