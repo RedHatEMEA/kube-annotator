@@ -9,7 +9,10 @@ origin:
 	pushd origin; make; popd
 
 out: build origin
-	for i in origin/pkg/*/api/v1; do GOPATH=origin/Godeps/_workspace:origin/_output/local/go ./kube-annotator github.com/openshift/$$i; done >out/openshift-v1.txt
-	GOPATH=origin/Godeps/_workspace:origin/_output/local/go ./kube-annotator k8s.io/kubernetes/pkg/api/v1 >out/kubernetes-v1.txt
+	for i in origin/pkg/*/api/v1; do GOPATH=origin/Godeps/_workspace:origin/_output/local/go ./kube-annotator doc github.com/openshift/$$i; done >out/openshift-v1.txt
+	GOPATH=origin/Godeps/_workspace:origin/_output/local/go ./kube-annotator doc k8s.io/kubernetes/pkg/api/v1 >out/kubernetes-v1.txt
 
-.PHONY: out
+jsonform: build origin
+	GOPATH=origin/Godeps/_workspace:origin/_output/local/go ./kube-annotator jsonform k8s.io/kubernetes/pkg/api/v1 Pod | xclip -sel clip
+
+.PHONY: jsonform out

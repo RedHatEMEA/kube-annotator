@@ -18,51 +18,60 @@ package main
 
 import (
 	"fmt"
+	"go/doc"
+	"golang.org/x/tools/go/types"
 	"strings"
 )
 
-func do2(o interface{}) string {
-	rv := ""
-	switch u := o.(type) {
-	case IStruct:
-		for _, i := range u.items {
-			rv += do3("", i)
+func docf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) string {
+	s := typename.Name() + "\n"
+	s += strings.Repeat("=", len(typename.Name())) + "\n\n"
+
+	for _, t := range docpkg.Types {
+		if t.Name == typename.Name() {
+			s += t.Doc + "\n"
+			break
 		}
 	}
 
-	return rv
+	iobj := makeIOutput(strukt, typename)
+	for _, item := range iobj.(IStruct).items {
+		s += makeDoc("", item)
+	}
+
+	return s + "\n"
 }
 
-func do3(indent string, o interface{}) string {
-	rv := ""
-	switch u := o.(type) {
+func makeDoc(indent string, iobj IObj) string {
+	s := ""
+	switch iobj := iobj.(type) {
 	case IStruct:
-		rv = sprint(indent, u.name + ":", "", u.typ, u.description)
-		for _, i := range u.items {
-			rv += do3(indent + "  ", i)
+		s = sprint(indent, iobj.name + ":", "", iobj.typ, iobj.description)
+		for _, item := range iobj.items {
+			s += makeDoc(indent + "  ", item)
 		}
 
 	case IMap:
-		rv = sprint(indent, u.name + ":", "", u.typ, u.description)
-		rv += sprint(indent + "  ", "[" + u.keytyp + "]:", "", u.valtyp, "")
+		s = sprint(indent, iobj.name + ":", "", iobj.typ, iobj.description)
+		s += sprint(indent + "  ", "[" + iobj.keytyp + "]:", "", iobj.valtyp, "")
 
 	case ISlice:
-		rv = sprint(indent, u.name + ":", "", u.typ, u.description)
-		rv2 := ""
-		if len(u.items) > 0 {
-			for i := range u.items {
-				rv2 += do3(indent + "  ", u.items[i])
+		s = sprint(indent, iobj.name + ":", "", iobj.typ, iobj.description)
+		if len(iobj.items) > 0 {
+			s2 := ""
+			for _, item := range iobj.items {
+				s2 += makeDoc(indent + "  ", item)
 			}
-			rv += strings.Replace(rv2, indent + "  ", indent + "- ", 1)
-		} else {
-			rv += sprint(indent + "- ", "[" + u.valtyp + "]", "", "", "")
+			s += strings.Replace(s2, indent + "  ", indent + "- ", 1)
+		} else if iobj.valtyp != "" {
+			s += sprint(indent + "- ", "[" + iobj.valtyp + "]", "", "", "")
 		}
 
 	case IBasic:
-		rv = sprint(indent, u.name + ":", u.options, u.typ, u.description)
+		s = sprint(indent, iobj.name + ":", iobj.options, iobj.typ, iobj.description)
 	}
 
-	return rv
+	return s
 }
 
 func sprint(indent, s1, options, s2, desc string) string {

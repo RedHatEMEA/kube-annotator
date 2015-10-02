@@ -18,11 +18,14 @@ package main
 
 import (
 	"golang.org/x/tools/go/types"
+	"os"
 	"reflect"
+	"sort"
 	"strings"
 )
 
-type IOutput struct {
+type IObj interface {
+	Name() string
 }
 
 type IBase struct {
@@ -33,7 +36,7 @@ type IBase struct {
 
 type IStruct struct {
 	IBase
-	items []interface{}
+	items []IObj
 }
 
 type IMap struct {
@@ -44,7 +47,7 @@ type IMap struct {
 
 type ISlice struct {
 	IBase
-	items []interface{}
+	items []IObj
 	valtyp string
 }
 
@@ -53,14 +56,22 @@ type IBasic struct {
 	options string
 }
 
-func (o *IOutput) Struct(st reflect.StructTag, u *types.Struct, tn string) interface{} {
+func (o IStruct) Name() string { return o.name }
+func (o IMap) Name() string { return o.name }
+func (o ISlice) Name() string { return o.name }
+func (o IBasic) Name() string { return o.name }
+
+func Struct(st reflect.StructTag, u *types.Struct, named *types.Named) IObj {
 	rv := IStruct{}
 	rv.name = strings.Split(st.Get("json"), ",")[0]
-	rv.typ = tn
+	rv.typ = getname(named, u)
 	rv.description = st.Get("description")
 
 	for i := 0; i < u.NumFields(); i++ {
-		rv2 := dump(o, u.Field(i).Type(), reflect.StructTag(u.Tag(i)))
+		rv2 := dump(u.Field(i).Type(), reflect.StructTag(u.Tag(i)))
+		if rv2 == nil {
+			continue
+		}
 		if st, ok := rv2.(IStruct); ok && st.name == "" {
 			for _, j := range st.items {
 				rv.items = append(rv.items, j)
@@ -73,10 +84,10 @@ func (o *IOutput) Struct(st reflect.StructTag, u *types.Struct, tn string) inter
 	return rv
 }
 
-func (o *IOutput) Map(st reflect.StructTag, u *types.Map, tn string) interface{} {
+func Map(st reflect.StructTag, u *types.Map, named *types.Named) IObj {
 	rv := IMap{}
 	rv.name = strings.Split(st.Get("json"), ",")[0]
-	rv.typ = tn
+	rv.typ = getname(named, u)
 	rv.description = st.Get("description")
 	rv.keytyp = typefmt(u.Key())
 	rv.valtyp = typefmt(u.Elem())
@@ -84,7 +95,7 @@ func (o *IOutput) Map(st reflect.StructTag, u *types.Map, tn string) interface{}
 	return rv
 }
 
-func (o *IOutput) Slice(st reflect.StructTag, u *types.Slice) interface{} {
+func Slice(st reflect.StructTag, u *types.Slice) IObj {
 	und := u.Elem()
 	if p, ok := und.(*types.Pointer); ok {
 		und = p.Elem()
@@ -94,7 +105,7 @@ func (o *IOutput) Slice(st reflect.StructTag, u *types.Slice) interface{} {
 	rv.name = strings.Split(st.Get("json"), ",")[0]
 	rv.typ = "[]" + typefmt(und)
 	rv.description = st.Get("description")
-	c := dump(o, und, reflect.StructTag("json:\"\""))
+	c := dump(und, reflect.StructTag(""))
 	if st, ok := c.(IStruct); ok {
 		rv.items = st.items
 	} else {
@@ -104,16 +115,107 @@ func (o *IOutput) Slice(st reflect.StructTag, u *types.Slice) interface{} {
 	return rv
 }
 
-func (o *IOutput) Pointer(st reflect.StructTag, u *types.Pointer) interface{} {
-	return dump(o, u.Elem(), st)
+func Pointer(st reflect.StructTag, u *types.Pointer) IObj {
+	return dump(u.Elem(), st)
 }
 
-func (o *IOutput) Basic(st reflect.StructTag, u *types.Basic, options string, tn string) interface{} {
+func Basic(st reflect.StructTag, u *types.Basic, named *types.Named) IObj {
 	rv := IBasic{}
 	rv.name = strings.Split(st.Get("json"), ",")[0]
-	rv.typ = tn
+	rv.typ = getname(named, u)
 	rv.description = st.Get("description")
-	rv.options = options
+	if named != nil {
+		rv.options = getConsts(named)
+	}
 
 	return rv
+}
+
+func getname(named *types.Named, typ types.Type) string {
+	if named != nil {
+		return typefmt(named)
+	}
+	return typefmt(typ)
+}
+
+func typefmt(typ types.Type) string {
+	// Ugh.
+	typename := typ.String()
+	for _, p := range strings.Split(os.Getenv("GOPATH"), ":") {
+		typename = strings.Replace(typename, p + "/src/", "", -1)
+	}
+	return typename
+}
+
+func dump(typ types.Type, st reflect.StructTag) IObj {
+	named, _ := typ.(*types.Named)
+	if named != nil {
+		typ = typ.Underlying()
+	}
+
+	if strings.Split(st.Get("json"), ",")[0] == "" {
+		if _, ok := typ.(*types.Struct); !ok {
+			if _, ok := typ.(*types.Pointer); !ok {
+				return nil
+			}
+		}
+	}
+
+	switch u := typ.(type) {
+	case *types.Struct:
+		return Struct(st, u, named)
+
+	case *types.Map:
+		return Map(st, u, named)
+
+	case *types.Slice:
+		return Slice(st, u)
+
+	case *types.Pointer:
+		return Pointer(st, u)
+
+	case *types.Basic:
+		return Basic(st, u, named)
+
+	default:
+		panic("unsupported")
+	}
+}
+
+func getConsts(named *types.Named) string {
+	pkg := named.Obj().Pkg()
+
+	s := make([]string, 0)
+	for _, name := range pkg.Scope().Names() {
+		obj := pkg.Scope().Lookup(name)
+
+		if konst, ok := obj.(*types.Const); ok {
+			if konst.Type() == named {
+				s = append(s, strings.Replace(konst.Val().String(), "\"", "", -1))
+			}
+		}
+	}
+
+	sort.Strings(s)
+
+	return strings.Trim(strings.Join(s, " | "), " ")
+}
+
+func makeIOutput(strukt *types.Struct, typename *types.TypeName) IObj {
+	iobj := dump(strukt, reflect.StructTag("")).(IStruct)
+
+	for i := range iobj.items {
+		if item, ok := iobj.items[i].(IBasic); ok {
+			switch item.name {
+			case "kind":
+				item.options = typename.Name()
+				iobj.items[i] = item
+			case "apiVersion":
+				item.options = typename.Pkg().Name()
+				iobj.items[i] = item
+			}
+		}
+	}
+
+	return iobj
 }
