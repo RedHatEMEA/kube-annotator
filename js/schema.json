@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "age": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 50
+        },
+        "phone": {
+            "type": "string"
+        },
+        "country": {
+            "type": "string",
+            "required": true
+        }
+    }
+}

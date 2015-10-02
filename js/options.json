@@ -1,0 +1,32 @@
+{
+    "fields": {
+        "name": {
+            "type": "text",
+            "label": "Name"
+        },
+        "age": {
+            "type": "number",
+            "label": "Age"
+        },
+        "phone": {
+            "type": "phone",
+            "label": "Phone"
+        },
+        "country": {
+            "type": "country",
+            "label": "Country"
+        }
+    },
+    "form": {
+        "attributes": {
+            "method": "POST",
+            "action": "http://httpbin.org/post",
+            "enctype": "multipart/form-data"
+        },
+        "buttons": {
+            "submit": {
+                "value": "Submit the Form"
+            }
+        }
+    }
+}
