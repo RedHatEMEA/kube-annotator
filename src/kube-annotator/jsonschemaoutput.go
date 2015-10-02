@@ -20,31 +20,39 @@ import (
 	"encoding/json"
 	"go/doc"
 	"golang.org/x/tools/go/types"
+	"os"
 )
 
 type JsonObject map[string]interface{}
 
-func jsonf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) string {
-	js := makeJsonObject(makeIOutput(strukt, typename))
-
-	obj := make(JsonObject)
-	obj["schema"] = js["properties"]
-	delete(obj["schema"].(JsonObject), "status")
-
-	s, _ := json.MarshalIndent(obj, "", "  ")
-	return string(s)
+func write(filename string, jsobj JsonObject) {
+	s, _ := json.MarshalIndent(jsobj, "", "  ")
+	f, _ := os.Create(filename)
+	defer f.Close()
+	f.Write(s)
 }
 
-func makeJsonObject(iobj IObj) JsonObject {
+func jsonf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) string {
+	schema := makeSchema(makeIOutput(strukt, typename))
+	delete(schema["properties"].(JsonObject), "status")
+	write("js/schema.json", schema)
+
+	options := makeOptions(makeIOutput(strukt, typename))
+	delete(options["fields"].(JsonObject), "status")
+	write("js/options.json", options)
+
+	return ""
+}
+
+func makeSchema(iobj IObj) JsonObject {
 	switch iobj := iobj.(type) {
 	case IStruct:
 		jsobj := make(JsonObject)
-		jsobj["title"] = iobj.name
 		if iobj.items != nil {
 			jsobj["type"] = "object"
 			properties := make(JsonObject)
 			for _, item := range iobj.items {
-				childjsobj := makeJsonObject(item)
+				childjsobj := makeSchema(item)
 				if childjsobj != nil {
 					properties[item.Name()] = childjsobj
 				}
@@ -61,12 +69,11 @@ func makeJsonObject(iobj IObj) JsonObject {
 		jsobj["type"] = "array"
 
 		items := make(JsonObject)
-		items["title"] = iobj.name
 		items["type"] = "object"
 
 		properties := make(JsonObject)
 		for _, item := range iobj.items {
-			childjsobj := makeJsonObject(item)
+			childjsobj := makeSchema(item)
 			if childjsobj != nil {
 				properties[item.Name()] = childjsobj
 			}
@@ -80,7 +87,55 @@ func makeJsonObject(iobj IObj) JsonObject {
 	case IBasic:
 		jsobj := make(JsonObject)
 		jsobj["type"] = "string"
-		jsobj["title"] = iobj.name
+
+		return jsobj
+	}
+
+	return nil
+}
+
+func makeOptions(iobj IObj) JsonObject {
+	switch iobj := iobj.(type) {
+	case IStruct:
+		jsobj := make(JsonObject)
+		jsobj["label"] = iobj.name
+		if iobj.items != nil {
+			fields := make(JsonObject)
+			for _, item := range iobj.items {
+				childjsobj := makeOptions(item)
+				if childjsobj != nil {
+					fields[item.Name()] = childjsobj
+				}
+			}
+			jsobj["fields"] = fields
+		} else {
+			jsobj["type"] = "text"
+		}
+
+		return jsobj
+
+	case ISlice:
+		jsobj := make(JsonObject)
+		jsobj["label"] = iobj.name
+
+		items := make(JsonObject)
+
+		fields := make(JsonObject)
+		for _, item := range iobj.items {
+			childjsobj := makeOptions(item)
+			if childjsobj != nil {
+				fields[item.Name()] = childjsobj
+			}
+		}
+		items["fields"] = fields
+		jsobj["items"] = items
+
+		return jsobj
+
+	case IBasic:
+		jsobj := make(JsonObject)
+		jsobj["label"] = iobj.name
+		jsobj["type"] = "text"
 
 		return jsobj
 	}

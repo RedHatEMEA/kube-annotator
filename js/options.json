@@ -1,32 +1,766 @@
 {
-    "fields": {
-        "name": {
-            "type": "text",
-            "label": "Name"
-        },
-        "age": {
-            "type": "number",
-            "label": "Age"
-        },
-        "phone": {
-            "type": "phone",
-            "label": "Phone"
-        },
-        "country": {
-            "type": "country",
-            "label": "Country"
-        }
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "type": "text"
     },
-    "form": {
-        "attributes": {
-            "method": "POST",
-            "action": "http://httpbin.org/post",
-            "enctype": "multipart/form-data"
+    "kind": {
+      "label": "kind",
+      "type": "text"
+    },
+    "metadata": {
+      "fields": {
+        "creationTimestamp": {
+          "label": "creationTimestamp",
+          "type": "text"
         },
-        "buttons": {
-            "submit": {
-                "value": "Submit the Form"
-            }
+        "deletionTimestamp": {
+          "label": "deletionTimestamp",
+          "type": "text"
+        },
+        "generateName": {
+          "label": "generateName",
+          "type": "text"
+        },
+        "generation": {
+          "label": "generation",
+          "type": "text"
+        },
+        "name": {
+          "label": "name",
+          "type": "text"
+        },
+        "namespace": {
+          "label": "namespace",
+          "type": "text"
+        },
+        "resourceVersion": {
+          "label": "resourceVersion",
+          "type": "text"
+        },
+        "selfLink": {
+          "label": "selfLink",
+          "type": "text"
+        },
+        "uid": {
+          "label": "uid",
+          "type": "text"
         }
+      },
+      "label": "metadata"
+    },
+    "spec": {
+      "fields": {
+        "activeDeadlineSeconds": {
+          "label": "activeDeadlineSeconds",
+          "type": "text"
+        },
+        "containers": {
+          "items": {
+            "fields": {
+              "args": {
+                "items": {
+                  "fields": {}
+                },
+                "label": "args"
+              },
+              "command": {
+                "items": {
+                  "fields": {}
+                },
+                "label": "command"
+              },
+              "env": {
+                "items": {
+                  "fields": {
+                    "name": {
+                      "label": "name",
+                      "type": "text"
+                    },
+                    "value": {
+                      "label": "value",
+                      "type": "text"
+                    },
+                    "valueFrom": {
+                      "fields": {
+                        "fieldRef": {
+                          "fields": {
+                            "apiVersion": {
+                              "label": "apiVersion",
+                              "type": "text"
+                            },
+                            "fieldPath": {
+                              "label": "fieldPath",
+                              "type": "text"
+                            }
+                          },
+                          "label": "fieldRef"
+                        }
+                      },
+                      "label": "valueFrom"
+                    }
+                  }
+                },
+                "label": "env"
+              },
+              "image": {
+                "label": "image",
+                "type": "text"
+              },
+              "imagePullPolicy": {
+                "label": "imagePullPolicy",
+                "type": "text"
+              },
+              "lifecycle": {
+                "fields": {
+                  "postStart": {
+                    "fields": {
+                      "exec": {
+                        "fields": {
+                          "command": {
+                            "items": {
+                              "fields": {}
+                            },
+                            "label": "command"
+                          }
+                        },
+                        "label": "exec"
+                      },
+                      "httpGet": {
+                        "fields": {
+                          "host": {
+                            "label": "host",
+                            "type": "text"
+                          },
+                          "path": {
+                            "label": "path",
+                            "type": "text"
+                          },
+                          "port": {
+                            "label": "port",
+                            "type": "text"
+                          },
+                          "scheme": {
+                            "label": "scheme",
+                            "type": "text"
+                          }
+                        },
+                        "label": "httpGet"
+                      },
+                      "tcpSocket": {
+                        "fields": {
+                          "port": {
+                            "label": "port",
+                            "type": "text"
+                          }
+                        },
+                        "label": "tcpSocket"
+                      }
+                    },
+                    "label": "postStart"
+                  },
+                  "preStop": {
+                    "fields": {
+                      "exec": {
+                        "fields": {
+                          "command": {
+                            "items": {
+                              "fields": {}
+                            },
+                            "label": "command"
+                          }
+                        },
+                        "label": "exec"
+                      },
+                      "httpGet": {
+                        "fields": {
+                          "host": {
+                            "label": "host",
+                            "type": "text"
+                          },
+                          "path": {
+                            "label": "path",
+                            "type": "text"
+                          },
+                          "port": {
+                            "label": "port",
+                            "type": "text"
+                          },
+                          "scheme": {
+                            "label": "scheme",
+                            "type": "text"
+                          }
+                        },
+                        "label": "httpGet"
+                      },
+                      "tcpSocket": {
+                        "fields": {
+                          "port": {
+                            "label": "port",
+                            "type": "text"
+                          }
+                        },
+                        "label": "tcpSocket"
+                      }
+                    },
+                    "label": "preStop"
+                  }
+                },
+                "label": "lifecycle"
+              },
+              "livenessProbe": {
+                "fields": {
+                  "exec": {
+                    "fields": {
+                      "command": {
+                        "items": {
+                          "fields": {}
+                        },
+                        "label": "command"
+                      }
+                    },
+                    "label": "exec"
+                  },
+                  "httpGet": {
+                    "fields": {
+                      "host": {
+                        "label": "host",
+                        "type": "text"
+                      },
+                      "path": {
+                        "label": "path",
+                        "type": "text"
+                      },
+                      "port": {
+                        "label": "port",
+                        "type": "text"
+                      },
+                      "scheme": {
+                        "label": "scheme",
+                        "type": "text"
+                      }
+                    },
+                    "label": "httpGet"
+                  },
+                  "initialDelaySeconds": {
+                    "label": "initialDelaySeconds",
+                    "type": "text"
+                  },
+                  "tcpSocket": {
+                    "fields": {
+                      "port": {
+                        "label": "port",
+                        "type": "text"
+                      }
+                    },
+                    "label": "tcpSocket"
+                  },
+                  "timeoutSeconds": {
+                    "label": "timeoutSeconds",
+                    "type": "text"
+                  }
+                },
+                "label": "livenessProbe"
+              },
+              "name": {
+                "label": "name",
+                "type": "text"
+              },
+              "ports": {
+                "items": {
+                  "fields": {
+                    "containerPort": {
+                      "label": "containerPort",
+                      "type": "text"
+                    },
+                    "hostIP": {
+                      "label": "hostIP",
+                      "type": "text"
+                    },
+                    "hostPort": {
+                      "label": "hostPort",
+                      "type": "text"
+                    },
+                    "name": {
+                      "label": "name",
+                      "type": "text"
+                    },
+                    "protocol": {
+                      "label": "protocol",
+                      "type": "text"
+                    }
+                  }
+                },
+                "label": "ports"
+              },
+              "readinessProbe": {
+                "fields": {
+                  "exec": {
+                    "fields": {
+                      "command": {
+                        "items": {
+                          "fields": {}
+                        },
+                        "label": "command"
+                      }
+                    },
+                    "label": "exec"
+                  },
+                  "httpGet": {
+                    "fields": {
+                      "host": {
+                        "label": "host",
+                        "type": "text"
+                      },
+                      "path": {
+                        "label": "path",
+                        "type": "text"
+                      },
+                      "port": {
+                        "label": "port",
+                        "type": "text"
+                      },
+                      "scheme": {
+                        "label": "scheme",
+                        "type": "text"
+                      }
+                    },
+                    "label": "httpGet"
+                  },
+                  "initialDelaySeconds": {
+                    "label": "initialDelaySeconds",
+                    "type": "text"
+                  },
+                  "tcpSocket": {
+                    "fields": {
+                      "port": {
+                        "label": "port",
+                        "type": "text"
+                      }
+                    },
+                    "label": "tcpSocket"
+                  },
+                  "timeoutSeconds": {
+                    "label": "timeoutSeconds",
+                    "type": "text"
+                  }
+                },
+                "label": "readinessProbe"
+              },
+              "resources": {
+                "fields": {},
+                "label": "resources"
+              },
+              "securityContext": {
+                "fields": {
+                  "capabilities": {
+                    "fields": {
+                      "add": {
+                        "items": {
+                          "fields": {}
+                        },
+                        "label": "add"
+                      },
+                      "drop": {
+                        "items": {
+                          "fields": {}
+                        },
+                        "label": "drop"
+                      }
+                    },
+                    "label": "capabilities"
+                  },
+                  "privileged": {
+                    "label": "privileged",
+                    "type": "text"
+                  },
+                  "runAsNonRoot": {
+                    "label": "runAsNonRoot",
+                    "type": "text"
+                  },
+                  "runAsUser": {
+                    "label": "runAsUser",
+                    "type": "text"
+                  },
+                  "seLinuxOptions": {
+                    "fields": {
+                      "level": {
+                        "label": "level",
+                        "type": "text"
+                      },
+                      "role": {
+                        "label": "role",
+                        "type": "text"
+                      },
+                      "type": {
+                        "label": "type",
+                        "type": "text"
+                      },
+                      "user": {
+                        "label": "user",
+                        "type": "text"
+                      }
+                    },
+                    "label": "seLinuxOptions"
+                  }
+                },
+                "label": "securityContext"
+              },
+              "stdin": {
+                "label": "stdin",
+                "type": "text"
+              },
+              "terminationMessagePath": {
+                "label": "terminationMessagePath",
+                "type": "text"
+              },
+              "tty": {
+                "label": "tty",
+                "type": "text"
+              },
+              "volumeMounts": {
+                "items": {
+                  "fields": {
+                    "mountPath": {
+                      "label": "mountPath",
+                      "type": "text"
+                    },
+                    "name": {
+                      "label": "name",
+                      "type": "text"
+                    },
+                    "readOnly": {
+                      "label": "readOnly",
+                      "type": "text"
+                    }
+                  }
+                },
+                "label": "volumeMounts"
+              },
+              "workingDir": {
+                "label": "workingDir",
+                "type": "text"
+              }
+            }
+          },
+          "label": "containers"
+        },
+        "dnsPolicy": {
+          "label": "dnsPolicy",
+          "type": "text"
+        },
+        "host": {
+          "label": "host",
+          "type": "text"
+        },
+        "hostNetwork": {
+          "label": "hostNetwork",
+          "type": "text"
+        },
+        "imagePullSecrets": {
+          "items": {
+            "fields": {
+              "name": {
+                "label": "name",
+                "type": "text"
+              }
+            }
+          },
+          "label": "imagePullSecrets"
+        },
+        "nodeName": {
+          "label": "nodeName",
+          "type": "text"
+        },
+        "restartPolicy": {
+          "label": "restartPolicy",
+          "type": "text"
+        },
+        "serviceAccount": {
+          "label": "serviceAccount",
+          "type": "text"
+        },
+        "serviceAccountName": {
+          "label": "serviceAccountName",
+          "type": "text"
+        },
+        "terminationGracePeriodSeconds": {
+          "label": "terminationGracePeriodSeconds",
+          "type": "text"
+        },
+        "volumes": {
+          "items": {
+            "fields": {
+              "awsElasticBlockStore": {
+                "fields": {
+                  "fsType": {
+                    "label": "fsType",
+                    "type": "text"
+                  },
+                  "partition": {
+                    "label": "partition",
+                    "type": "text"
+                  },
+                  "readOnly": {
+                    "label": "readOnly",
+                    "type": "text"
+                  },
+                  "volumeID": {
+                    "label": "volumeID",
+                    "type": "text"
+                  }
+                },
+                "label": "awsElasticBlockStore"
+              },
+              "cephfs": {
+                "fields": {
+                  "monitors": {
+                    "items": {
+                      "fields": {}
+                    },
+                    "label": "monitors"
+                  },
+                  "readOnly": {
+                    "label": "readOnly",
+                    "type": "text"
+                  },
+                  "secretFile": {
+                    "label": "secretFile",
+                    "type": "text"
+                  },
+                  "secretRef": {
+                    "fields": {
+                      "name": {
+                        "label": "name",
+                        "type": "text"
+                      }
+                    },
+                    "label": "secretRef"
+                  },
+                  "user": {
+                    "label": "user",
+                    "type": "text"
+                  }
+                },
+                "label": "cephfs"
+              },
+              "emptyDir": {
+                "fields": {
+                  "medium": {
+                    "label": "medium",
+                    "type": "text"
+                  }
+                },
+                "label": "emptyDir"
+              },
+              "gcePersistentDisk": {
+                "fields": {
+                  "fsType": {
+                    "label": "fsType",
+                    "type": "text"
+                  },
+                  "partition": {
+                    "label": "partition",
+                    "type": "text"
+                  },
+                  "pdName": {
+                    "label": "pdName",
+                    "type": "text"
+                  },
+                  "readOnly": {
+                    "label": "readOnly",
+                    "type": "text"
+                  }
+                },
+                "label": "gcePersistentDisk"
+              },
+              "gitRepo": {
+                "fields": {
+                  "repository": {
+                    "label": "repository",
+                    "type": "text"
+                  },
+                  "revision": {
+                    "label": "revision",
+                    "type": "text"
+                  }
+                },
+                "label": "gitRepo"
+              },
+              "glusterfs": {
+                "fields": {
+                  "endpoints": {
+                    "label": "endpoints",
+                    "type": "text"
+                  },
+                  "path": {
+                    "label": "path",
+                    "type": "text"
+                  },
+                  "readOnly": {
+                    "label": "readOnly",
+                    "type": "text"
+                  }
+                },
+                "label": "glusterfs"
+              },
+              "hostPath": {
+                "fields": {
+                  "path": {
+                    "label": "path",
+                    "type": "text"
+                  }
+                },
+                "label": "hostPath"
+              },
+              "iscsi": {
+                "fields": {
+                  "fsType": {
+                    "label": "fsType",
+                    "type": "text"
+                  },
+                  "iqn": {
+                    "label": "iqn",
+                    "type": "text"
+                  },
+                  "lun": {
+                    "label": "lun",
+                    "type": "text"
+                  },
+                  "readOnly": {
+                    "label": "readOnly",
+                    "type": "text"
+                  },
+                  "targetPortal": {
+                    "label": "targetPortal",
+                    "type": "text"
+                  }
+                },
+                "label": "iscsi"
+              },
+              "metadata": {
+                "fields": {
+                  "items": {
+                    "items": {
+                      "fields": {
+                        "fieldRef": {
+                          "fields": {
+                            "apiVersion": {
+                              "label": "apiVersion",
+                              "type": "text"
+                            },
+                            "fieldPath": {
+                              "label": "fieldPath",
+                              "type": "text"
+                            }
+                          },
+                          "label": "fieldRef"
+                        },
+                        "name": {
+                          "label": "name",
+                          "type": "text"
+                        }
+                      }
+                    },
+                    "label": "items"
+                  }
+                },
+                "label": "metadata"
+              },
+              "name": {
+                "label": "name",
+                "type": "text"
+              },
+              "nfs": {
+                "fields": {
+                  "path": {
+                    "label": "path",
+                    "type": "text"
+                  },
+                  "readOnly": {
+                    "label": "readOnly",
+                    "type": "text"
+                  },
+                  "server": {
+                    "label": "server",
+                    "type": "text"
+                  }
+                },
+                "label": "nfs"
+              },
+              "persistentVolumeClaim": {
+                "fields": {
+                  "claimName": {
+                    "label": "claimName",
+                    "type": "text"
+                  },
+                  "readOnly": {
+                    "label": "readOnly",
+                    "type": "text"
+                  }
+                },
+                "label": "persistentVolumeClaim"
+              },
+              "rbd": {
+                "fields": {
+                  "fsType": {
+                    "label": "fsType",
+                    "type": "text"
+                  },
+                  "image": {
+                    "label": "image",
+                    "type": "text"
+                  },
+                  "keyring": {
+                    "label": "keyring",
+                    "type": "text"
+                  },
+                  "monitors": {
+                    "items": {
+                      "fields": {}
+                    },
+                    "label": "monitors"
+                  },
+                  "pool": {
+                    "label": "pool",
+                    "type": "text"
+                  },
+                  "readOnly": {
+                    "label": "readOnly",
+                    "type": "text"
+                  },
+                  "secretRef": {
+                    "fields": {
+                      "name": {
+                        "label": "name",
+                        "type": "text"
+                      }
+                    },
+                    "label": "secretRef"
+                  },
+                  "user": {
+                    "label": "user",
+                    "type": "text"
+                  }
+                },
+                "label": "rbd"
+              },
+              "secret": {
+                "fields": {
+                  "secretName": {
+                    "label": "secretName",
+                    "type": "text"
+                  }
+                },
+                "label": "secret"
+              }
+            }
+          },
+          "label": "volumes"
+        }
+      },
+      "label": "spec"
     }
+  },
+  "label": ""
 }

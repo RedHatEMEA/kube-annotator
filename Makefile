@@ -13,6 +13,6 @@ out: build origin
 	GOPATH=origin/Godeps/_workspace:origin/_output/local/go ./kube-annotator doc k8s.io/kubernetes/pkg/api/v1 >out/kubernetes-v1.txt
 
 jsonform: build origin
-	GOPATH=origin/Godeps/_workspace:origin/_output/local/go ./kube-annotator jsonform k8s.io/kubernetes/pkg/api/v1 Pod | xclip -sel clip
+	GOPATH=origin/Godeps/_workspace:origin/_output/local/go ./kube-annotator jsonform k8s.io/kubernetes/pkg/api/v1 Pod
 
 .PHONY: jsonform out
