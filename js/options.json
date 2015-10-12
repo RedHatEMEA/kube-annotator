@@ -2,57 +2,106 @@
   "fields": {
     "apiVersion": {
       "label": "apiVersion",
+      "order": 1,
       "type": "text"
     },
     "kind": {
       "label": "kind",
+      "order": 0,
       "type": "text"
     },
     "metadata": {
       "fields": {
+        "annotations": {
+          "items": {
+            "fields": {
+              "_key": {
+                "label": "key",
+                "type": "text"
+              },
+              "val": {
+                "label": "val",
+                "type": "text"
+              }
+            },
+            "type": "object"
+          },
+          "label": "annotations",
+          "order": 10,
+          "type": "map"
+        },
         "creationTimestamp": {
           "label": "creationTimestamp",
+          "order": 7,
           "type": "text"
         },
         "deletionTimestamp": {
           "label": "deletionTimestamp",
+          "order": 8,
           "type": "text"
         },
         "generateName": {
           "label": "generateName",
+          "order": 1,
           "type": "text"
         },
         "generation": {
           "label": "generation",
+          "order": 6,
           "type": "text"
+        },
+        "labels": {
+          "items": {
+            "fields": {
+              "_key": {
+                "label": "key",
+                "type": "text"
+              },
+              "val": {
+                "label": "val",
+                "type": "text"
+              }
+            },
+            "type": "object"
+          },
+          "label": "labels",
+          "order": 9,
+          "type": "map"
         },
         "name": {
           "label": "name",
+          "order": 0,
           "type": "text"
         },
         "namespace": {
           "label": "namespace",
+          "order": 2,
           "type": "text"
         },
         "resourceVersion": {
           "label": "resourceVersion",
+          "order": 5,
           "type": "text"
         },
         "selfLink": {
           "label": "selfLink",
+          "order": 3,
           "type": "text"
         },
         "uid": {
           "label": "uid",
+          "order": 4,
           "type": "text"
         }
       },
-      "label": "metadata"
+      "label": "metadata",
+      "order": 2
     },
     "spec": {
       "fields": {
         "activeDeadlineSeconds": {
           "label": "activeDeadlineSeconds",
+          "order": 4,
           "type": "text"
         },
         "containers": {
@@ -62,23 +111,27 @@
                 "items": {
                   "fields": {}
                 },
-                "label": "args"
+                "label": "args",
+                "order": 3
               },
               "command": {
                 "items": {
                   "fields": {}
                 },
-                "label": "command"
+                "label": "command",
+                "order": 2
               },
               "env": {
                 "items": {
                   "fields": {
                     "name": {
                       "label": "name",
+                      "order": 0,
                       "type": "text"
                     },
                     "value": {
                       "label": "value",
+                      "order": 1,
                       "type": "text"
                     },
                     "valueFrom": {
@@ -87,28 +140,35 @@
                           "fields": {
                             "apiVersion": {
                               "label": "apiVersion",
+                              "order": 0,
                               "type": "text"
                             },
                             "fieldPath": {
                               "label": "fieldPath",
+                              "order": 1,
                               "type": "text"
                             }
                           },
-                          "label": "fieldRef"
+                          "label": "fieldRef",
+                          "order": 0
                         }
                       },
-                      "label": "valueFrom"
+                      "label": "valueFrom",
+                      "order": 2
                     }
                   }
                 },
-                "label": "env"
+                "label": "env",
+                "order": 6
               },
               "image": {
                 "label": "image",
+                "order": 1,
                 "type": "text"
               },
               "imagePullPolicy": {
                 "label": "imagePullPolicy",
+                "order": 13,
                 "type": "text"
               },
               "lifecycle": {
@@ -121,43 +181,53 @@
                             "items": {
                               "fields": {}
                             },
-                            "label": "command"
+                            "label": "command",
+                            "order": 0
                           }
                         },
-                        "label": "exec"
+                        "label": "exec",
+                        "order": 0
                       },
                       "httpGet": {
                         "fields": {
                           "host": {
                             "label": "host",
+                            "order": 2,
                             "type": "text"
                           },
                           "path": {
                             "label": "path",
+                            "order": 0,
                             "type": "text"
                           },
                           "port": {
                             "label": "port",
+                            "order": 1,
                             "type": "text"
                           },
                           "scheme": {
                             "label": "scheme",
+                            "order": 3,
                             "type": "text"
                           }
                         },
-                        "label": "httpGet"
+                        "label": "httpGet",
+                        "order": 1
                       },
                       "tcpSocket": {
                         "fields": {
                           "port": {
                             "label": "port",
+                            "order": 0,
                             "type": "text"
                           }
                         },
-                        "label": "tcpSocket"
+                        "label": "tcpSocket",
+                        "order": 2
                       }
                     },
-                    "label": "postStart"
+                    "label": "postStart",
+                    "order": 0
                   },
                   "preStop": {
                     "fields": {
@@ -167,46 +237,57 @@
                             "items": {
                               "fields": {}
                             },
-                            "label": "command"
+                            "label": "command",
+                            "order": 0
                           }
                         },
-                        "label": "exec"
+                        "label": "exec",
+                        "order": 0
                       },
                       "httpGet": {
                         "fields": {
                           "host": {
                             "label": "host",
+                            "order": 2,
                             "type": "text"
                           },
                           "path": {
                             "label": "path",
+                            "order": 0,
                             "type": "text"
                           },
                           "port": {
                             "label": "port",
+                            "order": 1,
                             "type": "text"
                           },
                           "scheme": {
                             "label": "scheme",
+                            "order": 3,
                             "type": "text"
                           }
                         },
-                        "label": "httpGet"
+                        "label": "httpGet",
+                        "order": 1
                       },
                       "tcpSocket": {
                         "fields": {
                           "port": {
                             "label": "port",
+                            "order": 0,
                             "type": "text"
                           }
                         },
-                        "label": "tcpSocket"
+                        "label": "tcpSocket",
+                        "order": 2
                       }
                     },
-                    "label": "preStop"
+                    "label": "preStop",
+                    "order": 1
                   }
                 },
-                "label": "lifecycle"
+                "label": "lifecycle",
+                "order": 11
               },
               "livenessProbe": {
                 "fields": {
@@ -216,54 +297,67 @@
                         "items": {
                           "fields": {}
                         },
-                        "label": "command"
+                        "label": "command",
+                        "order": 0
                       }
                     },
-                    "label": "exec"
+                    "label": "exec",
+                    "order": 0
                   },
                   "httpGet": {
                     "fields": {
                       "host": {
                         "label": "host",
+                        "order": 2,
                         "type": "text"
                       },
                       "path": {
                         "label": "path",
+                        "order": 0,
                         "type": "text"
                       },
                       "port": {
                         "label": "port",
+                        "order": 1,
                         "type": "text"
                       },
                       "scheme": {
                         "label": "scheme",
+                        "order": 3,
                         "type": "text"
                       }
                     },
-                    "label": "httpGet"
+                    "label": "httpGet",
+                    "order": 1
                   },
                   "initialDelaySeconds": {
                     "label": "initialDelaySeconds",
+                    "order": 3,
                     "type": "text"
                   },
                   "tcpSocket": {
                     "fields": {
                       "port": {
                         "label": "port",
+                        "order": 0,
                         "type": "text"
                       }
                     },
-                    "label": "tcpSocket"
+                    "label": "tcpSocket",
+                    "order": 2
                   },
                   "timeoutSeconds": {
                     "label": "timeoutSeconds",
+                    "order": 4,
                     "type": "text"
                   }
                 },
-                "label": "livenessProbe"
+                "label": "livenessProbe",
+                "order": 9
               },
               "name": {
                 "label": "name",
+                "order": 0,
                 "type": "text"
               },
               "ports": {
@@ -271,27 +365,33 @@
                   "fields": {
                     "containerPort": {
                       "label": "containerPort",
+                      "order": 2,
                       "type": "text"
                     },
                     "hostIP": {
                       "label": "hostIP",
+                      "order": 4,
                       "type": "text"
                     },
                     "hostPort": {
                       "label": "hostPort",
+                      "order": 1,
                       "type": "text"
                     },
                     "name": {
                       "label": "name",
+                      "order": 0,
                       "type": "text"
                     },
                     "protocol": {
                       "label": "protocol",
+                      "order": 3,
                       "type": "text"
                     }
                   }
                 },
-                "label": "ports"
+                "label": "ports",
+                "order": 5
               },
               "readinessProbe": {
                 "fields": {
@@ -301,55 +401,105 @@
                         "items": {
                           "fields": {}
                         },
-                        "label": "command"
+                        "label": "command",
+                        "order": 0
                       }
                     },
-                    "label": "exec"
+                    "label": "exec",
+                    "order": 0
                   },
                   "httpGet": {
                     "fields": {
                       "host": {
                         "label": "host",
+                        "order": 2,
                         "type": "text"
                       },
                       "path": {
                         "label": "path",
+                        "order": 0,
                         "type": "text"
                       },
                       "port": {
                         "label": "port",
+                        "order": 1,
                         "type": "text"
                       },
                       "scheme": {
                         "label": "scheme",
+                        "order": 3,
                         "type": "text"
                       }
                     },
-                    "label": "httpGet"
+                    "label": "httpGet",
+                    "order": 1
                   },
                   "initialDelaySeconds": {
                     "label": "initialDelaySeconds",
+                    "order": 3,
                     "type": "text"
                   },
                   "tcpSocket": {
                     "fields": {
                       "port": {
                         "label": "port",
+                        "order": 0,
                         "type": "text"
                       }
                     },
-                    "label": "tcpSocket"
+                    "label": "tcpSocket",
+                    "order": 2
                   },
                   "timeoutSeconds": {
                     "label": "timeoutSeconds",
+                    "order": 4,
                     "type": "text"
                   }
                 },
-                "label": "readinessProbe"
+                "label": "readinessProbe",
+                "order": 10
               },
               "resources": {
-                "fields": {},
-                "label": "resources"
+                "fields": {
+                  "limits": {
+                    "items": {
+                      "fields": {
+                        "_key": {
+                          "label": "key",
+                          "type": "text"
+                        },
+                        "val": {
+                          "label": "val",
+                          "type": "text"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "label": "limits",
+                    "order": 0,
+                    "type": "map"
+                  },
+                  "requests": {
+                    "items": {
+                      "fields": {
+                        "_key": {
+                          "label": "key",
+                          "type": "text"
+                        },
+                        "val": {
+                          "label": "val",
+                          "type": "text"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "label": "requests",
+                    "order": 1,
+                    "type": "map"
+                  }
+                },
+                "label": "resources",
+                "order": 7
               },
               "securityContext": {
                 "fields": {
@@ -359,63 +509,78 @@
                         "items": {
                           "fields": {}
                         },
-                        "label": "add"
+                        "label": "add",
+                        "order": 0
                       },
                       "drop": {
                         "items": {
                           "fields": {}
                         },
-                        "label": "drop"
+                        "label": "drop",
+                        "order": 1
                       }
                     },
-                    "label": "capabilities"
+                    "label": "capabilities",
+                    "order": 0
                   },
                   "privileged": {
                     "label": "privileged",
+                    "order": 1,
                     "type": "text"
                   },
                   "runAsNonRoot": {
                     "label": "runAsNonRoot",
+                    "order": 4,
                     "type": "text"
                   },
                   "runAsUser": {
                     "label": "runAsUser",
+                    "order": 3,
                     "type": "text"
                   },
                   "seLinuxOptions": {
                     "fields": {
                       "level": {
                         "label": "level",
+                        "order": 3,
                         "type": "text"
                       },
                       "role": {
                         "label": "role",
+                        "order": 1,
                         "type": "text"
                       },
                       "type": {
                         "label": "type",
+                        "order": 2,
                         "type": "text"
                       },
                       "user": {
                         "label": "user",
+                        "order": 0,
                         "type": "text"
                       }
                     },
-                    "label": "seLinuxOptions"
+                    "label": "seLinuxOptions",
+                    "order": 2
                   }
                 },
-                "label": "securityContext"
+                "label": "securityContext",
+                "order": 14
               },
               "stdin": {
                 "label": "stdin",
+                "order": 15,
                 "type": "text"
               },
               "terminationMessagePath": {
                 "label": "terminationMessagePath",
+                "order": 12,
                 "type": "text"
               },
               "tty": {
                 "label": "tty",
+                "order": 16,
                 "type": "text"
               },
               "volumeMounts": {
@@ -423,38 +588,47 @@
                   "fields": {
                     "mountPath": {
                       "label": "mountPath",
+                      "order": 2,
                       "type": "text"
                     },
                     "name": {
                       "label": "name",
+                      "order": 0,
                       "type": "text"
                     },
                     "readOnly": {
                       "label": "readOnly",
+                      "order": 1,
                       "type": "text"
                     }
                   }
                 },
-                "label": "volumeMounts"
+                "label": "volumeMounts",
+                "order": 8
               },
               "workingDir": {
                 "label": "workingDir",
+                "order": 4,
                 "type": "text"
               }
             }
           },
-          "label": "containers"
+          "label": "containers",
+          "order": 1
         },
         "dnsPolicy": {
           "label": "dnsPolicy",
+          "order": 5,
           "type": "text"
         },
         "host": {
           "label": "host",
+          "order": 7,
           "type": "text"
         },
         "hostNetwork": {
           "label": "hostNetwork",
+          "order": 11,
           "type": "text"
         },
         "imagePullSecrets": {
@@ -462,30 +636,55 @@
             "fields": {
               "name": {
                 "label": "name",
+                "order": 0,
                 "type": "text"
               }
             }
           },
-          "label": "imagePullSecrets"
+          "label": "imagePullSecrets",
+          "order": 12
         },
         "nodeName": {
           "label": "nodeName",
+          "order": 10,
           "type": "text"
+        },
+        "nodeSelector": {
+          "items": {
+            "fields": {
+              "_key": {
+                "label": "key",
+                "type": "text"
+              },
+              "val": {
+                "label": "val",
+                "type": "text"
+              }
+            },
+            "type": "object"
+          },
+          "label": "nodeSelector",
+          "order": 6,
+          "type": "map"
         },
         "restartPolicy": {
           "label": "restartPolicy",
+          "order": 2,
           "type": "text"
         },
         "serviceAccount": {
           "label": "serviceAccount",
+          "order": 9,
           "type": "text"
         },
         "serviceAccountName": {
           "label": "serviceAccountName",
+          "order": 8,
           "type": "text"
         },
         "terminationGracePeriodSeconds": {
           "label": "terminationGracePeriodSeconds",
+          "order": 3,
           "type": "text"
         },
         "volumes": {
@@ -495,22 +694,27 @@
                 "fields": {
                   "fsType": {
                     "label": "fsType",
+                    "order": 1,
                     "type": "text"
                   },
                   "partition": {
                     "label": "partition",
+                    "order": 2,
                     "type": "text"
                   },
                   "readOnly": {
                     "label": "readOnly",
+                    "order": 3,
                     "type": "text"
                   },
                   "volumeID": {
                     "label": "volumeID",
+                    "order": 0,
                     "type": "text"
                   }
                 },
-                "label": "awsElasticBlockStore"
+                "label": "awsElasticBlockStore",
+                "order": 4
               },
               "cephfs": {
                 "fields": {
@@ -518,125 +722,154 @@
                     "items": {
                       "fields": {}
                     },
-                    "label": "monitors"
+                    "label": "monitors",
+                    "order": 0
                   },
                   "readOnly": {
                     "label": "readOnly",
+                    "order": 4,
                     "type": "text"
                   },
                   "secretFile": {
                     "label": "secretFile",
+                    "order": 2,
                     "type": "text"
                   },
                   "secretRef": {
                     "fields": {
                       "name": {
                         "label": "name",
+                        "order": 0,
                         "type": "text"
                       }
                     },
-                    "label": "secretRef"
+                    "label": "secretRef",
+                    "order": 3
                   },
                   "user": {
                     "label": "user",
+                    "order": 1,
                     "type": "text"
                   }
                 },
-                "label": "cephfs"
+                "label": "cephfs",
+                "order": 12
               },
               "emptyDir": {
                 "fields": {
                   "medium": {
                     "label": "medium",
+                    "order": 0,
                     "type": "text"
                   }
                 },
-                "label": "emptyDir"
+                "label": "emptyDir",
+                "order": 2
               },
               "gcePersistentDisk": {
                 "fields": {
                   "fsType": {
                     "label": "fsType",
+                    "order": 1,
                     "type": "text"
                   },
                   "partition": {
                     "label": "partition",
+                    "order": 2,
                     "type": "text"
                   },
                   "pdName": {
                     "label": "pdName",
+                    "order": 0,
                     "type": "text"
                   },
                   "readOnly": {
                     "label": "readOnly",
+                    "order": 3,
                     "type": "text"
                   }
                 },
-                "label": "gcePersistentDisk"
+                "label": "gcePersistentDisk",
+                "order": 3
               },
               "gitRepo": {
                 "fields": {
                   "repository": {
                     "label": "repository",
+                    "order": 0,
                     "type": "text"
                   },
                   "revision": {
                     "label": "revision",
+                    "order": 1,
                     "type": "text"
                   }
                 },
-                "label": "gitRepo"
+                "label": "gitRepo",
+                "order": 5
               },
               "glusterfs": {
                 "fields": {
                   "endpoints": {
                     "label": "endpoints",
+                    "order": 0,
                     "type": "text"
                   },
                   "path": {
                     "label": "path",
+                    "order": 1,
                     "type": "text"
                   },
                   "readOnly": {
                     "label": "readOnly",
+                    "order": 2,
                     "type": "text"
                   }
                 },
-                "label": "glusterfs"
+                "label": "glusterfs",
+                "order": 9
               },
               "hostPath": {
                 "fields": {
                   "path": {
                     "label": "path",
+                    "order": 0,
                     "type": "text"
                   }
                 },
-                "label": "hostPath"
+                "label": "hostPath",
+                "order": 1
               },
               "iscsi": {
                 "fields": {
                   "fsType": {
                     "label": "fsType",
+                    "order": 3,
                     "type": "text"
                   },
                   "iqn": {
                     "label": "iqn",
+                    "order": 1,
                     "type": "text"
                   },
                   "lun": {
                     "label": "lun",
+                    "order": 2,
                     "type": "text"
                   },
                   "readOnly": {
                     "label": "readOnly",
+                    "order": 4,
                     "type": "text"
                   },
                   "targetPortal": {
                     "label": "targetPortal",
+                    "order": 0,
                     "type": "text"
                   }
                 },
-                "label": "iscsi"
+                "label": "iscsi",
+                "order": 8
               },
               "metadata": {
                 "fields": {
@@ -647,119 +880,147 @@
                           "fields": {
                             "apiVersion": {
                               "label": "apiVersion",
+                              "order": 0,
                               "type": "text"
                             },
                             "fieldPath": {
                               "label": "fieldPath",
+                              "order": 1,
                               "type": "text"
                             }
                           },
-                          "label": "fieldRef"
+                          "label": "fieldRef",
+                          "order": 1
                         },
                         "name": {
                           "label": "name",
+                          "order": 0,
                           "type": "text"
                         }
                       }
                     },
-                    "label": "items"
+                    "label": "items",
+                    "order": 0
                   }
                 },
-                "label": "metadata"
+                "label": "metadata",
+                "order": 13
               },
               "name": {
                 "label": "name",
+                "order": 0,
                 "type": "text"
               },
               "nfs": {
                 "fields": {
                   "path": {
                     "label": "path",
+                    "order": 1,
                     "type": "text"
                   },
                   "readOnly": {
                     "label": "readOnly",
+                    "order": 2,
                     "type": "text"
                   },
                   "server": {
                     "label": "server",
+                    "order": 0,
                     "type": "text"
                   }
                 },
-                "label": "nfs"
+                "label": "nfs",
+                "order": 7
               },
               "persistentVolumeClaim": {
                 "fields": {
                   "claimName": {
                     "label": "claimName",
+                    "order": 0,
                     "type": "text"
                   },
                   "readOnly": {
                     "label": "readOnly",
+                    "order": 1,
                     "type": "text"
                   }
                 },
-                "label": "persistentVolumeClaim"
+                "label": "persistentVolumeClaim",
+                "order": 10
               },
               "rbd": {
                 "fields": {
                   "fsType": {
                     "label": "fsType",
+                    "order": 2,
                     "type": "text"
                   },
                   "image": {
                     "label": "image",
+                    "order": 1,
                     "type": "text"
                   },
                   "keyring": {
                     "label": "keyring",
+                    "order": 5,
                     "type": "text"
                   },
                   "monitors": {
                     "items": {
                       "fields": {}
                     },
-                    "label": "monitors"
+                    "label": "monitors",
+                    "order": 0
                   },
                   "pool": {
                     "label": "pool",
+                    "order": 3,
                     "type": "text"
                   },
                   "readOnly": {
                     "label": "readOnly",
+                    "order": 7,
                     "type": "text"
                   },
                   "secretRef": {
                     "fields": {
                       "name": {
                         "label": "name",
+                        "order": 0,
                         "type": "text"
                       }
                     },
-                    "label": "secretRef"
+                    "label": "secretRef",
+                    "order": 6
                   },
                   "user": {
                     "label": "user",
+                    "order": 4,
                     "type": "text"
                   }
                 },
-                "label": "rbd"
+                "label": "rbd",
+                "order": 11
               },
               "secret": {
                 "fields": {
                   "secretName": {
                     "label": "secretName",
+                    "order": 0,
                     "type": "text"
                   }
                 },
-                "label": "secret"
+                "label": "secret",
+                "order": 6
               }
             }
           },
-          "label": "volumes"
+          "label": "volumes",
+          "order": 0
         }
       },
-      "label": "spec"
+      "label": "spec",
+      "order": 3
     }
   },
   "label": ""

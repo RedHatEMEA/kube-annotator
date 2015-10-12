@@ -8,6 +8,22 @@
     },
     "metadata": {
       "properties": {
+        "annotations": {
+          "items": {
+            "properties": {
+              "_key": {
+                "title": "_key",
+                "type": "string"
+              },
+              "val": {
+                "title": "val",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
         "creationTimestamp": {
           "type": "string"
         },
@@ -19,6 +35,22 @@
         },
         "generation": {
           "type": "string"
+        },
+        "labels": {
+          "items": {
+            "properties": {
+              "_key": {
+                "title": "_key",
+                "type": "string"
+              },
+              "val": {
+                "title": "val",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
         },
         "name": {
           "type": "string"
@@ -308,7 +340,40 @@
                 "type": "object"
               },
               "resources": {
-                "properties": {},
+                "properties": {
+                  "limits": {
+                    "items": {
+                      "properties": {
+                        "_key": {
+                          "title": "_key",
+                          "type": "string"
+                        },
+                        "val": {
+                          "title": "val",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "requests": {
+                    "items": {
+                      "properties": {
+                        "_key": {
+                          "title": "_key",
+                          "type": "string"
+                        },
+                        "val": {
+                          "title": "val",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
                 "type": "object"
               },
               "securityContext": {
@@ -417,6 +482,22 @@
         },
         "nodeName": {
           "type": "string"
+        },
+        "nodeSelector": {
+          "items": {
+            "properties": {
+              "_key": {
+                "title": "_key",
+                "type": "string"
+              },
+              "val": {
+                "title": "val",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
         },
         "restartPolicy": {
           "type": "string"

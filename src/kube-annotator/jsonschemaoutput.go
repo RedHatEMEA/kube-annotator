@@ -19,8 +19,9 @@ package main
 import (
 	"encoding/json"
 	"go/doc"
-	"golang.org/x/tools/go/types"
 	"os"
+
+	"golang.org/x/tools/go/types"
 )
 
 type JsonObject map[string]interface{}
@@ -64,7 +65,33 @@ func makeSchema(iobj IObj) JsonObject {
 
 		return jsobj
 
+	case IMap:
+		jsobj := make(JsonObject)
+		jsobj["type"] = "array"
+
+		items := make(JsonObject)
+		items["type"] = "object"
+
+		properties := make(JsonObject)
+
+		_key := make(JsonObject)
+		_key["title"] = "_key"
+		_key["type"] = "string"
+		properties["_key"] = _key
+
+		val := make(JsonObject)
+		val["title"] = "val"
+		val["type"] = "string"
+		properties["val"] = val
+
+		items["properties"] = properties
+
+		jsobj["items"] = items
+
+		return jsobj
+
 	case ISlice:
+		// TODO: rbd.monitors...
 		jsobj := make(JsonObject)
 		jsobj["type"] = "array"
 
@@ -99,11 +126,13 @@ func makeOptions(iobj IObj) JsonObject {
 	case IStruct:
 		jsobj := make(JsonObject)
 		jsobj["label"] = iobj.name
+		//jsobj["collapsed"] = true
 		if iobj.items != nil {
 			fields := make(JsonObject)
-			for _, item := range iobj.items {
+			for i, item := range iobj.items {
 				childjsobj := makeOptions(item)
 				if childjsobj != nil {
+					childjsobj["order"] = i
 					fields[item.Name()] = childjsobj
 				}
 			}
@@ -114,16 +143,44 @@ func makeOptions(iobj IObj) JsonObject {
 
 		return jsobj
 
+	case IMap:
+		jsobj := make(JsonObject)
+		jsobj["label"] = iobj.name
+		jsobj["type"] = "map"
+
+		items := make(JsonObject)
+		items["type"] = "object"
+
+		fields := make(JsonObject)
+
+		_key := make(JsonObject)
+		_key["label"] = "key"
+		_key["type"] = "text"
+		fields["_key"] = _key
+
+		val := make(JsonObject)
+		val["label"] = "val"
+		val["type"] = "text"
+		fields["val"] = val
+
+		items["fields"] = fields
+
+		jsobj["items"] = items
+
+		return jsobj
+
 	case ISlice:
 		jsobj := make(JsonObject)
 		jsobj["label"] = iobj.name
+		//jsobj["collapsed"] = true
 
 		items := make(JsonObject)
 
 		fields := make(JsonObject)
-		for _, item := range iobj.items {
+		for i, item := range iobj.items {
 			childjsobj := makeOptions(item)
 			if childjsobj != nil {
+				childjsobj["order"] = i
 				fields[item.Name()] = childjsobj
 			}
 		}

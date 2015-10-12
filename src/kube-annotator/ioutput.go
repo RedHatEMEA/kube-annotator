@@ -17,21 +17,24 @@ package main
  */
 
 import (
-	"golang.org/x/tools/go/types"
 	"os"
 	"reflect"
 	"sort"
 	"strings"
+
+	"golang.org/x/tools/go/types"
 )
 
 type IObj interface {
 	Name() string
+	Path() string
 }
 
 type IBase struct {
 	name        string
 	typ         string
 	description string
+	path        string
 }
 
 type IStruct struct {
@@ -57,18 +60,23 @@ type IBasic struct {
 }
 
 func (o IStruct) Name() string { return o.name }
+func (o IStruct) Path() string { return o.path }
 func (o IMap) Name() string    { return o.name }
+func (o IMap) Path() string    { return o.path }
 func (o ISlice) Name() string  { return o.name }
+func (o ISlice) Path() string  { return o.path }
 func (o IBasic) Name() string  { return o.name }
+func (o IBasic) Path() string  { return o.path }
 
-func Struct(st reflect.StructTag, u *types.Struct, named *types.Named) IObj {
+func Struct(path string, st reflect.StructTag, u *types.Struct, named *types.Named) IObj {
 	rv := IStruct{}
 	rv.name = strings.Split(st.Get("json"), ",")[0]
 	rv.typ = getname(named, u)
 	rv.description = st.Get("description")
+	rv.path = pathAppend(path, rv.name)
 
 	for i := 0; i < u.NumFields(); i++ {
-		rv2 := dump(u.Field(i).Type(), reflect.StructTag(u.Tag(i)))
+		rv2 := dump(rv.path, u.Field(i).Type(), reflect.StructTag(u.Tag(i)))
 		if rv2 == nil {
 			continue
 		}
@@ -84,18 +92,19 @@ func Struct(st reflect.StructTag, u *types.Struct, named *types.Named) IObj {
 	return rv
 }
 
-func Map(st reflect.StructTag, u *types.Map, named *types.Named) IObj {
+func Map(path string, st reflect.StructTag, u *types.Map, named *types.Named) IObj {
 	rv := IMap{}
 	rv.name = strings.Split(st.Get("json"), ",")[0]
 	rv.typ = getname(named, u)
 	rv.description = st.Get("description")
+	rv.path = pathAppend(path, rv.name)
 	rv.keytyp = typefmt(u.Key())
 	rv.valtyp = typefmt(u.Elem())
 
 	return rv
 }
 
-func Slice(st reflect.StructTag, u *types.Slice) IObj {
+func Slice(path string, st reflect.StructTag, u *types.Slice) IObj {
 	und := u.Elem()
 	if p, ok := und.(*types.Pointer); ok {
 		und = p.Elem()
@@ -105,7 +114,8 @@ func Slice(st reflect.StructTag, u *types.Slice) IObj {
 	rv.name = strings.Split(st.Get("json"), ",")[0]
 	rv.typ = "[]" + typefmt(und)
 	rv.description = st.Get("description")
-	c := dump(und, reflect.StructTag(""))
+	rv.path = pathAppend(path, rv.name)
+	c := dump(rv.path, und, reflect.StructTag(""))
 	if st, ok := c.(IStruct); ok {
 		rv.items = st.items
 	} else {
@@ -115,15 +125,16 @@ func Slice(st reflect.StructTag, u *types.Slice) IObj {
 	return rv
 }
 
-func Pointer(st reflect.StructTag, u *types.Pointer) IObj {
-	return dump(u.Elem(), st)
+func Pointer(path string, st reflect.StructTag, u *types.Pointer) IObj {
+	return dump(path, u.Elem(), st)
 }
 
-func Basic(st reflect.StructTag, u *types.Basic, named *types.Named) IObj {
+func Basic(path string, st reflect.StructTag, u *types.Basic, named *types.Named) IObj {
 	rv := IBasic{}
 	rv.name = strings.Split(st.Get("json"), ",")[0]
 	rv.typ = getname(named, u)
 	rv.description = st.Get("description")
+	rv.path = pathAppend(path, rv.name)
 	if named != nil {
 		rv.options = getConsts(named)
 	}
@@ -147,7 +158,7 @@ func typefmt(typ types.Type) string {
 	return typename
 }
 
-func dump(typ types.Type, st reflect.StructTag) IObj {
+func dump(path string, typ types.Type, st reflect.StructTag) IObj {
 	named, _ := typ.(*types.Named)
 	if named != nil {
 		typ = typ.Underlying()
@@ -163,19 +174,19 @@ func dump(typ types.Type, st reflect.StructTag) IObj {
 
 	switch u := typ.(type) {
 	case *types.Struct:
-		return Struct(st, u, named)
+		return Struct(path, st, u, named)
 
 	case *types.Map:
-		return Map(st, u, named)
+		return Map(path, st, u, named)
 
 	case *types.Slice:
-		return Slice(st, u)
+		return Slice(path, st, u)
 
 	case *types.Pointer:
-		return Pointer(st, u)
+		return Pointer(path, st, u)
 
 	case *types.Basic:
-		return Basic(st, u, named)
+		return Basic(path, st, u, named)
 
 	default:
 		panic("unsupported")
@@ -202,7 +213,7 @@ func getConsts(named *types.Named) string {
 }
 
 func makeIOutput(strukt *types.Struct, typename *types.TypeName) IObj {
-	iobj := dump(strukt, reflect.StructTag("")).(IStruct)
+	iobj := dump(typename.Name(), strukt, reflect.StructTag("")).(IStruct)
 
 	for i := range iobj.items {
 		if item, ok := iobj.items[i].(IBasic); ok {
@@ -218,4 +229,14 @@ func makeIOutput(strukt *types.Struct, typename *types.TypeName) IObj {
 	}
 
 	return iobj
+}
+
+func pathAppend(path string, a string) string {
+	if a == "" {
+		return path
+	} else if path == "" {
+		return a
+	} else {
+		return path + "." + a
+	}
 }
