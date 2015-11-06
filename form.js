@@ -15,9 +15,9 @@ $(document).ready(function() {
   var s = searchToObject(window.location.search);
 
   $("#form").alpaca({
-    "dataSource": "/data.json",
-    "schemaSource": "/out/schema-" + s["type"] + ".json",
-    "optionsSource": "/out/options-" + s["type"] + ".json",
+    "dataSource": "/kube-annotator/data.json",
+    "schemaSource": "/kube-annotator/out/schema-" + s["type"] + ".json",
+    "optionsSource": "/kube-annotator/out/options-" + s["type"] + ".json",
     "postRender": postRenderCallback,
     //"view": "bootstrap-edit"//,
     "view": "bootstrap-edit-horizontal"
