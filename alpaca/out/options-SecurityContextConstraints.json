@@ -1,0 +1,206 @@
+{
+  "fields": {
+    "allowHostDirVolumePlugin": {
+      "label": "allowHostDirVolumePlugin",
+      "order": 5,
+      "type": "text"
+    },
+    "allowHostNetwork": {
+      "label": "allowHostNetwork",
+      "order": 6,
+      "type": "text"
+    },
+    "allowHostPorts": {
+      "label": "allowHostPorts",
+      "order": 7,
+      "type": "text"
+    },
+    "allowPrivilegedContainer": {
+      "label": "allowPrivilegedContainer",
+      "order": 3,
+      "type": "text"
+    },
+    "allowedCapabilities": {
+      "items": {
+        "fields": {}
+      },
+      "label": "allowedCapabilities",
+      "order": 4
+    },
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "groups": {
+      "items": {
+        "fields": {}
+      },
+      "label": "groups",
+      "order": 11
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "metadata": {
+      "fields": {
+        "annotations": {
+          "items": {
+            "fields": {
+              "_key": {
+                "label": "key",
+                "type": "text"
+              },
+              "val": {
+                "label": "val",
+                "type": "text"
+              }
+            },
+            "type": "object"
+          },
+          "label": "annotations",
+          "order": 10,
+          "type": "map"
+        },
+        "creationTimestamp": {
+          "label": "creationTimestamp",
+          "order": 7,
+          "type": "text"
+        },
+        "deletionTimestamp": {
+          "label": "deletionTimestamp",
+          "order": 8,
+          "type": "text"
+        },
+        "generateName": {
+          "label": "generateName",
+          "order": 1,
+          "type": "text"
+        },
+        "generation": {
+          "label": "generation",
+          "order": 6,
+          "type": "text"
+        },
+        "labels": {
+          "items": {
+            "fields": {
+              "_key": {
+                "label": "key",
+                "type": "text"
+              },
+              "val": {
+                "label": "val",
+                "type": "text"
+              }
+            },
+            "type": "object"
+          },
+          "label": "labels",
+          "order": 9,
+          "type": "map"
+        },
+        "name": {
+          "label": "name",
+          "order": 0,
+          "type": "text"
+        },
+        "namespace": {
+          "label": "namespace",
+          "order": 2,
+          "type": "text"
+        },
+        "resourceVersion": {
+          "label": "resourceVersion",
+          "order": 5,
+          "type": "text"
+        },
+        "selfLink": {
+          "label": "selfLink",
+          "order": 3,
+          "type": "text"
+        },
+        "uid": {
+          "label": "uid",
+          "order": 4,
+          "type": "text"
+        }
+      },
+      "label": "metadata",
+      "order": 2
+    },
+    "runAsUser": {
+      "fields": {
+        "type": {
+          "label": "type",
+          "order": 0,
+          "type": "text"
+        },
+        "uid": {
+          "label": "uid",
+          "order": 1,
+          "type": "text"
+        },
+        "uidRangeMax": {
+          "label": "uidRangeMax",
+          "order": 3,
+          "type": "text"
+        },
+        "uidRangeMin": {
+          "label": "uidRangeMin",
+          "order": 2,
+          "type": "text"
+        }
+      },
+      "label": "runAsUser",
+      "order": 9
+    },
+    "seLinuxContext": {
+      "fields": {
+        "seLinuxOptions": {
+          "fields": {
+            "level": {
+              "label": "level",
+              "order": 3,
+              "type": "text"
+            },
+            "role": {
+              "label": "role",
+              "order": 1,
+              "type": "text"
+            },
+            "type": {
+              "label": "type",
+              "order": 2,
+              "type": "text"
+            },
+            "user": {
+              "label": "user",
+              "order": 0,
+              "type": "text"
+            }
+          },
+          "label": "seLinuxOptions",
+          "order": 1
+        },
+        "type": {
+          "label": "type",
+          "order": 0,
+          "type": "text"
+        }
+      },
+      "label": "seLinuxContext",
+      "order": 8
+    },
+    "users": {
+      "items": {
+        "fields": {}
+      },
+      "label": "users",
+      "order": 10
+    }
+  },
+  "label": ""
+}

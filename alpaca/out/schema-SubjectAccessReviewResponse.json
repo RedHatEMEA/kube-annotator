@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "allowed": {
+      "type": "string"
+    },
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

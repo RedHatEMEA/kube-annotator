@@ -1,0 +1,25 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "follow": {
+      "label": "follow",
+      "order": 2,
+      "type": "text"
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "nowait": {
+      "label": "nowait",
+      "order": 3,
+      "type": "text"
+    }
+  },
+  "label": ""
+}

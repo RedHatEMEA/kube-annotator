@@ -1,0 +1,54 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "spec": {
+      "properties": {
+        "from": {
+          "properties": {
+            "apiVersion": {
+              "type": "string"
+            },
+            "fieldPath": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "namespace": {
+              "type": "string"
+            },
+            "resourceVersion": {
+              "type": "string"
+            },
+            "uid": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "includeReplicationMeta": {
+          "type": "string"
+        },
+        "includeStrategy": {
+          "type": "string"
+        },
+        "includeTemplate": {
+          "type": "string"
+        },
+        "includeTriggers": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

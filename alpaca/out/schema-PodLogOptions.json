@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "container": {
+      "type": "string"
+    },
+    "follow": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "previous": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

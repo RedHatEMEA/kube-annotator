@@ -1,0 +1,20 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "gracePeriodSeconds": {
+      "label": "gracePeriodSeconds",
+      "order": 2,
+      "type": "text"
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    }
+  },
+  "label": ""
+}

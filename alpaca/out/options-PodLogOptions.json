@@ -1,0 +1,30 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "container": {
+      "label": "container",
+      "order": 2,
+      "type": "text"
+    },
+    "follow": {
+      "label": "follow",
+      "order": 3,
+      "type": "text"
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "previous": {
+      "label": "previous",
+      "order": 4,
+      "type": "text"
+    }
+  },
+  "label": ""
+}

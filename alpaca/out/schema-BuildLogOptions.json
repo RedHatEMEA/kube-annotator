@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "follow": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "nowait": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

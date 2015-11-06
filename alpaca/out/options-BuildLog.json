@@ -1,0 +1,31 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "metadata": {
+      "fields": {
+        "resourceVersion": {
+          "label": "resourceVersion",
+          "order": 1,
+          "type": "text"
+        },
+        "selfLink": {
+          "label": "selfLink",
+          "order": 0,
+          "type": "text"
+        }
+      },
+      "label": "metadata",
+      "order": 2
+    }
+  },
+  "label": ""
+}

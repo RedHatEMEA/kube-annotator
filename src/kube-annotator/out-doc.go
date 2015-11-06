@@ -24,7 +24,7 @@ import (
 	"golang.org/x/tools/go/types"
 )
 
-func docf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) string {
+func docf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) {
 	s := typename.Name() + "\n"
 	s += strings.Repeat("=", len(typename.Name())) + "\n\n"
 
@@ -40,7 +40,7 @@ func docf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) s
 		s += makeDoc("", item)
 	}
 
-	return s + "\n"
+	fmt.Printf("%s\n", s)
 }
 
 func makeDoc(indent string, iobj IObj) string {

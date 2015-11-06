@@ -1,0 +1,183 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "items": {
+      "items": {
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "properties": {
+              "annotations": {
+                "items": {
+                  "properties": {
+                    "_key": {
+                      "title": "_key",
+                      "type": "string"
+                    },
+                    "val": {
+                      "title": "val",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "creationTimestamp": {
+                "type": "string"
+              },
+              "deletionTimestamp": {
+                "type": "string"
+              },
+              "generateName": {
+                "type": "string"
+              },
+              "generation": {
+                "type": "string"
+              },
+              "labels": {
+                "items": {
+                  "properties": {
+                    "_key": {
+                      "title": "_key",
+                      "type": "string"
+                    },
+                    "val": {
+                      "title": "val",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "name": {
+                "type": "string"
+              },
+              "namespace": {
+                "type": "string"
+              },
+              "resourceVersion": {
+                "type": "string"
+              },
+              "selfLink": {
+                "type": "string"
+              },
+              "uid": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "spec": {
+            "properties": {
+              "accessModes": {
+                "items": {
+                  "properties": {},
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "resources": {
+                "properties": {
+                  "limits": {
+                    "items": {
+                      "properties": {
+                        "_key": {
+                          "title": "_key",
+                          "type": "string"
+                        },
+                        "val": {
+                          "title": "val",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "requests": {
+                    "items": {
+                      "properties": {
+                        "_key": {
+                          "title": "_key",
+                          "type": "string"
+                        },
+                        "val": {
+                          "title": "val",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "volumeName": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "status": {
+            "properties": {
+              "accessModes": {
+                "items": {
+                  "properties": {},
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "capacity": {
+                "items": {
+                  "properties": {
+                    "_key": {
+                      "title": "_key",
+                      "type": "string"
+                    },
+                    "val": {
+                      "title": "val",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "phase": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "metadata": {
+      "properties": {
+        "resourceVersion": {
+          "type": "string"
+        },
+        "selfLink": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

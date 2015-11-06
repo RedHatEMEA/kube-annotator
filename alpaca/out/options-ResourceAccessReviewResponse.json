@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "groups": {
+      "items": {
+        "fields": {}
+      },
+      "label": "groups",
+      "order": 4
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "namespace": {
+      "label": "namespace",
+      "order": 2,
+      "type": "text"
+    },
+    "users": {
+      "items": {
+        "fields": {}
+      },
+      "label": "users",
+      "order": 3
+    }
+  },
+  "label": ""
+}

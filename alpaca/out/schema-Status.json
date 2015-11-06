@@ -1,0 +1,62 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "details": {
+      "properties": {
+        "causes": {
+          "items": {
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "retryAfterSeconds": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "metadata": {
+      "properties": {
+        "resourceVersion": {
+          "type": "string"
+        },
+        "selfLink": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

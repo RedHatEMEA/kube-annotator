@@ -1,0 +1,40 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "content": {
+      "label": "content",
+      "order": 6,
+      "type": "text"
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "namespace": {
+      "label": "namespace",
+      "order": 2,
+      "type": "text"
+    },
+    "resource": {
+      "label": "resource",
+      "order": 4,
+      "type": "text"
+    },
+    "resourceName": {
+      "label": "resourceName",
+      "order": 5,
+      "type": "text"
+    },
+    "verb": {
+      "label": "verb",
+      "order": 3,
+      "type": "text"
+    }
+  },
+  "label": ""
+}

@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "fieldSelector": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "labelSelector": {
+      "type": "string"
+    },
+    "resourceVersion": {
+      "type": "string"
+    },
+    "watch": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

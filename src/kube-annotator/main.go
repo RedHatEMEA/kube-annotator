@@ -52,7 +52,7 @@ func importPkg(pkgname string) (*types.Package, *ast.Package, error) {
 	return typpkg, pkgmap[pkg.Name], err
 }
 
-func walkPkg(typpkg *types.Package, docpkg *doc.Package, f func(*types.Struct, *types.TypeName, *doc.Package) string) {
+func walkPkg(typpkg *types.Package, docpkg *doc.Package, f func(*types.Struct, *types.TypeName, *doc.Package)) {
 	for _, name := range typpkg.Scope().Names() {
 		obj := typpkg.Scope().Lookup(name)
 
@@ -61,7 +61,7 @@ func walkPkg(typpkg *types.Package, docpkg *doc.Package, f func(*types.Struct, *
 
 			if strukt, ok := named.Underlying().(*types.Struct); ok && strukt.NumFields() > 0 && strukt.Field(0).Name() == "TypeMeta" {
 				if len(os.Args) == 3 || os.Args[3] == typename.Name() {
-					fmt.Printf("%s\n", f(strukt, typename, docpkg))
+					f(strukt, typename, docpkg)
 				}
 			}
 		}
@@ -87,10 +87,10 @@ func main() {
 	docpkg := doc.New(astpkg, "", 0)
 
 	switch os.Args[1] {
+	case "alpaca":
+		walkPkg(typpkg, docpkg, alpacaf)
 	case "doc":
 		walkPkg(typpkg, docpkg, docf)
-	case "jsonform":
-		walkPkg(typpkg, docpkg, alpacaf)
 	default:
 		usage()
 	}

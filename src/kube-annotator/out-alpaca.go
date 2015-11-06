@@ -33,16 +33,14 @@ func write(filename string, jsobj JsonObject) {
 	f.Write(s)
 }
 
-func alpacaf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) string {
+func alpacaf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) {
 	schema := makeSchema(makeIOutput(strukt, typename))
 	delete(schema["properties"].(JsonObject), "status")
-	write("js/schema.json", schema)
+	write("alpaca/out/schema-"+typename.Name()+".json", schema)
 
 	options := makeOptions(makeIOutput(strukt, typename))
 	delete(options["fields"].(JsonObject), "status")
-	write("js/options.json", options)
-
-	return ""
+	write("alpaca/out/options-"+typename.Name()+".json", options)
 }
 
 func makeSchema(iobj IObj) JsonObject {
