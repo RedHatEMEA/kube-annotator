@@ -33,7 +33,7 @@ func write(filename string, jsobj JsonObject) {
 	f.Write(s)
 }
 
-func jsonf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) string {
+func alpacaf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) string {
 	schema := makeSchema(makeIOutput(strukt, typename))
 	delete(schema["properties"].(JsonObject), "status")
 	write("js/schema.json", schema)

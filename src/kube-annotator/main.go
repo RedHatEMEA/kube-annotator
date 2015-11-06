@@ -41,7 +41,7 @@ func importPkg(pkgname string) (*types.Package, *ast.Package, error) {
 		return nil, nil, err
 	}
 
-	filelist := make([]*ast.File, 0)
+	var filelist []*ast.File
 	for _, f := range pkgmap[pkg.Name].Files {
 		filelist = append(filelist, f)
 	}
@@ -68,9 +68,13 @@ func walkPkg(typpkg *types.Package, docpkg *doc.Package, f func(*types.Struct, *
 	}
 }
 
+func usage() {
+	fmt.Fprintf(os.Stderr, "usage: %s doc|alpaca package [type]\n", os.Args[0])
+}
+
 func main() {
-	if len(os.Args) < 3 || (os.Args[1] != "doc" && os.Args[1] != "jsonform") {
-		fmt.Fprintf(os.Stderr, "usage: %s doc|jsonform package [type]\n", os.Args[0])
+	if len(os.Args) < 3 {
+		usage()
 		return
 	}
 
@@ -80,12 +84,14 @@ func main() {
 		return
 	}
 
-	docpkg := doc.New(astpkg, os.Args[1], 0)
+	docpkg := doc.New(astpkg, "", 0)
 
 	switch os.Args[1] {
 	case "doc":
 		walkPkg(typpkg, docpkg, docf)
 	case "jsonform":
-		walkPkg(typpkg, docpkg, jsonf)
+		walkPkg(typpkg, docpkg, alpacaf)
+	default:
+		usage()
 	}
 }

@@ -196,7 +196,7 @@ func dump(path string, typ types.Type, st reflect.StructTag) IObj {
 func getConsts(named *types.Named) string {
 	pkg := named.Obj().Pkg()
 
-	s := make([]string, 0)
+	var s []string
 	for _, name := range pkg.Scope().Names() {
 		obj := pkg.Scope().Lookup(name)
 
