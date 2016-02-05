@@ -1069,6 +1069,7 @@ spec:                                                                 # github.c
             apiVersion:                                               # string
             fieldPath:                                                # string
       forcePull:                                                      # bool (forces the source build to pull the image if true)
+      dockerfilePath:                                                 # string (path of the Dockerfile to use for building the Docker image, relative to the contextDir, if set)
     sourceStrategy:                                                   # github.com/openshift/origin/pkg/build/api/v1.SourceBuildStrategy (holds parameters to the Source build strategy)
       from:                                                           # k8s.io/kubernetes/pkg/api/v1.ObjectReference (reference to an image stream, image stream tag, or image stream image from which the Docker image should be pulled)
         kind:                                                         # string
@@ -1133,7 +1134,7 @@ spec:                                                                 # github.c
   completionDeadlineSeconds:                                          # int64 (optional duration in seconds the build may be active on a node before the system will actively try to mark it failed and kill associated containers; value must be a positive integer)
 status:                                                               # github.com/openshift/origin/pkg/build/api/v1.BuildStatus (most recently observed status of a build as populated by the system)
   phase: Cancelled | Complete | Error | Failed | New | Pending | Running # github.com/openshift/origin/pkg/build/api/v1.BuildPhase (observed point in the build lifecycle)
-  cancelled:                                                          # bool (describes if a canceling event was triggered for the build)
+  cancelled:                                                          # bool (describes if a cancel event was triggered for the build)
   reason:                                                             # github.com/openshift/origin/pkg/build/api/v1.StatusReason (brief CamelCase string describing a failure, meant for machine parsing and tidy display in the CLI)
   message:                                                            # string (human-readable message indicating details about why the build has this status)
   startTimestamp:                                                     # k8s.io/kubernetes/pkg/api/unversioned.Time (server time when this build started running in a pod)
@@ -1235,6 +1236,7 @@ spec:                                                                 # github.c
             apiVersion:                                               # string
             fieldPath:                                                # string
       forcePull:                                                      # bool (forces the source build to pull the image if true)
+      dockerfilePath:                                                 # string (path of the Dockerfile to use for building the Docker image, relative to the contextDir, if set)
     sourceStrategy:                                                   # github.com/openshift/origin/pkg/build/api/v1.SourceBuildStrategy (holds parameters to the Source build strategy)
       from:                                                           # k8s.io/kubernetes/pkg/api/v1.ObjectReference (reference to an image stream, image stream tag, or image stream image from which the Docker image should be pulled)
         kind:                                                         # string
@@ -1392,6 +1394,7 @@ items:                                                                # []github
               apiVersion:                                             # string
               fieldPath:                                              # string
         forcePull:                                                    # bool (forces the source build to pull the image if true)
+        dockerfilePath:                                               # string (path of the Dockerfile to use for building the Docker image, relative to the contextDir, if set)
       sourceStrategy:                                                 # github.com/openshift/origin/pkg/build/api/v1.SourceBuildStrategy (holds parameters to the Source build strategy)
         from:                                                         # k8s.io/kubernetes/pkg/api/v1.ObjectReference (reference to an image stream, image stream tag, or image stream image from which the Docker image should be pulled)
           kind:                                                       # string
@@ -1533,6 +1536,7 @@ items:                                                                # []github
               apiVersion:                                             # string
               fieldPath:                                              # string
         forcePull:                                                    # bool (forces the source build to pull the image if true)
+        dockerfilePath:                                               # string (path of the Dockerfile to use for building the Docker image, relative to the contextDir, if set)
       sourceStrategy:                                                 # github.com/openshift/origin/pkg/build/api/v1.SourceBuildStrategy (holds parameters to the Source build strategy)
         from:                                                         # k8s.io/kubernetes/pkg/api/v1.ObjectReference (reference to an image stream, image stream tag, or image stream image from which the Docker image should be pulled)
           kind:                                                       # string
@@ -1597,7 +1601,7 @@ items:                                                                # []github
     completionDeadlineSeconds:                                        # int64 (optional duration in seconds the build may be active on a node before the system will actively try to mark it failed and kill associated containers; value must be a positive integer)
   status:                                                             # github.com/openshift/origin/pkg/build/api/v1.BuildStatus (most recently observed status of a build as populated by the system)
     phase: Cancelled | Complete | Error | Failed | New | Pending | Running # github.com/openshift/origin/pkg/build/api/v1.BuildPhase (observed point in the build lifecycle)
-    cancelled:                                                        # bool (describes if a canceling event was triggered for the build)
+    cancelled:                                                        # bool (describes if a cancel event was triggered for the build)
     reason:                                                           # github.com/openshift/origin/pkg/build/api/v1.StatusReason (brief CamelCase string describing a failure, meant for machine parsing and tidy display in the CLI)
     message:                                                          # string (human-readable message indicating details about why the build has this status)
     startTimestamp:                                                   # k8s.io/kubernetes/pkg/api/unversioned.Time (server time when this build started running in a pod)
@@ -1691,6 +1695,13 @@ from:                                                                 # k8s.io/k
 binary:                                                               # github.com/openshift/origin/pkg/build/api/v1.BinaryBuildSource (the binary will be provided by the builder as an archive or file to be placed within the input directory; allows Dockerfile to be optionally set; may not be set with git source type also set)
   asFile:                                                             # string (indicate the provided binary should be considered a single file placed within the root of the input; must be a valid filename with no path segments)
 lastVersion:                                                          # int (LastVersion of the BuildConfig that triggered this build)
+env:                                                                  # []k8s.io/kubernetes/pkg/api/v1.EnvVar (additional environment variables you want to pass into a builder container)
+- name:                                                               # string
+  value:                                                              # string
+  valueFrom:                                                          # k8s.io/kubernetes/pkg/api/v1.EnvVarSource
+    fieldRef:                                                         # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
+      apiVersion:                                                     # string
+      fieldPath:                                                      # string
 
 DeploymentConfig
 ================
@@ -1804,6 +1815,10 @@ spec:                                                                 # github.c
         [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                  # k8s.io/kubernetes/pkg/api/resource.Quantity
       requests:                                                       # k8s.io/kubernetes/pkg/api/v1.ResourceList
         [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                  # k8s.io/kubernetes/pkg/api/resource.Quantity
+    labels:                                                           # map[string]string (labels for deployer and hook pods)
+      [string]:                                                       # string
+    annotations:                                                      # map[string]string (annotations for deployer and hook pods)
+      [string]:                                                       # string
   triggers:                                                           # []github.com/openshift/origin/pkg/deploy/api/v1.DeploymentTriggerPolicy (how new deployments are triggered)
   - type: ConfigChange | ImageChange                                  # github.com/openshift/origin/pkg/deploy/api/v1.DeploymentTriggerType (the type of the trigger)
     imageChangeParams:                                                # github.com/openshift/origin/pkg/deploy/api/v1.DeploymentTriggerImageChangeParams (input to the ImageChange trigger)
@@ -2175,6 +2190,10 @@ items:                                                                # []github
           [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                # k8s.io/kubernetes/pkg/api/resource.Quantity
         requests:                                                     # k8s.io/kubernetes/pkg/api/v1.ResourceList
           [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                # k8s.io/kubernetes/pkg/api/resource.Quantity
+      labels:                                                         # map[string]string (labels for deployer and hook pods)
+        [string]:                                                     # string
+      annotations:                                                    # map[string]string (annotations for deployer and hook pods)
+        [string]:                                                     # string
     triggers:                                                         # []github.com/openshift/origin/pkg/deploy/api/v1.DeploymentTriggerPolicy (how new deployments are triggered)
     - type: ConfigChange | ImageChange                                # github.com/openshift/origin/pkg/deploy/api/v1.DeploymentTriggerType (the type of the trigger)
       imageChangeParams:                                              # github.com/openshift/origin/pkg/deploy/api/v1.DeploymentTriggerImageChangeParams (input to the ImageChange trigger)
