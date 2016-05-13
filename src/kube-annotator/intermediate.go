@@ -17,12 +17,11 @@ package main
  */
 
 import (
+	"go/types"
 	"os"
 	"reflect"
 	"sort"
 	"strings"
-
-	"golang.org/x/tools/go/types"
 )
 
 type IObj interface {
@@ -187,6 +186,9 @@ func dump(path string, typ types.Type, st reflect.StructTag) IObj {
 
 	case *types.Basic:
 		return Basic(path, st, u, named)
+
+	case *types.Interface:
+		return nil
 
 	default:
 		panic("unsupported")

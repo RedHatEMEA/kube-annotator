@@ -1,0 +1,32 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "resource": {
+      "type": "string"
+    },
+    "resourceAPIGroup": {
+      "type": "string"
+    },
+    "resourceAPIVersion": {
+      "type": "string"
+    },
+    "resourceName": {
+      "type": "string"
+    },
+    "verb": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

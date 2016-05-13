@@ -1,0 +1,50 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "content": {
+      "label": "content",
+      "order": 8,
+      "type": "text"
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "namespace": {
+      "label": "namespace",
+      "order": 2,
+      "type": "text"
+    },
+    "resource": {
+      "label": "resource",
+      "order": 6,
+      "type": "text"
+    },
+    "resourceAPIGroup": {
+      "label": "resourceAPIGroup",
+      "order": 4,
+      "type": "text"
+    },
+    "resourceAPIVersion": {
+      "label": "resourceAPIVersion",
+      "order": 5,
+      "type": "text"
+    },
+    "resourceName": {
+      "label": "resourceName",
+      "order": 7,
+      "type": "text"
+    },
+    "verb": {
+      "label": "verb",
+      "order": 3,
+      "type": "text"
+    }
+  },
+  "label": ""
+}

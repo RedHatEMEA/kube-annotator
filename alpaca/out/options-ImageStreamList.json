@@ -1,0 +1,340 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "items": {
+      "items": {
+        "fields": {
+          "apiVersion": {
+            "label": "apiVersion",
+            "order": 1,
+            "type": "text"
+          },
+          "kind": {
+            "label": "kind",
+            "order": 0,
+            "type": "text"
+          },
+          "metadata": {
+            "fields": {
+              "annotations": {
+                "items": {
+                  "fields": {
+                    "_key": {
+                      "label": "key",
+                      "type": "text"
+                    },
+                    "val": {
+                      "label": "val",
+                      "type": "text"
+                    }
+                  },
+                  "type": "object"
+                },
+                "label": "annotations",
+                "order": 11,
+                "type": "map"
+              },
+              "creationTimestamp": {
+                "label": "creationTimestamp",
+                "order": 7,
+                "type": "text"
+              },
+              "deletionGracePeriodSeconds": {
+                "label": "deletionGracePeriodSeconds",
+                "order": 9,
+                "type": "text"
+              },
+              "deletionTimestamp": {
+                "label": "deletionTimestamp",
+                "order": 8,
+                "type": "text"
+              },
+              "generateName": {
+                "label": "generateName",
+                "order": 1,
+                "type": "text"
+              },
+              "generation": {
+                "label": "generation",
+                "order": 6,
+                "type": "text"
+              },
+              "labels": {
+                "items": {
+                  "fields": {
+                    "_key": {
+                      "label": "key",
+                      "type": "text"
+                    },
+                    "val": {
+                      "label": "val",
+                      "type": "text"
+                    }
+                  },
+                  "type": "object"
+                },
+                "label": "labels",
+                "order": 10,
+                "type": "map"
+              },
+              "name": {
+                "label": "name",
+                "order": 0,
+                "type": "text"
+              },
+              "namespace": {
+                "label": "namespace",
+                "order": 2,
+                "type": "text"
+              },
+              "resourceVersion": {
+                "label": "resourceVersion",
+                "order": 5,
+                "type": "text"
+              },
+              "selfLink": {
+                "label": "selfLink",
+                "order": 3,
+                "type": "text"
+              },
+              "uid": {
+                "label": "uid",
+                "order": 4,
+                "type": "text"
+              }
+            },
+            "label": "metadata",
+            "order": 2
+          },
+          "spec": {
+            "fields": {
+              "dockerImageRepository": {
+                "label": "dockerImageRepository",
+                "order": 0,
+                "type": "text"
+              },
+              "tags": {
+                "items": {
+                  "fields": {
+                    "annotations": {
+                      "items": {
+                        "fields": {
+                          "_key": {
+                            "label": "key",
+                            "type": "text"
+                          },
+                          "val": {
+                            "label": "val",
+                            "type": "text"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "label": "annotations",
+                      "order": 1,
+                      "type": "map"
+                    },
+                    "from": {
+                      "fields": {
+                        "apiVersion": {
+                          "label": "apiVersion",
+                          "order": 4,
+                          "type": "text"
+                        },
+                        "fieldPath": {
+                          "label": "fieldPath",
+                          "order": 6,
+                          "type": "text"
+                        },
+                        "kind": {
+                          "label": "kind",
+                          "order": 0,
+                          "type": "text"
+                        },
+                        "name": {
+                          "label": "name",
+                          "order": 2,
+                          "type": "text"
+                        },
+                        "namespace": {
+                          "label": "namespace",
+                          "order": 1,
+                          "type": "text"
+                        },
+                        "resourceVersion": {
+                          "label": "resourceVersion",
+                          "order": 5,
+                          "type": "text"
+                        },
+                        "uid": {
+                          "label": "uid",
+                          "order": 3,
+                          "type": "text"
+                        }
+                      },
+                      "label": "from",
+                      "order": 2
+                    },
+                    "generation": {
+                      "label": "generation",
+                      "order": 4,
+                      "type": "text"
+                    },
+                    "importPolicy": {
+                      "fields": {
+                        "insecure": {
+                          "label": "insecure",
+                          "order": 0,
+                          "type": "text"
+                        },
+                        "scheduled": {
+                          "label": "scheduled",
+                          "order": 1,
+                          "type": "text"
+                        }
+                      },
+                      "label": "importPolicy",
+                      "order": 5
+                    },
+                    "name": {
+                      "label": "name",
+                      "order": 0,
+                      "type": "text"
+                    },
+                    "reference": {
+                      "label": "reference",
+                      "order": 3,
+                      "type": "text"
+                    }
+                  }
+                },
+                "label": "tags",
+                "order": 1
+              }
+            },
+            "label": "spec",
+            "order": 3
+          },
+          "status": {
+            "fields": {
+              "dockerImageRepository": {
+                "label": "dockerImageRepository",
+                "order": 0,
+                "type": "text"
+              },
+              "tags": {
+                "items": {
+                  "fields": {
+                    "conditions": {
+                      "items": {
+                        "fields": {
+                          "generation": {
+                            "label": "generation",
+                            "order": 5,
+                            "type": "text"
+                          },
+                          "lastTransitionTime": {
+                            "label": "lastTransitionTime",
+                            "order": 2,
+                            "type": "text"
+                          },
+                          "message": {
+                            "label": "message",
+                            "order": 4,
+                            "type": "text"
+                          },
+                          "reason": {
+                            "label": "reason",
+                            "order": 3,
+                            "type": "text"
+                          },
+                          "status": {
+                            "label": "status",
+                            "order": 1,
+                            "type": "text"
+                          },
+                          "type": {
+                            "label": "type",
+                            "order": 0,
+                            "type": "text"
+                          }
+                        }
+                      },
+                      "label": "conditions",
+                      "order": 2
+                    },
+                    "items": {
+                      "items": {
+                        "fields": {
+                          "created": {
+                            "label": "created",
+                            "order": 0,
+                            "type": "text"
+                          },
+                          "dockerImageReference": {
+                            "label": "dockerImageReference",
+                            "order": 1,
+                            "type": "text"
+                          },
+                          "generation": {
+                            "label": "generation",
+                            "order": 3,
+                            "type": "text"
+                          },
+                          "image": {
+                            "label": "image",
+                            "order": 2,
+                            "type": "text"
+                          }
+                        }
+                      },
+                      "label": "items",
+                      "order": 1
+                    },
+                    "tag": {
+                      "label": "tag",
+                      "order": 0,
+                      "type": "text"
+                    }
+                  }
+                },
+                "label": "tags",
+                "order": 1
+              }
+            },
+            "label": "status",
+            "order": 4
+          }
+        }
+      },
+      "label": "items",
+      "order": 3
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "metadata": {
+      "fields": {
+        "resourceVersion": {
+          "label": "resourceVersion",
+          "order": 1,
+          "type": "text"
+        },
+        "selfLink": {
+          "label": "selfLink",
+          "order": 0,
+          "type": "text"
+        }
+      },
+      "label": "metadata",
+      "order": 2
+    }
+  },
+  "label": ""
+}

@@ -1,7 +1,6 @@
 GOPATH=$(PWD)
 
 build:
-	go get golang.org/x/tools/go/types
 	go build kube-annotator
 
 origin:

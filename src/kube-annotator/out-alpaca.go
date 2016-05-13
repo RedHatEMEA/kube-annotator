@@ -19,9 +19,8 @@ package main
 import (
 	"encoding/json"
 	"go/doc"
+	"go/types"
 	"os"
-
-	"golang.org/x/tools/go/types"
 )
 
 type JsonObject map[string]interface{}

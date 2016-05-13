@@ -1,0 +1,231 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "metadata": {
+      "fields": {
+        "annotations": {
+          "items": {
+            "fields": {
+              "_key": {
+                "label": "key",
+                "type": "text"
+              },
+              "val": {
+                "label": "val",
+                "type": "text"
+              }
+            },
+            "type": "object"
+          },
+          "label": "annotations",
+          "order": 11,
+          "type": "map"
+        },
+        "creationTimestamp": {
+          "label": "creationTimestamp",
+          "order": 7,
+          "type": "text"
+        },
+        "deletionGracePeriodSeconds": {
+          "label": "deletionGracePeriodSeconds",
+          "order": 9,
+          "type": "text"
+        },
+        "deletionTimestamp": {
+          "label": "deletionTimestamp",
+          "order": 8,
+          "type": "text"
+        },
+        "generateName": {
+          "label": "generateName",
+          "order": 1,
+          "type": "text"
+        },
+        "generation": {
+          "label": "generation",
+          "order": 6,
+          "type": "text"
+        },
+        "labels": {
+          "items": {
+            "fields": {
+              "_key": {
+                "label": "key",
+                "type": "text"
+              },
+              "val": {
+                "label": "val",
+                "type": "text"
+              }
+            },
+            "type": "object"
+          },
+          "label": "labels",
+          "order": 10,
+          "type": "map"
+        },
+        "name": {
+          "label": "name",
+          "order": 0,
+          "type": "text"
+        },
+        "namespace": {
+          "label": "namespace",
+          "order": 2,
+          "type": "text"
+        },
+        "resourceVersion": {
+          "label": "resourceVersion",
+          "order": 5,
+          "type": "text"
+        },
+        "selfLink": {
+          "label": "selfLink",
+          "order": 3,
+          "type": "text"
+        },
+        "uid": {
+          "label": "uid",
+          "order": 4,
+          "type": "text"
+        }
+      },
+      "label": "metadata",
+      "order": 2
+    },
+    "spec": {
+      "fields": {
+        "capabilities": {
+          "items": {
+            "fields": {}
+          },
+          "label": "capabilities",
+          "order": 1
+        },
+        "hostIPC": {
+          "label": "hostIPC",
+          "order": 6,
+          "type": "text"
+        },
+        "hostNetwork": {
+          "label": "hostNetwork",
+          "order": 3,
+          "type": "text"
+        },
+        "hostPID": {
+          "label": "hostPID",
+          "order": 5,
+          "type": "text"
+        },
+        "hostPorts": {
+          "items": {
+            "fields": {
+              "max": {
+                "label": "max",
+                "order": 1,
+                "type": "text"
+              },
+              "min": {
+                "label": "min",
+                "order": 0,
+                "type": "text"
+              }
+            }
+          },
+          "label": "hostPorts",
+          "order": 4
+        },
+        "privileged": {
+          "label": "privileged",
+          "order": 0,
+          "type": "text"
+        },
+        "runAsUser": {
+          "fields": {
+            "ranges": {
+              "items": {
+                "fields": {
+                  "max": {
+                    "label": "max",
+                    "order": 1,
+                    "type": "text"
+                  },
+                  "min": {
+                    "label": "min",
+                    "order": 0,
+                    "type": "text"
+                  }
+                }
+              },
+              "label": "ranges",
+              "order": 1
+            },
+            "rule": {
+              "label": "rule",
+              "order": 0,
+              "type": "text"
+            }
+          },
+          "label": "runAsUser",
+          "order": 8
+        },
+        "seLinux": {
+          "fields": {
+            "rule": {
+              "label": "rule",
+              "order": 0,
+              "type": "text"
+            },
+            "seLinuxOptions": {
+              "fields": {
+                "level": {
+                  "label": "level",
+                  "order": 3,
+                  "type": "text"
+                },
+                "role": {
+                  "label": "role",
+                  "order": 1,
+                  "type": "text"
+                },
+                "type": {
+                  "label": "type",
+                  "order": 2,
+                  "type": "text"
+                },
+                "user": {
+                  "label": "user",
+                  "order": 0,
+                  "type": "text"
+                }
+              },
+              "label": "seLinuxOptions",
+              "order": 1
+            }
+          },
+          "label": "seLinux",
+          "order": 7
+        },
+        "volumes": {
+          "items": {
+            "fields": {}
+          },
+          "label": "volumes",
+          "order": 2
+        }
+      },
+      "label": "spec",
+      "order": 3
+    }
+  },
+  "label": ""
+}

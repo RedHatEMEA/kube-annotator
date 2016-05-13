@@ -1,0 +1,267 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "items": {
+      "items": {
+        "fields": {
+          "apiVersion": {
+            "label": "apiVersion",
+            "order": 1,
+            "type": "text"
+          },
+          "kind": {
+            "label": "kind",
+            "order": 0,
+            "type": "text"
+          },
+          "metadata": {
+            "fields": {
+              "annotations": {
+                "items": {
+                  "fields": {
+                    "_key": {
+                      "label": "key",
+                      "type": "text"
+                    },
+                    "val": {
+                      "label": "val",
+                      "type": "text"
+                    }
+                  },
+                  "type": "object"
+                },
+                "label": "annotations",
+                "order": 11,
+                "type": "map"
+              },
+              "creationTimestamp": {
+                "label": "creationTimestamp",
+                "order": 7,
+                "type": "text"
+              },
+              "deletionGracePeriodSeconds": {
+                "label": "deletionGracePeriodSeconds",
+                "order": 9,
+                "type": "text"
+              },
+              "deletionTimestamp": {
+                "label": "deletionTimestamp",
+                "order": 8,
+                "type": "text"
+              },
+              "generateName": {
+                "label": "generateName",
+                "order": 1,
+                "type": "text"
+              },
+              "generation": {
+                "label": "generation",
+                "order": 6,
+                "type": "text"
+              },
+              "labels": {
+                "items": {
+                  "fields": {
+                    "_key": {
+                      "label": "key",
+                      "type": "text"
+                    },
+                    "val": {
+                      "label": "val",
+                      "type": "text"
+                    }
+                  },
+                  "type": "object"
+                },
+                "label": "labels",
+                "order": 10,
+                "type": "map"
+              },
+              "name": {
+                "label": "name",
+                "order": 0,
+                "type": "text"
+              },
+              "namespace": {
+                "label": "namespace",
+                "order": 2,
+                "type": "text"
+              },
+              "resourceVersion": {
+                "label": "resourceVersion",
+                "order": 5,
+                "type": "text"
+              },
+              "selfLink": {
+                "label": "selfLink",
+                "order": 3,
+                "type": "text"
+              },
+              "uid": {
+                "label": "uid",
+                "order": 4,
+                "type": "text"
+              }
+            },
+            "label": "metadata",
+            "order": 2
+          },
+          "spec": {
+            "fields": {
+              "clusterIP": {
+                "label": "clusterIP",
+                "order": 3,
+                "type": "text"
+              },
+              "deprecatedPublicIPs": {
+                "items": {
+                  "fields": {}
+                },
+                "label": "deprecatedPublicIPs",
+                "order": 6
+              },
+              "externalIPs": {
+                "items": {
+                  "fields": {}
+                },
+                "label": "externalIPs",
+                "order": 5
+              },
+              "loadBalancerIP": {
+                "label": "loadBalancerIP",
+                "order": 8,
+                "type": "text"
+              },
+              "portalIP": {
+                "label": "portalIP",
+                "order": 2,
+                "type": "text"
+              },
+              "ports": {
+                "items": {
+                  "fields": {
+                    "name": {
+                      "label": "name",
+                      "order": 0,
+                      "type": "text"
+                    },
+                    "nodePort": {
+                      "label": "nodePort",
+                      "order": 4,
+                      "type": "text"
+                    },
+                    "port": {
+                      "label": "port",
+                      "order": 2,
+                      "type": "text"
+                    },
+                    "protocol": {
+                      "label": "protocol",
+                      "order": 1,
+                      "type": "text"
+                    },
+                    "targetPort": {
+                      "label": "targetPort",
+                      "order": 3,
+                      "type": "text"
+                    }
+                  }
+                },
+                "label": "ports",
+                "order": 0
+              },
+              "selector": {
+                "items": {
+                  "fields": {
+                    "_key": {
+                      "label": "key",
+                      "type": "text"
+                    },
+                    "val": {
+                      "label": "val",
+                      "type": "text"
+                    }
+                  },
+                  "type": "object"
+                },
+                "label": "selector",
+                "order": 1,
+                "type": "map"
+              },
+              "sessionAffinity": {
+                "label": "sessionAffinity",
+                "order": 7,
+                "type": "text"
+              },
+              "type": {
+                "label": "type",
+                "order": 4,
+                "type": "text"
+              }
+            },
+            "label": "spec",
+            "order": 3
+          },
+          "status": {
+            "fields": {
+              "loadBalancer": {
+                "fields": {
+                  "ingress": {
+                    "items": {
+                      "fields": {
+                        "hostname": {
+                          "label": "hostname",
+                          "order": 1,
+                          "type": "text"
+                        },
+                        "ip": {
+                          "label": "ip",
+                          "order": 0,
+                          "type": "text"
+                        }
+                      }
+                    },
+                    "label": "ingress",
+                    "order": 0
+                  }
+                },
+                "label": "loadBalancer",
+                "order": 0
+              }
+            },
+            "label": "status",
+            "order": 4
+          }
+        }
+      },
+      "label": "items",
+      "order": 3
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "metadata": {
+      "fields": {
+        "resourceVersion": {
+          "label": "resourceVersion",
+          "order": 1,
+          "type": "text"
+        },
+        "selfLink": {
+          "label": "selfLink",
+          "order": 0,
+          "type": "text"
+        }
+      },
+      "label": "metadata",
+      "order": 2
+    }
+  },
+  "label": ""
+}

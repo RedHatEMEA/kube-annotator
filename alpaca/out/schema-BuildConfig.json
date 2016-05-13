@@ -1,0 +1,738 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "metadata": {
+      "properties": {
+        "annotations": {
+          "items": {
+            "properties": {
+              "_key": {
+                "title": "_key",
+                "type": "string"
+              },
+              "val": {
+                "title": "val",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "creationTimestamp": {
+          "type": "string"
+        },
+        "deletionGracePeriodSeconds": {
+          "type": "string"
+        },
+        "deletionTimestamp": {
+          "type": "string"
+        },
+        "generateName": {
+          "type": "string"
+        },
+        "generation": {
+          "type": "string"
+        },
+        "labels": {
+          "items": {
+            "properties": {
+              "_key": {
+                "title": "_key",
+                "type": "string"
+              },
+              "val": {
+                "title": "val",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "resourceVersion": {
+          "type": "string"
+        },
+        "selfLink": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "spec": {
+      "properties": {
+        "completionDeadlineSeconds": {
+          "type": "string"
+        },
+        "output": {
+          "properties": {
+            "pushSecret": {
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "to": {
+              "properties": {
+                "apiVersion": {
+                  "type": "string"
+                },
+                "fieldPath": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "namespace": {
+                  "type": "string"
+                },
+                "resourceVersion": {
+                  "type": "string"
+                },
+                "uid": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "postCommit": {
+          "properties": {
+            "args": {
+              "items": {
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "command": {
+              "items": {
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "script": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "resources": {
+          "properties": {
+            "limits": {
+              "items": {
+                "properties": {
+                  "_key": {
+                    "title": "_key",
+                    "type": "string"
+                  },
+                  "val": {
+                    "title": "val",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "requests": {
+              "items": {
+                "properties": {
+                  "_key": {
+                    "title": "_key",
+                    "type": "string"
+                  },
+                  "val": {
+                    "title": "val",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "revision": {
+          "properties": {
+            "git": {
+              "properties": {
+                "author": {
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "commit": {
+                  "type": "string"
+                },
+                "committer": {
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "serviceAccount": {
+          "type": "string"
+        },
+        "source": {
+          "properties": {
+            "binary": {
+              "properties": {
+                "asFile": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "contextDir": {
+              "type": "string"
+            },
+            "dockerfile": {
+              "type": "string"
+            },
+            "git": {
+              "properties": {
+                "httpProxy": {
+                  "type": "string"
+                },
+                "httpsProxy": {
+                  "type": "string"
+                },
+                "ref": {
+                  "type": "string"
+                },
+                "uri": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "images": {
+              "items": {
+                "properties": {
+                  "from": {
+                    "properties": {
+                      "apiVersion": {
+                        "type": "string"
+                      },
+                      "fieldPath": {
+                        "type": "string"
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "type": "string"
+                      },
+                      "resourceVersion": {
+                        "type": "string"
+                      },
+                      "uid": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "paths": {
+                    "items": {
+                      "properties": {
+                        "destinationDir": {
+                          "type": "string"
+                        },
+                        "sourcePath": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "pullSecret": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "secrets": {
+              "items": {
+                "properties": {
+                  "destinationDir": {
+                    "type": "string"
+                  },
+                  "secret": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "sourceSecret": {
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "strategy": {
+          "properties": {
+            "customStrategy": {
+              "properties": {
+                "buildAPIVersion": {
+                  "type": "string"
+                },
+                "env": {
+                  "items": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "valueFrom": {
+                        "properties": {
+                          "configMapKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "fieldRef": {
+                            "properties": {
+                              "apiVersion": {
+                                "type": "string"
+                              },
+                              "fieldPath": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "secretKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "exposeDockerSocket": {
+                  "type": "string"
+                },
+                "forcePull": {
+                  "type": "string"
+                },
+                "from": {
+                  "properties": {
+                    "apiVersion": {
+                      "type": "string"
+                    },
+                    "fieldPath": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    },
+                    "resourceVersion": {
+                      "type": "string"
+                    },
+                    "uid": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "pullSecret": {
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "secrets": {
+                  "items": {
+                    "properties": {
+                      "mountPath": {
+                        "type": "string"
+                      },
+                      "secretSource": {
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            },
+            "dockerStrategy": {
+              "properties": {
+                "dockerfilePath": {
+                  "type": "string"
+                },
+                "env": {
+                  "items": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "valueFrom": {
+                        "properties": {
+                          "configMapKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "fieldRef": {
+                            "properties": {
+                              "apiVersion": {
+                                "type": "string"
+                              },
+                              "fieldPath": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "secretKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "forcePull": {
+                  "type": "string"
+                },
+                "from": {
+                  "properties": {
+                    "apiVersion": {
+                      "type": "string"
+                    },
+                    "fieldPath": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    },
+                    "resourceVersion": {
+                      "type": "string"
+                    },
+                    "uid": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "noCache": {
+                  "type": "string"
+                },
+                "pullSecret": {
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "sourceStrategy": {
+              "properties": {
+                "env": {
+                  "items": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "valueFrom": {
+                        "properties": {
+                          "configMapKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "fieldRef": {
+                            "properties": {
+                              "apiVersion": {
+                                "type": "string"
+                              },
+                              "fieldPath": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "secretKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "forcePull": {
+                  "type": "string"
+                },
+                "from": {
+                  "properties": {
+                    "apiVersion": {
+                      "type": "string"
+                    },
+                    "fieldPath": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    },
+                    "resourceVersion": {
+                      "type": "string"
+                    },
+                    "uid": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "incremental": {
+                  "type": "string"
+                },
+                "pullSecret": {
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "scripts": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "triggers": {
+          "items": {
+            "properties": {
+              "generic": {
+                "properties": {
+                  "secret": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "github": {
+                "properties": {
+                  "secret": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "imageChange": {
+                "properties": {
+                  "from": {
+                    "properties": {
+                      "apiVersion": {
+                        "type": "string"
+                      },
+                      "fieldPath": {
+                        "type": "string"
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "type": "string"
+                      },
+                      "resourceVersion": {
+                        "type": "string"
+                      },
+                      "uid": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "lastTriggeredImageID": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

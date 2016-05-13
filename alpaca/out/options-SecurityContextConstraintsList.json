@@ -1,0 +1,344 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "items": {
+      "items": {
+        "fields": {
+          "allowHostDirVolumePlugin": {
+            "label": "allowHostDirVolumePlugin",
+            "order": 8,
+            "type": "text"
+          },
+          "allowHostIPC": {
+            "label": "allowHostIPC",
+            "order": 13,
+            "type": "text"
+          },
+          "allowHostNetwork": {
+            "label": "allowHostNetwork",
+            "order": 10,
+            "type": "text"
+          },
+          "allowHostPID": {
+            "label": "allowHostPID",
+            "order": 12,
+            "type": "text"
+          },
+          "allowHostPorts": {
+            "label": "allowHostPorts",
+            "order": 11,
+            "type": "text"
+          },
+          "allowPrivilegedContainer": {
+            "label": "allowPrivilegedContainer",
+            "order": 4,
+            "type": "text"
+          },
+          "allowedCapabilities": {
+            "items": {
+              "fields": {}
+            },
+            "label": "allowedCapabilities",
+            "order": 7
+          },
+          "apiVersion": {
+            "label": "apiVersion",
+            "order": 1,
+            "type": "text"
+          },
+          "defaultAddCapabilities": {
+            "items": {
+              "fields": {}
+            },
+            "label": "defaultAddCapabilities",
+            "order": 5
+          },
+          "fsGroup": {
+            "fields": {
+              "ranges": {
+                "items": {
+                  "fields": {
+                    "max": {
+                      "label": "max",
+                      "order": 1,
+                      "type": "text"
+                    },
+                    "min": {
+                      "label": "min",
+                      "order": 0,
+                      "type": "text"
+                    }
+                  }
+                },
+                "label": "ranges",
+                "order": 1
+              },
+              "type": {
+                "label": "type",
+                "order": 0,
+                "type": "text"
+              }
+            },
+            "label": "fsGroup",
+            "order": 17
+          },
+          "groups": {
+            "items": {
+              "fields": {}
+            },
+            "label": "groups",
+            "order": 20
+          },
+          "kind": {
+            "label": "kind",
+            "order": 0,
+            "type": "text"
+          },
+          "metadata": {
+            "fields": {
+              "annotations": {
+                "items": {
+                  "fields": {
+                    "_key": {
+                      "label": "key",
+                      "type": "text"
+                    },
+                    "val": {
+                      "label": "val",
+                      "type": "text"
+                    }
+                  },
+                  "type": "object"
+                },
+                "label": "annotations",
+                "order": 11,
+                "type": "map"
+              },
+              "creationTimestamp": {
+                "label": "creationTimestamp",
+                "order": 7,
+                "type": "text"
+              },
+              "deletionGracePeriodSeconds": {
+                "label": "deletionGracePeriodSeconds",
+                "order": 9,
+                "type": "text"
+              },
+              "deletionTimestamp": {
+                "label": "deletionTimestamp",
+                "order": 8,
+                "type": "text"
+              },
+              "generateName": {
+                "label": "generateName",
+                "order": 1,
+                "type": "text"
+              },
+              "generation": {
+                "label": "generation",
+                "order": 6,
+                "type": "text"
+              },
+              "labels": {
+                "items": {
+                  "fields": {
+                    "_key": {
+                      "label": "key",
+                      "type": "text"
+                    },
+                    "val": {
+                      "label": "val",
+                      "type": "text"
+                    }
+                  },
+                  "type": "object"
+                },
+                "label": "labels",
+                "order": 10,
+                "type": "map"
+              },
+              "name": {
+                "label": "name",
+                "order": 0,
+                "type": "text"
+              },
+              "namespace": {
+                "label": "namespace",
+                "order": 2,
+                "type": "text"
+              },
+              "resourceVersion": {
+                "label": "resourceVersion",
+                "order": 5,
+                "type": "text"
+              },
+              "selfLink": {
+                "label": "selfLink",
+                "order": 3,
+                "type": "text"
+              },
+              "uid": {
+                "label": "uid",
+                "order": 4,
+                "type": "text"
+              }
+            },
+            "label": "metadata",
+            "order": 2
+          },
+          "priority": {
+            "label": "priority",
+            "order": 3,
+            "type": "text"
+          },
+          "readOnlyRootFilesystem": {
+            "label": "readOnlyRootFilesystem",
+            "order": 18,
+            "type": "text"
+          },
+          "requiredDropCapabilities": {
+            "items": {
+              "fields": {}
+            },
+            "label": "requiredDropCapabilities",
+            "order": 6
+          },
+          "runAsUser": {
+            "fields": {
+              "type": {
+                "label": "type",
+                "order": 0,
+                "type": "text"
+              },
+              "uid": {
+                "label": "uid",
+                "order": 1,
+                "type": "text"
+              },
+              "uidRangeMax": {
+                "label": "uidRangeMax",
+                "order": 3,
+                "type": "text"
+              },
+              "uidRangeMin": {
+                "label": "uidRangeMin",
+                "order": 2,
+                "type": "text"
+              }
+            },
+            "label": "runAsUser",
+            "order": 15
+          },
+          "seLinuxContext": {
+            "fields": {
+              "seLinuxOptions": {
+                "fields": {
+                  "level": {
+                    "label": "level",
+                    "order": 3,
+                    "type": "text"
+                  },
+                  "role": {
+                    "label": "role",
+                    "order": 1,
+                    "type": "text"
+                  },
+                  "type": {
+                    "label": "type",
+                    "order": 2,
+                    "type": "text"
+                  },
+                  "user": {
+                    "label": "user",
+                    "order": 0,
+                    "type": "text"
+                  }
+                },
+                "label": "seLinuxOptions",
+                "order": 1
+              },
+              "type": {
+                "label": "type",
+                "order": 0,
+                "type": "text"
+              }
+            },
+            "label": "seLinuxContext",
+            "order": 14
+          },
+          "supplementalGroups": {
+            "fields": {
+              "ranges": {
+                "items": {
+                  "fields": {
+                    "max": {
+                      "label": "max",
+                      "order": 1,
+                      "type": "text"
+                    },
+                    "min": {
+                      "label": "min",
+                      "order": 0,
+                      "type": "text"
+                    }
+                  }
+                },
+                "label": "ranges",
+                "order": 1
+              },
+              "type": {
+                "label": "type",
+                "order": 0,
+                "type": "text"
+              }
+            },
+            "label": "supplementalGroups",
+            "order": 16
+          },
+          "users": {
+            "items": {
+              "fields": {}
+            },
+            "label": "users",
+            "order": 19
+          },
+          "volumes": {
+            "items": {
+              "fields": {}
+            },
+            "label": "volumes",
+            "order": 9
+          }
+        }
+      },
+      "label": "items",
+      "order": 3
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "metadata": {
+      "fields": {
+        "resourceVersion": {
+          "label": "resourceVersion",
+          "order": 1,
+          "type": "text"
+        },
+        "selfLink": {
+          "label": "selfLink",
+          "order": 0,
+          "type": "text"
+        }
+      },
+      "label": "metadata",
+      "order": 2
+    }
+  },
+  "label": ""
+}

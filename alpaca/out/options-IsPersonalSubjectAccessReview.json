@@ -1,0 +1,15 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    }
+  },
+  "label": ""
+}

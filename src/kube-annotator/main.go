@@ -21,12 +21,11 @@ import (
 	"go/ast"
 	"go/build"
 	"go/doc"
+	"go/importer"
 	"go/parser"
 	"go/token"
+	"go/types"
 	"os"
-
-	_ "golang.org/x/tools/go/gcimporter"
-	"golang.org/x/tools/go/types"
 )
 
 func importPkg(pkgname string) (*types.Package, *ast.Package, error) {
@@ -46,7 +45,7 @@ func importPkg(pkgname string) (*types.Package, *ast.Package, error) {
 		filelist = append(filelist, f)
 	}
 
-	config := types.Config{}
+	config := types.Config{Importer: importer.Default()}
 	typpkg, err := config.Check(pkg.Dir, fset, filelist, nil)
 
 	return typpkg, pkgmap[pkg.Name], err

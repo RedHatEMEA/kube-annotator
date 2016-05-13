@@ -92,6 +92,62 @@ items:                                                                # []k8s.io
     message:                                                          # string
     error:                                                            # string
 
+ConfigMap
+=========
+
+ConfigMap holds configuration data for pods to consume.
+
+kind: ConfigMap                                                       # string
+apiVersion: v1                                                        # string
+metadata:                                                             # k8s.io/kubernetes/pkg/api/v1.ObjectMeta
+  name:                                                               # string
+  generateName:                                                       # string
+  namespace:                                                          # string
+  selfLink:                                                           # string
+  uid:                                                                # k8s.io/kubernetes/pkg/types.UID
+  resourceVersion:                                                    # string
+  generation:                                                         # int64
+  creationTimestamp:                                                  # k8s.io/kubernetes/pkg/api/unversioned.Time
+  deletionTimestamp:                                                  # k8s.io/kubernetes/pkg/api/unversioned.Time
+  deletionGracePeriodSeconds:                                         # int64
+  labels:                                                             # map[string]string
+    [string]:                                                         # string
+  annotations:                                                        # map[string]string
+    [string]:                                                         # string
+data:                                                                 # map[string]string
+  [string]:                                                           # string
+
+ConfigMapList
+=============
+
+ConfigMapList is a resource containing a list of ConfigMap objects.
+
+kind: ConfigMapList                                                   # string
+apiVersion: v1                                                        # string
+metadata:                                                             # k8s.io/kubernetes/pkg/api/unversioned.ListMeta
+  selfLink:                                                           # string
+  resourceVersion:                                                    # string
+items:                                                                # []k8s.io/kubernetes/pkg/api/v1.ConfigMap
+- kind:                                                               # string
+  apiVersion:                                                         # string
+  metadata:                                                           # k8s.io/kubernetes/pkg/api/v1.ObjectMeta
+    name:                                                             # string
+    generateName:                                                     # string
+    namespace:                                                        # string
+    selfLink:                                                         # string
+    uid:                                                              # k8s.io/kubernetes/pkg/types.UID
+    resourceVersion:                                                  # string
+    generation:                                                       # int64
+    creationTimestamp:                                                # k8s.io/kubernetes/pkg/api/unversioned.Time
+    deletionTimestamp:                                                # k8s.io/kubernetes/pkg/api/unversioned.Time
+    deletionGracePeriodSeconds:                                       # int64
+    labels:                                                           # map[string]string
+      [string]:                                                       # string
+    annotations:                                                      # map[string]string
+      [string]:                                                       # string
+  data:                                                               # map[string]string
+    [string]:                                                         # string
+
 DeleteOptions
 =============
 
@@ -157,7 +213,7 @@ subsets:                                                              # []k8s.io
       fieldPath:                                                      # string
   ports:                                                              # []k8s.io/kubernetes/pkg/api/v1.EndpointPort
   - name:                                                             # string
-    port:                                                             # int
+    port:                                                             # int32
     protocol: TCP | UDP                                               # k8s.io/kubernetes/pkg/api/v1.Protocol
 
 EndpointsList
@@ -211,7 +267,7 @@ items:                                                                # []k8s.io
         fieldPath:                                                    # string
     ports:                                                            # []k8s.io/kubernetes/pkg/api/v1.EndpointPort
     - name:                                                           # string
-      port:                                                           # int
+      port:                                                           # int32
       protocol: TCP | UDP                                             # k8s.io/kubernetes/pkg/api/v1.Protocol
 
 Event
@@ -252,7 +308,8 @@ source:                                                               # k8s.io/k
   host:                                                               # string
 firstTimestamp:                                                       # k8s.io/kubernetes/pkg/api/unversioned.Time
 lastTimestamp:                                                        # k8s.io/kubernetes/pkg/api/unversioned.Time
-count:                                                                # int
+count:                                                                # int32
+type:                                                                 # string
 
 EventList
 =========
@@ -297,7 +354,18 @@ items:                                                                # []k8s.io
     host:                                                             # string
   firstTimestamp:                                                     # k8s.io/kubernetes/pkg/api/unversioned.Time
   lastTimestamp:                                                      # k8s.io/kubernetes/pkg/api/unversioned.Time
-  count:                                                              # int
+  count:                                                              # int32
+  type:                                                               # string
+
+ExportOptions
+=============
+
+ExportOptions is the query options to the standard REST get call.
+
+kind: ExportOptions                                                   # string
+apiVersion: v1                                                        # string
+export:                                                               # bool
+exact:                                                                # bool
 
 LimitRange
 ==========
@@ -400,6 +468,7 @@ labelSelector:                                                        # string
 fieldSelector:                                                        # string
 watch:                                                                # bool
 resourceVersion:                                                      # string
+timeoutSeconds:                                                       # int64
 
 Namespace
 =========
@@ -495,9 +564,11 @@ spec:                                                                 # k8s.io/k
 status:                                                               # k8s.io/kubernetes/pkg/api/v1.NodeStatus
   capacity:                                                           # k8s.io/kubernetes/pkg/api/v1.ResourceList
     [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                      # k8s.io/kubernetes/pkg/api/resource.Quantity
+  allocatable:                                                        # k8s.io/kubernetes/pkg/api/v1.ResourceList
+    [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                      # k8s.io/kubernetes/pkg/api/resource.Quantity
   phase: Pending | Running | Terminated                               # k8s.io/kubernetes/pkg/api/v1.NodePhase
   conditions:                                                         # []k8s.io/kubernetes/pkg/api/v1.NodeCondition
-  - type: Ready                                                       # k8s.io/kubernetes/pkg/api/v1.NodeConditionType
+  - type: OutOfDisk | Ready                                           # k8s.io/kubernetes/pkg/api/v1.NodeConditionType
     status: False | True | Unknown                                    # k8s.io/kubernetes/pkg/api/v1.ConditionStatus
     lastHeartbeatTime:                                                # k8s.io/kubernetes/pkg/api/unversioned.Time
     lastTransitionTime:                                               # k8s.io/kubernetes/pkg/api/unversioned.Time
@@ -517,6 +588,10 @@ status:                                                               # k8s.io/k
     containerRuntimeVersion:                                          # string
     kubeletVersion:                                                   # string
     kubeProxyVersion:                                                 # string
+  images:                                                             # []k8s.io/kubernetes/pkg/api/v1.ContainerImage
+  - names:                                                            # []string
+    - [string]                                                        #
+    sizeBytes:                                                        # int64
 
 NodeList
 ========
@@ -554,9 +629,11 @@ items:                                                                # []k8s.io
   status:                                                             # k8s.io/kubernetes/pkg/api/v1.NodeStatus
     capacity:                                                         # k8s.io/kubernetes/pkg/api/v1.ResourceList
       [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                    # k8s.io/kubernetes/pkg/api/resource.Quantity
+    allocatable:                                                      # k8s.io/kubernetes/pkg/api/v1.ResourceList
+      [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                    # k8s.io/kubernetes/pkg/api/resource.Quantity
     phase: Pending | Running | Terminated                             # k8s.io/kubernetes/pkg/api/v1.NodePhase
     conditions:                                                       # []k8s.io/kubernetes/pkg/api/v1.NodeCondition
-    - type: Ready                                                     # k8s.io/kubernetes/pkg/api/v1.NodeConditionType
+    - type: OutOfDisk | Ready                                         # k8s.io/kubernetes/pkg/api/v1.NodeConditionType
       status: False | True | Unknown                                  # k8s.io/kubernetes/pkg/api/v1.ConditionStatus
       lastHeartbeatTime:                                              # k8s.io/kubernetes/pkg/api/unversioned.Time
       lastTransitionTime:                                             # k8s.io/kubernetes/pkg/api/unversioned.Time
@@ -576,13 +653,26 @@ items:                                                                # []k8s.io
       containerRuntimeVersion:                                        # string
       kubeletVersion:                                                 # string
       kubeProxyVersion:                                               # string
+    images:                                                           # []k8s.io/kubernetes/pkg/api/v1.ContainerImage
+    - names:                                                          # []string
+      - [string]                                                      #
+      sizeBytes:                                                      # int64
+
+NodeProxyOptions
+================
+
+NodeProxyOptions is the query options to a Node's proxy call.
+
+kind: NodeProxyOptions                                                # string
+apiVersion: v1                                                        # string
+path:                                                                 # string
 
 PersistentVolume
 ================
 
 PersistentVolume (PV) is a storage resource provisioned by an administrator.
 It is analogous to a node.
-More info: http://releases.k8s.io/HEAD/docs/user-guide/persistent-volumes.md
+More info: http://releases.k8s.io/release-1.2/docs/user-guide/persistent-volumes.md
 
 kind: PersistentVolume                                                # string
 apiVersion: v1                                                        # string
@@ -607,12 +697,12 @@ spec:                                                                 # k8s.io/k
   gcePersistentDisk:                                                  # k8s.io/kubernetes/pkg/api/v1.GCEPersistentDiskVolumeSource
     pdName:                                                           # string
     fsType:                                                           # string
-    partition:                                                        # int
+    partition:                                                        # int32
     readOnly:                                                         # bool
   awsElasticBlockStore:                                               # k8s.io/kubernetes/pkg/api/v1.AWSElasticBlockStoreVolumeSource
     volumeID:                                                         # string
     fsType:                                                           # string
-    partition:                                                        # int
+    partition:                                                        # int32
     readOnly:                                                         # bool
   hostPath:                                                           # k8s.io/kubernetes/pkg/api/v1.HostPathVolumeSource
     path:                                                             # string
@@ -638,7 +728,8 @@ spec:                                                                 # k8s.io/k
   iscsi:                                                              # k8s.io/kubernetes/pkg/api/v1.ISCSIVolumeSource
     targetPortal:                                                     # string
     iqn:                                                              # string
-    lun:                                                              # int
+    lun:                                                              # int32
+    iscsiInterface:                                                   # string
     fsType:                                                           # string
     readOnly:                                                         # bool
   cinder:                                                             # k8s.io/kubernetes/pkg/api/v1.CinderVolumeSource
@@ -648,6 +739,7 @@ spec:                                                                 # k8s.io/k
   cephfs:                                                             # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource
     monitors:                                                         # []string
     - [string]                                                        #
+    path:                                                             # string
     user:                                                             # string
     secretFile:                                                       # string
     secretRef:                                                        # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
@@ -656,11 +748,23 @@ spec:                                                                 # k8s.io/k
   fc:                                                                 # k8s.io/kubernetes/pkg/api/v1.FCVolumeSource
     targetWWNs:                                                       # []string
     - [string]                                                        #
-    lun:                                                              # int
+    lun:                                                              # int32
     fsType:                                                           # string
     readOnly:                                                         # bool
   flocker:                                                            # k8s.io/kubernetes/pkg/api/v1.FlockerVolumeSource
     datasetName:                                                      # string
+  flexVolume:                                                         # k8s.io/kubernetes/pkg/api/v1.FlexVolumeSource
+    driver:                                                           # string
+    fsType:                                                           # string
+    secretRef:                                                        # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
+      name:                                                           # string
+    readOnly:                                                         # bool
+    options:                                                          # map[string]string
+      [string]:                                                       # string
+  azureFile:                                                          # k8s.io/kubernetes/pkg/api/v1.AzureFileVolumeSource
+    secretName:                                                       # string
+    shareName:                                                        # string
+    readOnly:                                                         # bool
   accessModes:                                                        # []k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode
   - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]         #
   claimRef:                                                           # k8s.io/kubernetes/pkg/api/v1.ObjectReference
@@ -793,12 +897,12 @@ items:                                                                # []k8s.io
     gcePersistentDisk:                                                # k8s.io/kubernetes/pkg/api/v1.GCEPersistentDiskVolumeSource
       pdName:                                                         # string
       fsType:                                                         # string
-      partition:                                                      # int
+      partition:                                                      # int32
       readOnly:                                                       # bool
     awsElasticBlockStore:                                             # k8s.io/kubernetes/pkg/api/v1.AWSElasticBlockStoreVolumeSource
       volumeID:                                                       # string
       fsType:                                                         # string
-      partition:                                                      # int
+      partition:                                                      # int32
       readOnly:                                                       # bool
     hostPath:                                                         # k8s.io/kubernetes/pkg/api/v1.HostPathVolumeSource
       path:                                                           # string
@@ -824,7 +928,8 @@ items:                                                                # []k8s.io
     iscsi:                                                            # k8s.io/kubernetes/pkg/api/v1.ISCSIVolumeSource
       targetPortal:                                                   # string
       iqn:                                                            # string
-      lun:                                                            # int
+      lun:                                                            # int32
+      iscsiInterface:                                                 # string
       fsType:                                                         # string
       readOnly:                                                       # bool
     cinder:                                                           # k8s.io/kubernetes/pkg/api/v1.CinderVolumeSource
@@ -834,6 +939,7 @@ items:                                                                # []k8s.io
     cephfs:                                                           # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource
       monitors:                                                       # []string
       - [string]                                                      #
+      path:                                                           # string
       user:                                                           # string
       secretFile:                                                     # string
       secretRef:                                                      # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
@@ -842,11 +948,23 @@ items:                                                                # []k8s.io
     fc:                                                               # k8s.io/kubernetes/pkg/api/v1.FCVolumeSource
       targetWWNs:                                                     # []string
       - [string]                                                      #
-      lun:                                                            # int
+      lun:                                                            # int32
       fsType:                                                         # string
       readOnly:                                                       # bool
     flocker:                                                          # k8s.io/kubernetes/pkg/api/v1.FlockerVolumeSource
       datasetName:                                                    # string
+    flexVolume:                                                       # k8s.io/kubernetes/pkg/api/v1.FlexVolumeSource
+      driver:                                                         # string
+      fsType:                                                         # string
+      secretRef:                                                      # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
+        name:                                                         # string
+      readOnly:                                                       # bool
+      options:                                                        # map[string]string
+        [string]:                                                     # string
+    azureFile:                                                        # k8s.io/kubernetes/pkg/api/v1.AzureFileVolumeSource
+      secretName:                                                     # string
+      shareName:                                                      # string
+      readOnly:                                                       # bool
     accessModes:                                                      # []k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode
     - [k8s.io/kubernetes/pkg/api/v1.PersistentVolumeAccessMode]       #
     claimRef:                                                         # k8s.io/kubernetes/pkg/api/v1.ObjectReference
@@ -896,16 +1014,17 @@ spec:                                                                 # k8s.io/k
     gcePersistentDisk:                                                # k8s.io/kubernetes/pkg/api/v1.GCEPersistentDiskVolumeSource
       pdName:                                                         # string
       fsType:                                                         # string
-      partition:                                                      # int
+      partition:                                                      # int32
       readOnly:                                                       # bool
     awsElasticBlockStore:                                             # k8s.io/kubernetes/pkg/api/v1.AWSElasticBlockStoreVolumeSource
       volumeID:                                                       # string
       fsType:                                                         # string
-      partition:                                                      # int
+      partition:                                                      # int32
       readOnly:                                                       # bool
     gitRepo:                                                          # k8s.io/kubernetes/pkg/api/v1.GitRepoVolumeSource
       repository:                                                     # string
       revision:                                                       # string
+      directory:                                                      # string
     secret:                                                           # k8s.io/kubernetes/pkg/api/v1.SecretVolumeSource
       secretName:                                                     # string
     nfs:                                                              # k8s.io/kubernetes/pkg/api/v1.NFSVolumeSource
@@ -915,7 +1034,8 @@ spec:                                                                 # k8s.io/k
     iscsi:                                                            # k8s.io/kubernetes/pkg/api/v1.ISCSIVolumeSource
       targetPortal:                                                   # string
       iqn:                                                            # string
-      lun:                                                            # int
+      lun:                                                            # int32
+      iscsiInterface:                                                 # string
       fsType:                                                         # string
       readOnly:                                                       # bool
     glusterfs:                                                        # k8s.io/kubernetes/pkg/api/v1.GlusterfsVolumeSource
@@ -936,6 +1056,14 @@ spec:                                                                 # k8s.io/k
       secretRef:                                                      # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
         name:                                                         # string
       readOnly:                                                       # bool
+    flexVolume:                                                       # k8s.io/kubernetes/pkg/api/v1.FlexVolumeSource
+      driver:                                                         # string
+      fsType:                                                         # string
+      secretRef:                                                      # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
+        name:                                                         # string
+      readOnly:                                                       # bool
+      options:                                                        # map[string]string
+        [string]:                                                     # string
     cinder:                                                           # k8s.io/kubernetes/pkg/api/v1.CinderVolumeSource
       volumeID:                                                       # string
       fsType:                                                         # string
@@ -943,6 +1071,7 @@ spec:                                                                 # k8s.io/k
     cephfs:                                                           # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource
       monitors:                                                       # []string
       - [string]                                                      #
+      path:                                                           # string
       user:                                                           # string
       secretFile:                                                     # string
       secretRef:                                                      # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
@@ -959,13 +1088,22 @@ spec:                                                                 # k8s.io/k
     fc:                                                               # k8s.io/kubernetes/pkg/api/v1.FCVolumeSource
       targetWWNs:                                                     # []string
       - [string]                                                      #
-      lun:                                                            # int
+      lun:                                                            # int32
       fsType:                                                         # string
       readOnly:                                                       # bool
+    azureFile:                                                        # k8s.io/kubernetes/pkg/api/v1.AzureFileVolumeSource
+      secretName:                                                     # string
+      shareName:                                                      # string
+      readOnly:                                                       # bool
+    configMap:                                                        # k8s.io/kubernetes/pkg/api/v1.ConfigMapVolumeSource
+      name:                                                           # string
+      items:                                                          # []k8s.io/kubernetes/pkg/api/v1.KeyToPath
+      - key:                                                          # string
+        path:                                                         # string
     metadata:                                                         # k8s.io/kubernetes/pkg/api/v1.MetadataVolumeSource
-      items:                                                          # []k8s.io/kubernetes/pkg/api/v1.MetadataFile (list of metadata files)
-      - name:                                                         # string (the name of the file to be created)
-        fieldRef:                                                     # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector (selects a field of the pod. Supported fields: metadata.annotations, metadata.labels, metadata.name, metadata.namespace)
+      items:                                                          # []k8s.io/kubernetes/pkg/api/v1.MetadataFile
+      - name:                                                         # string
+        fieldRef:                                                     # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
           apiVersion:                                                 # string
           fieldPath:                                                  # string
   containers:                                                         # []k8s.io/kubernetes/pkg/api/v1.Container
@@ -978,8 +1116,8 @@ spec:                                                                 # k8s.io/k
     workingDir:                                                       # string
     ports:                                                            # []k8s.io/kubernetes/pkg/api/v1.ContainerPort
     - name:                                                           # string
-      hostPort:                                                       # int
-      containerPort:                                                  # int
+      hostPort:                                                       # int32
+      containerPort:                                                  # int32
       protocol: TCP | UDP                                             # k8s.io/kubernetes/pkg/api/v1.Protocol
       hostIP:                                                         # string
     env:                                                              # []k8s.io/kubernetes/pkg/api/v1.EnvVar
@@ -989,6 +1127,12 @@ spec:                                                                 # k8s.io/k
         fieldRef:                                                     # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
           apiVersion:                                                 # string
           fieldPath:                                                  # string
+        configMapKeyRef:                                              # k8s.io/kubernetes/pkg/api/v1.ConfigMapKeySelector
+          name:                                                       # string
+          key:                                                        # string
+        secretKeyRef:                                                 # k8s.io/kubernetes/pkg/api/v1.SecretKeySelector
+          name:                                                       # string
+          key:                                                        # string
     resources:                                                        # k8s.io/kubernetes/pkg/api/v1.ResourceRequirements
       limits:                                                         # k8s.io/kubernetes/pkg/api/v1.ResourceList
         [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                  # k8s.io/kubernetes/pkg/api/resource.Quantity
@@ -1004,26 +1148,38 @@ spec:                                                                 # k8s.io/k
         - [string]                                                    #
       httpGet:                                                        # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
         path:                                                         # string
-        port:                                                         # k8s.io/kubernetes/pkg/util.IntOrString
+        port:                                                         # k8s.io/kubernetes/pkg/util/intstr.IntOrString
         host:                                                         # string
         scheme: HTTP | HTTPS                                          # k8s.io/kubernetes/pkg/api/v1.URIScheme
+        httpHeaders:                                                  # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+        - name:                                                       # string
+          value:                                                      # string
       tcpSocket:                                                      # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-        port:                                                         # k8s.io/kubernetes/pkg/util.IntOrString
-      initialDelaySeconds:                                            # int64
-      timeoutSeconds:                                                 # int64
+        port:                                                         # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+      initialDelaySeconds:                                            # int32
+      timeoutSeconds:                                                 # int32
+      periodSeconds:                                                  # int32
+      successThreshold:                                               # int32
+      failureThreshold:                                               # int32
     readinessProbe:                                                   # k8s.io/kubernetes/pkg/api/v1.Probe
       exec:                                                           # k8s.io/kubernetes/pkg/api/v1.ExecAction
         command:                                                      # []string
         - [string]                                                    #
       httpGet:                                                        # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
         path:                                                         # string
-        port:                                                         # k8s.io/kubernetes/pkg/util.IntOrString
+        port:                                                         # k8s.io/kubernetes/pkg/util/intstr.IntOrString
         host:                                                         # string
         scheme: HTTP | HTTPS                                          # k8s.io/kubernetes/pkg/api/v1.URIScheme
+        httpHeaders:                                                  # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+        - name:                                                       # string
+          value:                                                      # string
       tcpSocket:                                                      # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-        port:                                                         # k8s.io/kubernetes/pkg/util.IntOrString
-      initialDelaySeconds:                                            # int64
-      timeoutSeconds:                                                 # int64
+        port:                                                         # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+      initialDelaySeconds:                                            # int32
+      timeoutSeconds:                                                 # int32
+      periodSeconds:                                                  # int32
+      successThreshold:                                               # int32
+      failureThreshold:                                               # int32
     lifecycle:                                                        # k8s.io/kubernetes/pkg/api/v1.Lifecycle
       postStart:                                                      # k8s.io/kubernetes/pkg/api/v1.Handler
         exec:                                                         # k8s.io/kubernetes/pkg/api/v1.ExecAction
@@ -1031,22 +1187,28 @@ spec:                                                                 # k8s.io/k
           - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
           path:                                                       # string
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
           host:                                                       # string
           scheme: HTTP | HTTPS                                        # k8s.io/kubernetes/pkg/api/v1.URIScheme
+          httpHeaders:                                                # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+          - name:                                                     # string
+            value:                                                    # string
         tcpSocket:                                                    # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
       preStop:                                                        # k8s.io/kubernetes/pkg/api/v1.Handler
         exec:                                                         # k8s.io/kubernetes/pkg/api/v1.ExecAction
           command:                                                    # []string
           - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
           path:                                                       # string
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
           host:                                                       # string
           scheme: HTTP | HTTPS                                        # k8s.io/kubernetes/pkg/api/v1.URIScheme
+          httpHeaders:                                                # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+          - name:                                                     # string
+            value:                                                    # string
         tcpSocket:                                                    # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
     terminationMessagePath:                                           # string
     imagePullPolicy: Always | IfNotPresent | Never                    # k8s.io/kubernetes/pkg/api/v1.PullPolicy
     securityContext:                                                  # k8s.io/kubernetes/pkg/api/v1.SecurityContext
@@ -1063,6 +1225,7 @@ spec:                                                                 # k8s.io/k
         level:                                                        # string
       runAsUser:                                                      # int64
       runAsNonRoot:                                                   # bool
+      readOnlyRootFilesystem:                                         # bool
     stdin:                                                            # bool
     stdinOnce:                                                        # bool
     tty:                                                              # bool
@@ -1072,7 +1235,7 @@ spec:                                                                 # k8s.io/k
   dnsPolicy: ClusterFirst | Default                                   # k8s.io/kubernetes/pkg/api/v1.DNSPolicy
   nodeSelector:                                                       # map[string]string
     [string]:                                                         # string
-  host:                                                               # string (deprecated, use nodeName instead)
+  host:                                                               # string
   serviceAccountName:                                                 # string
   serviceAccount:                                                     # string
   nodeName:                                                           # string
@@ -1115,8 +1278,8 @@ status:                                                               # k8s.io/k
       running:                                                        # k8s.io/kubernetes/pkg/api/v1.ContainerStateRunning
         startedAt:                                                    # k8s.io/kubernetes/pkg/api/unversioned.Time
       terminated:                                                     # k8s.io/kubernetes/pkg/api/v1.ContainerStateTerminated
-        exitCode:                                                     # int
-        signal:                                                       # int
+        exitCode:                                                     # int32
+        signal:                                                       # int32
         reason:                                                       # string
         message:                                                      # string
         startedAt:                                                    # k8s.io/kubernetes/pkg/api/unversioned.Time
@@ -1129,15 +1292,15 @@ status:                                                               # k8s.io/k
       running:                                                        # k8s.io/kubernetes/pkg/api/v1.ContainerStateRunning
         startedAt:                                                    # k8s.io/kubernetes/pkg/api/unversioned.Time
       terminated:                                                     # k8s.io/kubernetes/pkg/api/v1.ContainerStateTerminated
-        exitCode:                                                     # int
-        signal:                                                       # int
+        exitCode:                                                     # int32
+        signal:                                                       # int32
         reason:                                                       # string
         message:                                                      # string
         startedAt:                                                    # k8s.io/kubernetes/pkg/api/unversioned.Time
         finishedAt:                                                   # k8s.io/kubernetes/pkg/api/unversioned.Time
         containerID:                                                  # string
     ready:                                                            # bool
-    restartCount:                                                     # int
+    restartCount:                                                     # int32
     image:                                                            # string
     imageID:                                                          # string
     containerID:                                                      # string
@@ -1214,16 +1377,17 @@ items:                                                                # []k8s.io
       gcePersistentDisk:                                              # k8s.io/kubernetes/pkg/api/v1.GCEPersistentDiskVolumeSource
         pdName:                                                       # string
         fsType:                                                       # string
-        partition:                                                    # int
+        partition:                                                    # int32
         readOnly:                                                     # bool
       awsElasticBlockStore:                                           # k8s.io/kubernetes/pkg/api/v1.AWSElasticBlockStoreVolumeSource
         volumeID:                                                     # string
         fsType:                                                       # string
-        partition:                                                    # int
+        partition:                                                    # int32
         readOnly:                                                     # bool
       gitRepo:                                                        # k8s.io/kubernetes/pkg/api/v1.GitRepoVolumeSource
         repository:                                                   # string
         revision:                                                     # string
+        directory:                                                    # string
       secret:                                                         # k8s.io/kubernetes/pkg/api/v1.SecretVolumeSource
         secretName:                                                   # string
       nfs:                                                            # k8s.io/kubernetes/pkg/api/v1.NFSVolumeSource
@@ -1233,7 +1397,8 @@ items:                                                                # []k8s.io
       iscsi:                                                          # k8s.io/kubernetes/pkg/api/v1.ISCSIVolumeSource
         targetPortal:                                                 # string
         iqn:                                                          # string
-        lun:                                                          # int
+        lun:                                                          # int32
+        iscsiInterface:                                               # string
         fsType:                                                       # string
         readOnly:                                                     # bool
       glusterfs:                                                      # k8s.io/kubernetes/pkg/api/v1.GlusterfsVolumeSource
@@ -1254,6 +1419,14 @@ items:                                                                # []k8s.io
         secretRef:                                                    # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
           name:                                                       # string
         readOnly:                                                     # bool
+      flexVolume:                                                     # k8s.io/kubernetes/pkg/api/v1.FlexVolumeSource
+        driver:                                                       # string
+        fsType:                                                       # string
+        secretRef:                                                    # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
+          name:                                                       # string
+        readOnly:                                                     # bool
+        options:                                                      # map[string]string
+          [string]:                                                   # string
       cinder:                                                         # k8s.io/kubernetes/pkg/api/v1.CinderVolumeSource
         volumeID:                                                     # string
         fsType:                                                       # string
@@ -1261,6 +1434,7 @@ items:                                                                # []k8s.io
       cephfs:                                                         # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource
         monitors:                                                     # []string
         - [string]                                                    #
+        path:                                                         # string
         user:                                                         # string
         secretFile:                                                   # string
         secretRef:                                                    # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
@@ -1277,13 +1451,22 @@ items:                                                                # []k8s.io
       fc:                                                             # k8s.io/kubernetes/pkg/api/v1.FCVolumeSource
         targetWWNs:                                                   # []string
         - [string]                                                    #
-        lun:                                                          # int
+        lun:                                                          # int32
         fsType:                                                       # string
         readOnly:                                                     # bool
+      azureFile:                                                      # k8s.io/kubernetes/pkg/api/v1.AzureFileVolumeSource
+        secretName:                                                   # string
+        shareName:                                                    # string
+        readOnly:                                                     # bool
+      configMap:                                                      # k8s.io/kubernetes/pkg/api/v1.ConfigMapVolumeSource
+        name:                                                         # string
+        items:                                                        # []k8s.io/kubernetes/pkg/api/v1.KeyToPath
+        - key:                                                        # string
+          path:                                                       # string
       metadata:                                                       # k8s.io/kubernetes/pkg/api/v1.MetadataVolumeSource
-        items:                                                        # []k8s.io/kubernetes/pkg/api/v1.MetadataFile (list of metadata files)
-        - name:                                                       # string (the name of the file to be created)
-          fieldRef:                                                   # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector (selects a field of the pod. Supported fields: metadata.annotations, metadata.labels, metadata.name, metadata.namespace)
+        items:                                                        # []k8s.io/kubernetes/pkg/api/v1.MetadataFile
+        - name:                                                       # string
+          fieldRef:                                                   # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
             apiVersion:                                               # string
             fieldPath:                                                # string
     containers:                                                       # []k8s.io/kubernetes/pkg/api/v1.Container
@@ -1296,8 +1479,8 @@ items:                                                                # []k8s.io
       workingDir:                                                     # string
       ports:                                                          # []k8s.io/kubernetes/pkg/api/v1.ContainerPort
       - name:                                                         # string
-        hostPort:                                                     # int
-        containerPort:                                                # int
+        hostPort:                                                     # int32
+        containerPort:                                                # int32
         protocol: TCP | UDP                                           # k8s.io/kubernetes/pkg/api/v1.Protocol
         hostIP:                                                       # string
       env:                                                            # []k8s.io/kubernetes/pkg/api/v1.EnvVar
@@ -1307,6 +1490,12 @@ items:                                                                # []k8s.io
           fieldRef:                                                   # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
             apiVersion:                                               # string
             fieldPath:                                                # string
+          configMapKeyRef:                                            # k8s.io/kubernetes/pkg/api/v1.ConfigMapKeySelector
+            name:                                                     # string
+            key:                                                      # string
+          secretKeyRef:                                               # k8s.io/kubernetes/pkg/api/v1.SecretKeySelector
+            name:                                                     # string
+            key:                                                      # string
       resources:                                                      # k8s.io/kubernetes/pkg/api/v1.ResourceRequirements
         limits:                                                       # k8s.io/kubernetes/pkg/api/v1.ResourceList
           [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                # k8s.io/kubernetes/pkg/api/resource.Quantity
@@ -1322,26 +1511,38 @@ items:                                                                # []k8s.io
           - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
           path:                                                       # string
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
           host:                                                       # string
           scheme: HTTP | HTTPS                                        # k8s.io/kubernetes/pkg/api/v1.URIScheme
+          httpHeaders:                                                # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+          - name:                                                     # string
+            value:                                                    # string
         tcpSocket:                                                    # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
-        initialDelaySeconds:                                          # int64
-        timeoutSeconds:                                               # int64
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+        initialDelaySeconds:                                          # int32
+        timeoutSeconds:                                               # int32
+        periodSeconds:                                                # int32
+        successThreshold:                                             # int32
+        failureThreshold:                                             # int32
       readinessProbe:                                                 # k8s.io/kubernetes/pkg/api/v1.Probe
         exec:                                                         # k8s.io/kubernetes/pkg/api/v1.ExecAction
           command:                                                    # []string
           - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
           path:                                                       # string
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
           host:                                                       # string
           scheme: HTTP | HTTPS                                        # k8s.io/kubernetes/pkg/api/v1.URIScheme
+          httpHeaders:                                                # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+          - name:                                                     # string
+            value:                                                    # string
         tcpSocket:                                                    # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
-        initialDelaySeconds:                                          # int64
-        timeoutSeconds:                                               # int64
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+        initialDelaySeconds:                                          # int32
+        timeoutSeconds:                                               # int32
+        periodSeconds:                                                # int32
+        successThreshold:                                             # int32
+        failureThreshold:                                             # int32
       lifecycle:                                                      # k8s.io/kubernetes/pkg/api/v1.Lifecycle
         postStart:                                                    # k8s.io/kubernetes/pkg/api/v1.Handler
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction
@@ -1349,22 +1550,28 @@ items:                                                                # []k8s.io
             - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
             path:                                                     # string
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
             host:                                                     # string
             scheme: HTTP | HTTPS                                      # k8s.io/kubernetes/pkg/api/v1.URIScheme
+            httpHeaders:                                              # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+            - name:                                                   # string
+              value:                                                  # string
           tcpSocket:                                                  # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
         preStop:                                                      # k8s.io/kubernetes/pkg/api/v1.Handler
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction
             command:                                                  # []string
             - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
             path:                                                     # string
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
             host:                                                     # string
             scheme: HTTP | HTTPS                                      # k8s.io/kubernetes/pkg/api/v1.URIScheme
+            httpHeaders:                                              # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+            - name:                                                   # string
+              value:                                                  # string
           tcpSocket:                                                  # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
       terminationMessagePath:                                         # string
       imagePullPolicy: Always | IfNotPresent | Never                  # k8s.io/kubernetes/pkg/api/v1.PullPolicy
       securityContext:                                                # k8s.io/kubernetes/pkg/api/v1.SecurityContext
@@ -1381,6 +1588,7 @@ items:                                                                # []k8s.io
           level:                                                      # string
         runAsUser:                                                    # int64
         runAsNonRoot:                                                 # bool
+        readOnlyRootFilesystem:                                       # bool
       stdin:                                                          # bool
       stdinOnce:                                                      # bool
       tty:                                                            # bool
@@ -1390,7 +1598,7 @@ items:                                                                # []k8s.io
     dnsPolicy: ClusterFirst | Default                                 # k8s.io/kubernetes/pkg/api/v1.DNSPolicy
     nodeSelector:                                                     # map[string]string
       [string]:                                                       # string
-    host:                                                             # string (deprecated, use nodeName instead)
+    host:                                                             # string
     serviceAccountName:                                               # string
     serviceAccount:                                                   # string
     nodeName:                                                         # string
@@ -1433,8 +1641,8 @@ items:                                                                # []k8s.io
         running:                                                      # k8s.io/kubernetes/pkg/api/v1.ContainerStateRunning
           startedAt:                                                  # k8s.io/kubernetes/pkg/api/unversioned.Time
         terminated:                                                   # k8s.io/kubernetes/pkg/api/v1.ContainerStateTerminated
-          exitCode:                                                   # int
-          signal:                                                     # int
+          exitCode:                                                   # int32
+          signal:                                                     # int32
           reason:                                                     # string
           message:                                                    # string
           startedAt:                                                  # k8s.io/kubernetes/pkg/api/unversioned.Time
@@ -1447,15 +1655,15 @@ items:                                                                # []k8s.io
         running:                                                      # k8s.io/kubernetes/pkg/api/v1.ContainerStateRunning
           startedAt:                                                  # k8s.io/kubernetes/pkg/api/unversioned.Time
         terminated:                                                   # k8s.io/kubernetes/pkg/api/v1.ContainerStateTerminated
-          exitCode:                                                   # int
-          signal:                                                     # int
+          exitCode:                                                   # int32
+          signal:                                                     # int32
           reason:                                                     # string
           message:                                                    # string
           startedAt:                                                  # k8s.io/kubernetes/pkg/api/unversioned.Time
           finishedAt:                                                 # k8s.io/kubernetes/pkg/api/unversioned.Time
           containerID:                                                # string
       ready:                                                          # bool
-      restartCount:                                                   # int
+      restartCount:                                                   # int32
       image:                                                          # string
       imageID:                                                        # string
       containerID:                                                    # string
@@ -1530,8 +1738,8 @@ status:                                                               # k8s.io/k
       running:                                                        # k8s.io/kubernetes/pkg/api/v1.ContainerStateRunning
         startedAt:                                                    # k8s.io/kubernetes/pkg/api/unversioned.Time
       terminated:                                                     # k8s.io/kubernetes/pkg/api/v1.ContainerStateTerminated
-        exitCode:                                                     # int
-        signal:                                                       # int
+        exitCode:                                                     # int32
+        signal:                                                       # int32
         reason:                                                       # string
         message:                                                      # string
         startedAt:                                                    # k8s.io/kubernetes/pkg/api/unversioned.Time
@@ -1544,15 +1752,15 @@ status:                                                               # k8s.io/k
       running:                                                        # k8s.io/kubernetes/pkg/api/v1.ContainerStateRunning
         startedAt:                                                    # k8s.io/kubernetes/pkg/api/unversioned.Time
       terminated:                                                     # k8s.io/kubernetes/pkg/api/v1.ContainerStateTerminated
-        exitCode:                                                     # int
-        signal:                                                       # int
+        exitCode:                                                     # int32
+        signal:                                                       # int32
         reason:                                                       # string
         message:                                                      # string
         startedAt:                                                    # k8s.io/kubernetes/pkg/api/unversioned.Time
         finishedAt:                                                   # k8s.io/kubernetes/pkg/api/unversioned.Time
         containerID:                                                  # string
     ready:                                                            # bool
-    restartCount:                                                     # int
+    restartCount:                                                     # int32
     image:                                                            # string
     imageID:                                                          # string
     containerID:                                                      # string
@@ -1605,16 +1813,17 @@ template:                                                             # k8s.io/k
       gcePersistentDisk:                                              # k8s.io/kubernetes/pkg/api/v1.GCEPersistentDiskVolumeSource
         pdName:                                                       # string
         fsType:                                                       # string
-        partition:                                                    # int
+        partition:                                                    # int32
         readOnly:                                                     # bool
       awsElasticBlockStore:                                           # k8s.io/kubernetes/pkg/api/v1.AWSElasticBlockStoreVolumeSource
         volumeID:                                                     # string
         fsType:                                                       # string
-        partition:                                                    # int
+        partition:                                                    # int32
         readOnly:                                                     # bool
       gitRepo:                                                        # k8s.io/kubernetes/pkg/api/v1.GitRepoVolumeSource
         repository:                                                   # string
         revision:                                                     # string
+        directory:                                                    # string
       secret:                                                         # k8s.io/kubernetes/pkg/api/v1.SecretVolumeSource
         secretName:                                                   # string
       nfs:                                                            # k8s.io/kubernetes/pkg/api/v1.NFSVolumeSource
@@ -1624,7 +1833,8 @@ template:                                                             # k8s.io/k
       iscsi:                                                          # k8s.io/kubernetes/pkg/api/v1.ISCSIVolumeSource
         targetPortal:                                                 # string
         iqn:                                                          # string
-        lun:                                                          # int
+        lun:                                                          # int32
+        iscsiInterface:                                               # string
         fsType:                                                       # string
         readOnly:                                                     # bool
       glusterfs:                                                      # k8s.io/kubernetes/pkg/api/v1.GlusterfsVolumeSource
@@ -1645,6 +1855,14 @@ template:                                                             # k8s.io/k
         secretRef:                                                    # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
           name:                                                       # string
         readOnly:                                                     # bool
+      flexVolume:                                                     # k8s.io/kubernetes/pkg/api/v1.FlexVolumeSource
+        driver:                                                       # string
+        fsType:                                                       # string
+        secretRef:                                                    # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
+          name:                                                       # string
+        readOnly:                                                     # bool
+        options:                                                      # map[string]string
+          [string]:                                                   # string
       cinder:                                                         # k8s.io/kubernetes/pkg/api/v1.CinderVolumeSource
         volumeID:                                                     # string
         fsType:                                                       # string
@@ -1652,6 +1870,7 @@ template:                                                             # k8s.io/k
       cephfs:                                                         # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource
         monitors:                                                     # []string
         - [string]                                                    #
+        path:                                                         # string
         user:                                                         # string
         secretFile:                                                   # string
         secretRef:                                                    # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
@@ -1668,13 +1887,22 @@ template:                                                             # k8s.io/k
       fc:                                                             # k8s.io/kubernetes/pkg/api/v1.FCVolumeSource
         targetWWNs:                                                   # []string
         - [string]                                                    #
-        lun:                                                          # int
+        lun:                                                          # int32
         fsType:                                                       # string
         readOnly:                                                     # bool
+      azureFile:                                                      # k8s.io/kubernetes/pkg/api/v1.AzureFileVolumeSource
+        secretName:                                                   # string
+        shareName:                                                    # string
+        readOnly:                                                     # bool
+      configMap:                                                      # k8s.io/kubernetes/pkg/api/v1.ConfigMapVolumeSource
+        name:                                                         # string
+        items:                                                        # []k8s.io/kubernetes/pkg/api/v1.KeyToPath
+        - key:                                                        # string
+          path:                                                       # string
       metadata:                                                       # k8s.io/kubernetes/pkg/api/v1.MetadataVolumeSource
-        items:                                                        # []k8s.io/kubernetes/pkg/api/v1.MetadataFile (list of metadata files)
-        - name:                                                       # string (the name of the file to be created)
-          fieldRef:                                                   # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector (selects a field of the pod. Supported fields: metadata.annotations, metadata.labels, metadata.name, metadata.namespace)
+        items:                                                        # []k8s.io/kubernetes/pkg/api/v1.MetadataFile
+        - name:                                                       # string
+          fieldRef:                                                   # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
             apiVersion:                                               # string
             fieldPath:                                                # string
     containers:                                                       # []k8s.io/kubernetes/pkg/api/v1.Container
@@ -1687,8 +1915,8 @@ template:                                                             # k8s.io/k
       workingDir:                                                     # string
       ports:                                                          # []k8s.io/kubernetes/pkg/api/v1.ContainerPort
       - name:                                                         # string
-        hostPort:                                                     # int
-        containerPort:                                                # int
+        hostPort:                                                     # int32
+        containerPort:                                                # int32
         protocol: TCP | UDP                                           # k8s.io/kubernetes/pkg/api/v1.Protocol
         hostIP:                                                       # string
       env:                                                            # []k8s.io/kubernetes/pkg/api/v1.EnvVar
@@ -1698,6 +1926,12 @@ template:                                                             # k8s.io/k
           fieldRef:                                                   # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
             apiVersion:                                               # string
             fieldPath:                                                # string
+          configMapKeyRef:                                            # k8s.io/kubernetes/pkg/api/v1.ConfigMapKeySelector
+            name:                                                     # string
+            key:                                                      # string
+          secretKeyRef:                                               # k8s.io/kubernetes/pkg/api/v1.SecretKeySelector
+            name:                                                     # string
+            key:                                                      # string
       resources:                                                      # k8s.io/kubernetes/pkg/api/v1.ResourceRequirements
         limits:                                                       # k8s.io/kubernetes/pkg/api/v1.ResourceList
           [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                # k8s.io/kubernetes/pkg/api/resource.Quantity
@@ -1713,26 +1947,38 @@ template:                                                             # k8s.io/k
           - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
           path:                                                       # string
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
           host:                                                       # string
           scheme: HTTP | HTTPS                                        # k8s.io/kubernetes/pkg/api/v1.URIScheme
+          httpHeaders:                                                # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+          - name:                                                     # string
+            value:                                                    # string
         tcpSocket:                                                    # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
-        initialDelaySeconds:                                          # int64
-        timeoutSeconds:                                               # int64
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+        initialDelaySeconds:                                          # int32
+        timeoutSeconds:                                               # int32
+        periodSeconds:                                                # int32
+        successThreshold:                                             # int32
+        failureThreshold:                                             # int32
       readinessProbe:                                                 # k8s.io/kubernetes/pkg/api/v1.Probe
         exec:                                                         # k8s.io/kubernetes/pkg/api/v1.ExecAction
           command:                                                    # []string
           - [string]                                                  #
         httpGet:                                                      # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
           path:                                                       # string
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
           host:                                                       # string
           scheme: HTTP | HTTPS                                        # k8s.io/kubernetes/pkg/api/v1.URIScheme
+          httpHeaders:                                                # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+          - name:                                                     # string
+            value:                                                    # string
         tcpSocket:                                                    # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-          port:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
-        initialDelaySeconds:                                          # int64
-        timeoutSeconds:                                               # int64
+          port:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+        initialDelaySeconds:                                          # int32
+        timeoutSeconds:                                               # int32
+        periodSeconds:                                                # int32
+        successThreshold:                                             # int32
+        failureThreshold:                                             # int32
       lifecycle:                                                      # k8s.io/kubernetes/pkg/api/v1.Lifecycle
         postStart:                                                    # k8s.io/kubernetes/pkg/api/v1.Handler
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction
@@ -1740,22 +1986,28 @@ template:                                                             # k8s.io/k
             - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
             path:                                                     # string
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
             host:                                                     # string
             scheme: HTTP | HTTPS                                      # k8s.io/kubernetes/pkg/api/v1.URIScheme
+            httpHeaders:                                              # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+            - name:                                                   # string
+              value:                                                  # string
           tcpSocket:                                                  # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
         preStop:                                                      # k8s.io/kubernetes/pkg/api/v1.Handler
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction
             command:                                                  # []string
             - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
             path:                                                     # string
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
             host:                                                     # string
             scheme: HTTP | HTTPS                                      # k8s.io/kubernetes/pkg/api/v1.URIScheme
+            httpHeaders:                                              # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+            - name:                                                   # string
+              value:                                                  # string
           tcpSocket:                                                  # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
       terminationMessagePath:                                         # string
       imagePullPolicy: Always | IfNotPresent | Never                  # k8s.io/kubernetes/pkg/api/v1.PullPolicy
       securityContext:                                                # k8s.io/kubernetes/pkg/api/v1.SecurityContext
@@ -1772,6 +2024,7 @@ template:                                                             # k8s.io/k
           level:                                                      # string
         runAsUser:                                                    # int64
         runAsNonRoot:                                                 # bool
+        readOnlyRootFilesystem:                                       # bool
       stdin:                                                          # bool
       stdinOnce:                                                      # bool
       tty:                                                            # bool
@@ -1781,7 +2034,7 @@ template:                                                             # k8s.io/k
     dnsPolicy: ClusterFirst | Default                                 # k8s.io/kubernetes/pkg/api/v1.DNSPolicy
     nodeSelector:                                                     # map[string]string
       [string]:                                                       # string
-    host:                                                             # string (deprecated, use nodeName instead)
+    host:                                                             # string
     serviceAccountName:                                               # string
     serviceAccount:                                                   # string
     nodeName:                                                         # string
@@ -1856,16 +2109,17 @@ items:                                                                # []k8s.io
         gcePersistentDisk:                                            # k8s.io/kubernetes/pkg/api/v1.GCEPersistentDiskVolumeSource
           pdName:                                                     # string
           fsType:                                                     # string
-          partition:                                                  # int
+          partition:                                                  # int32
           readOnly:                                                   # bool
         awsElasticBlockStore:                                         # k8s.io/kubernetes/pkg/api/v1.AWSElasticBlockStoreVolumeSource
           volumeID:                                                   # string
           fsType:                                                     # string
-          partition:                                                  # int
+          partition:                                                  # int32
           readOnly:                                                   # bool
         gitRepo:                                                      # k8s.io/kubernetes/pkg/api/v1.GitRepoVolumeSource
           repository:                                                 # string
           revision:                                                   # string
+          directory:                                                  # string
         secret:                                                       # k8s.io/kubernetes/pkg/api/v1.SecretVolumeSource
           secretName:                                                 # string
         nfs:                                                          # k8s.io/kubernetes/pkg/api/v1.NFSVolumeSource
@@ -1875,7 +2129,8 @@ items:                                                                # []k8s.io
         iscsi:                                                        # k8s.io/kubernetes/pkg/api/v1.ISCSIVolumeSource
           targetPortal:                                               # string
           iqn:                                                        # string
-          lun:                                                        # int
+          lun:                                                        # int32
+          iscsiInterface:                                             # string
           fsType:                                                     # string
           readOnly:                                                   # bool
         glusterfs:                                                    # k8s.io/kubernetes/pkg/api/v1.GlusterfsVolumeSource
@@ -1896,6 +2151,14 @@ items:                                                                # []k8s.io
           secretRef:                                                  # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
             name:                                                     # string
           readOnly:                                                   # bool
+        flexVolume:                                                   # k8s.io/kubernetes/pkg/api/v1.FlexVolumeSource
+          driver:                                                     # string
+          fsType:                                                     # string
+          secretRef:                                                  # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
+            name:                                                     # string
+          readOnly:                                                   # bool
+          options:                                                    # map[string]string
+            [string]:                                                 # string
         cinder:                                                       # k8s.io/kubernetes/pkg/api/v1.CinderVolumeSource
           volumeID:                                                   # string
           fsType:                                                     # string
@@ -1903,6 +2166,7 @@ items:                                                                # []k8s.io
         cephfs:                                                       # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource
           monitors:                                                   # []string
           - [string]                                                  #
+          path:                                                       # string
           user:                                                       # string
           secretFile:                                                 # string
           secretRef:                                                  # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
@@ -1919,13 +2183,22 @@ items:                                                                # []k8s.io
         fc:                                                           # k8s.io/kubernetes/pkg/api/v1.FCVolumeSource
           targetWWNs:                                                 # []string
           - [string]                                                  #
-          lun:                                                        # int
+          lun:                                                        # int32
           fsType:                                                     # string
           readOnly:                                                   # bool
+        azureFile:                                                    # k8s.io/kubernetes/pkg/api/v1.AzureFileVolumeSource
+          secretName:                                                 # string
+          shareName:                                                  # string
+          readOnly:                                                   # bool
+        configMap:                                                    # k8s.io/kubernetes/pkg/api/v1.ConfigMapVolumeSource
+          name:                                                       # string
+          items:                                                      # []k8s.io/kubernetes/pkg/api/v1.KeyToPath
+          - key:                                                      # string
+            path:                                                     # string
         metadata:                                                     # k8s.io/kubernetes/pkg/api/v1.MetadataVolumeSource
-          items:                                                      # []k8s.io/kubernetes/pkg/api/v1.MetadataFile (list of metadata files)
-          - name:                                                     # string (the name of the file to be created)
-            fieldRef:                                                 # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector (selects a field of the pod. Supported fields: metadata.annotations, metadata.labels, metadata.name, metadata.namespace)
+          items:                                                      # []k8s.io/kubernetes/pkg/api/v1.MetadataFile
+          - name:                                                     # string
+            fieldRef:                                                 # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
               apiVersion:                                             # string
               fieldPath:                                              # string
       containers:                                                     # []k8s.io/kubernetes/pkg/api/v1.Container
@@ -1938,8 +2211,8 @@ items:                                                                # []k8s.io
         workingDir:                                                   # string
         ports:                                                        # []k8s.io/kubernetes/pkg/api/v1.ContainerPort
         - name:                                                       # string
-          hostPort:                                                   # int
-          containerPort:                                              # int
+          hostPort:                                                   # int32
+          containerPort:                                              # int32
           protocol: TCP | UDP                                         # k8s.io/kubernetes/pkg/api/v1.Protocol
           hostIP:                                                     # string
         env:                                                          # []k8s.io/kubernetes/pkg/api/v1.EnvVar
@@ -1949,6 +2222,12 @@ items:                                                                # []k8s.io
             fieldRef:                                                 # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
               apiVersion:                                             # string
               fieldPath:                                              # string
+            configMapKeyRef:                                          # k8s.io/kubernetes/pkg/api/v1.ConfigMapKeySelector
+              name:                                                   # string
+              key:                                                    # string
+            secretKeyRef:                                             # k8s.io/kubernetes/pkg/api/v1.SecretKeySelector
+              name:                                                   # string
+              key:                                                    # string
         resources:                                                    # k8s.io/kubernetes/pkg/api/v1.ResourceRequirements
           limits:                                                     # k8s.io/kubernetes/pkg/api/v1.ResourceList
             [k8s.io/kubernetes/pkg/api/v1.ResourceName]:              # k8s.io/kubernetes/pkg/api/resource.Quantity
@@ -1964,26 +2243,38 @@ items:                                                                # []k8s.io
             - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
             path:                                                     # string
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
             host:                                                     # string
             scheme: HTTP | HTTPS                                      # k8s.io/kubernetes/pkg/api/v1.URIScheme
+            httpHeaders:                                              # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+            - name:                                                   # string
+              value:                                                  # string
           tcpSocket:                                                  # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
-          initialDelaySeconds:                                        # int64
-          timeoutSeconds:                                             # int64
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+          initialDelaySeconds:                                        # int32
+          timeoutSeconds:                                             # int32
+          periodSeconds:                                              # int32
+          successThreshold:                                           # int32
+          failureThreshold:                                           # int32
         readinessProbe:                                               # k8s.io/kubernetes/pkg/api/v1.Probe
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction
             command:                                                  # []string
             - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
             path:                                                     # string
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
             host:                                                     # string
             scheme: HTTP | HTTPS                                      # k8s.io/kubernetes/pkg/api/v1.URIScheme
+            httpHeaders:                                              # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+            - name:                                                   # string
+              value:                                                  # string
           tcpSocket:                                                  # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
-          initialDelaySeconds:                                        # int64
-          timeoutSeconds:                                             # int64
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+          initialDelaySeconds:                                        # int32
+          timeoutSeconds:                                             # int32
+          periodSeconds:                                              # int32
+          successThreshold:                                           # int32
+          failureThreshold:                                           # int32
         lifecycle:                                                    # k8s.io/kubernetes/pkg/api/v1.Lifecycle
           postStart:                                                  # k8s.io/kubernetes/pkg/api/v1.Handler
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction
@@ -1991,22 +2282,28 @@ items:                                                                # []k8s.io
               - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
               path:                                                   # string
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
               host:                                                   # string
               scheme: HTTP | HTTPS                                    # k8s.io/kubernetes/pkg/api/v1.URIScheme
+              httpHeaders:                                            # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+              - name:                                                 # string
+                value:                                                # string
             tcpSocket:                                                # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
           preStop:                                                    # k8s.io/kubernetes/pkg/api/v1.Handler
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction
               command:                                                # []string
               - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
               path:                                                   # string
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
               host:                                                   # string
               scheme: HTTP | HTTPS                                    # k8s.io/kubernetes/pkg/api/v1.URIScheme
+              httpHeaders:                                            # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+              - name:                                                 # string
+                value:                                                # string
             tcpSocket:                                                # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
         terminationMessagePath:                                       # string
         imagePullPolicy: Always | IfNotPresent | Never                # k8s.io/kubernetes/pkg/api/v1.PullPolicy
         securityContext:                                              # k8s.io/kubernetes/pkg/api/v1.SecurityContext
@@ -2023,6 +2320,7 @@ items:                                                                # []k8s.io
             level:                                                    # string
           runAsUser:                                                  # int64
           runAsNonRoot:                                               # bool
+          readOnlyRootFilesystem:                                     # bool
         stdin:                                                        # bool
         stdinOnce:                                                    # bool
         tty:                                                          # bool
@@ -2032,7 +2330,7 @@ items:                                                                # []k8s.io
       dnsPolicy: ClusterFirst | Default                               # k8s.io/kubernetes/pkg/api/v1.DNSPolicy
       nodeSelector:                                                   # map[string]string
         [string]:                                                     # string
-      host:                                                           # string (deprecated, use nodeName instead)
+      host:                                                           # string
       serviceAccountName:                                             # string
       serviceAccount:                                                 # string
       nodeName:                                                       # string
@@ -2102,7 +2400,7 @@ metadata:                                                             # k8s.io/k
   annotations:                                                        # map[string]string
     [string]:                                                         # string
 spec:                                                                 # k8s.io/kubernetes/pkg/api/v1.ReplicationControllerSpec
-  replicas:                                                           # int
+  replicas:                                                           # int32
   selector:                                                           # map[string]string
     [string]:                                                         # string
   template:                                                           # k8s.io/kubernetes/pkg/api/v1.PodTemplateSpec
@@ -2131,16 +2429,17 @@ spec:                                                                 # k8s.io/k
         gcePersistentDisk:                                            # k8s.io/kubernetes/pkg/api/v1.GCEPersistentDiskVolumeSource
           pdName:                                                     # string
           fsType:                                                     # string
-          partition:                                                  # int
+          partition:                                                  # int32
           readOnly:                                                   # bool
         awsElasticBlockStore:                                         # k8s.io/kubernetes/pkg/api/v1.AWSElasticBlockStoreVolumeSource
           volumeID:                                                   # string
           fsType:                                                     # string
-          partition:                                                  # int
+          partition:                                                  # int32
           readOnly:                                                   # bool
         gitRepo:                                                      # k8s.io/kubernetes/pkg/api/v1.GitRepoVolumeSource
           repository:                                                 # string
           revision:                                                   # string
+          directory:                                                  # string
         secret:                                                       # k8s.io/kubernetes/pkg/api/v1.SecretVolumeSource
           secretName:                                                 # string
         nfs:                                                          # k8s.io/kubernetes/pkg/api/v1.NFSVolumeSource
@@ -2150,7 +2449,8 @@ spec:                                                                 # k8s.io/k
         iscsi:                                                        # k8s.io/kubernetes/pkg/api/v1.ISCSIVolumeSource
           targetPortal:                                               # string
           iqn:                                                        # string
-          lun:                                                        # int
+          lun:                                                        # int32
+          iscsiInterface:                                             # string
           fsType:                                                     # string
           readOnly:                                                   # bool
         glusterfs:                                                    # k8s.io/kubernetes/pkg/api/v1.GlusterfsVolumeSource
@@ -2171,6 +2471,14 @@ spec:                                                                 # k8s.io/k
           secretRef:                                                  # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
             name:                                                     # string
           readOnly:                                                   # bool
+        flexVolume:                                                   # k8s.io/kubernetes/pkg/api/v1.FlexVolumeSource
+          driver:                                                     # string
+          fsType:                                                     # string
+          secretRef:                                                  # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
+            name:                                                     # string
+          readOnly:                                                   # bool
+          options:                                                    # map[string]string
+            [string]:                                                 # string
         cinder:                                                       # k8s.io/kubernetes/pkg/api/v1.CinderVolumeSource
           volumeID:                                                   # string
           fsType:                                                     # string
@@ -2178,6 +2486,7 @@ spec:                                                                 # k8s.io/k
         cephfs:                                                       # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource
           monitors:                                                   # []string
           - [string]                                                  #
+          path:                                                       # string
           user:                                                       # string
           secretFile:                                                 # string
           secretRef:                                                  # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
@@ -2194,13 +2503,22 @@ spec:                                                                 # k8s.io/k
         fc:                                                           # k8s.io/kubernetes/pkg/api/v1.FCVolumeSource
           targetWWNs:                                                 # []string
           - [string]                                                  #
-          lun:                                                        # int
+          lun:                                                        # int32
           fsType:                                                     # string
           readOnly:                                                   # bool
+        azureFile:                                                    # k8s.io/kubernetes/pkg/api/v1.AzureFileVolumeSource
+          secretName:                                                 # string
+          shareName:                                                  # string
+          readOnly:                                                   # bool
+        configMap:                                                    # k8s.io/kubernetes/pkg/api/v1.ConfigMapVolumeSource
+          name:                                                       # string
+          items:                                                      # []k8s.io/kubernetes/pkg/api/v1.KeyToPath
+          - key:                                                      # string
+            path:                                                     # string
         metadata:                                                     # k8s.io/kubernetes/pkg/api/v1.MetadataVolumeSource
-          items:                                                      # []k8s.io/kubernetes/pkg/api/v1.MetadataFile (list of metadata files)
-          - name:                                                     # string (the name of the file to be created)
-            fieldRef:                                                 # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector (selects a field of the pod. Supported fields: metadata.annotations, metadata.labels, metadata.name, metadata.namespace)
+          items:                                                      # []k8s.io/kubernetes/pkg/api/v1.MetadataFile
+          - name:                                                     # string
+            fieldRef:                                                 # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
               apiVersion:                                             # string
               fieldPath:                                              # string
       containers:                                                     # []k8s.io/kubernetes/pkg/api/v1.Container
@@ -2213,8 +2531,8 @@ spec:                                                                 # k8s.io/k
         workingDir:                                                   # string
         ports:                                                        # []k8s.io/kubernetes/pkg/api/v1.ContainerPort
         - name:                                                       # string
-          hostPort:                                                   # int
-          containerPort:                                              # int
+          hostPort:                                                   # int32
+          containerPort:                                              # int32
           protocol: TCP | UDP                                         # k8s.io/kubernetes/pkg/api/v1.Protocol
           hostIP:                                                     # string
         env:                                                          # []k8s.io/kubernetes/pkg/api/v1.EnvVar
@@ -2224,6 +2542,12 @@ spec:                                                                 # k8s.io/k
             fieldRef:                                                 # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
               apiVersion:                                             # string
               fieldPath:                                              # string
+            configMapKeyRef:                                          # k8s.io/kubernetes/pkg/api/v1.ConfigMapKeySelector
+              name:                                                   # string
+              key:                                                    # string
+            secretKeyRef:                                             # k8s.io/kubernetes/pkg/api/v1.SecretKeySelector
+              name:                                                   # string
+              key:                                                    # string
         resources:                                                    # k8s.io/kubernetes/pkg/api/v1.ResourceRequirements
           limits:                                                     # k8s.io/kubernetes/pkg/api/v1.ResourceList
             [k8s.io/kubernetes/pkg/api/v1.ResourceName]:              # k8s.io/kubernetes/pkg/api/resource.Quantity
@@ -2239,26 +2563,38 @@ spec:                                                                 # k8s.io/k
             - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
             path:                                                     # string
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
             host:                                                     # string
             scheme: HTTP | HTTPS                                      # k8s.io/kubernetes/pkg/api/v1.URIScheme
+            httpHeaders:                                              # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+            - name:                                                   # string
+              value:                                                  # string
           tcpSocket:                                                  # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
-          initialDelaySeconds:                                        # int64
-          timeoutSeconds:                                             # int64
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+          initialDelaySeconds:                                        # int32
+          timeoutSeconds:                                             # int32
+          periodSeconds:                                              # int32
+          successThreshold:                                           # int32
+          failureThreshold:                                           # int32
         readinessProbe:                                               # k8s.io/kubernetes/pkg/api/v1.Probe
           exec:                                                       # k8s.io/kubernetes/pkg/api/v1.ExecAction
             command:                                                  # []string
             - [string]                                                #
           httpGet:                                                    # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
             path:                                                     # string
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
             host:                                                     # string
             scheme: HTTP | HTTPS                                      # k8s.io/kubernetes/pkg/api/v1.URIScheme
+            httpHeaders:                                              # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+            - name:                                                   # string
+              value:                                                  # string
           tcpSocket:                                                  # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-            port:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
-          initialDelaySeconds:                                        # int64
-          timeoutSeconds:                                             # int64
+            port:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+          initialDelaySeconds:                                        # int32
+          timeoutSeconds:                                             # int32
+          periodSeconds:                                              # int32
+          successThreshold:                                           # int32
+          failureThreshold:                                           # int32
         lifecycle:                                                    # k8s.io/kubernetes/pkg/api/v1.Lifecycle
           postStart:                                                  # k8s.io/kubernetes/pkg/api/v1.Handler
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction
@@ -2266,22 +2602,28 @@ spec:                                                                 # k8s.io/k
               - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
               path:                                                   # string
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
               host:                                                   # string
               scheme: HTTP | HTTPS                                    # k8s.io/kubernetes/pkg/api/v1.URIScheme
+              httpHeaders:                                            # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+              - name:                                                 # string
+                value:                                                # string
             tcpSocket:                                                # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
           preStop:                                                    # k8s.io/kubernetes/pkg/api/v1.Handler
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction
               command:                                                # []string
               - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
               path:                                                   # string
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
               host:                                                   # string
               scheme: HTTP | HTTPS                                    # k8s.io/kubernetes/pkg/api/v1.URIScheme
+              httpHeaders:                                            # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+              - name:                                                 # string
+                value:                                                # string
             tcpSocket:                                                # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
         terminationMessagePath:                                       # string
         imagePullPolicy: Always | IfNotPresent | Never                # k8s.io/kubernetes/pkg/api/v1.PullPolicy
         securityContext:                                              # k8s.io/kubernetes/pkg/api/v1.SecurityContext
@@ -2298,6 +2640,7 @@ spec:                                                                 # k8s.io/k
             level:                                                    # string
           runAsUser:                                                  # int64
           runAsNonRoot:                                               # bool
+          readOnlyRootFilesystem:                                     # bool
         stdin:                                                        # bool
         stdinOnce:                                                    # bool
         tty:                                                          # bool
@@ -2307,7 +2650,7 @@ spec:                                                                 # k8s.io/k
       dnsPolicy: ClusterFirst | Default                               # k8s.io/kubernetes/pkg/api/v1.DNSPolicy
       nodeSelector:                                                   # map[string]string
         [string]:                                                     # string
-      host:                                                           # string (deprecated, use nodeName instead)
+      host:                                                           # string
       serviceAccountName:                                             # string
       serviceAccount:                                                 # string
       nodeName:                                                       # string
@@ -2328,7 +2671,8 @@ spec:                                                                 # k8s.io/k
       imagePullSecrets:                                               # []k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
       - name:                                                         # string
 status:                                                               # k8s.io/kubernetes/pkg/api/v1.ReplicationControllerStatus
-  replicas:                                                           # int
+  replicas:                                                           # int32
+  fullyLabeledReplicas:                                               # int32
   observedGeneration:                                                 # int64
 
 ReplicationControllerList
@@ -2360,7 +2704,7 @@ items:                                                                # []k8s.io
     annotations:                                                      # map[string]string
       [string]:                                                       # string
   spec:                                                               # k8s.io/kubernetes/pkg/api/v1.ReplicationControllerSpec
-    replicas:                                                         # int
+    replicas:                                                         # int32
     selector:                                                         # map[string]string
       [string]:                                                       # string
     template:                                                         # k8s.io/kubernetes/pkg/api/v1.PodTemplateSpec
@@ -2389,16 +2733,17 @@ items:                                                                # []k8s.io
           gcePersistentDisk:                                          # k8s.io/kubernetes/pkg/api/v1.GCEPersistentDiskVolumeSource
             pdName:                                                   # string
             fsType:                                                   # string
-            partition:                                                # int
+            partition:                                                # int32
             readOnly:                                                 # bool
           awsElasticBlockStore:                                       # k8s.io/kubernetes/pkg/api/v1.AWSElasticBlockStoreVolumeSource
             volumeID:                                                 # string
             fsType:                                                   # string
-            partition:                                                # int
+            partition:                                                # int32
             readOnly:                                                 # bool
           gitRepo:                                                    # k8s.io/kubernetes/pkg/api/v1.GitRepoVolumeSource
             repository:                                               # string
             revision:                                                 # string
+            directory:                                                # string
           secret:                                                     # k8s.io/kubernetes/pkg/api/v1.SecretVolumeSource
             secretName:                                               # string
           nfs:                                                        # k8s.io/kubernetes/pkg/api/v1.NFSVolumeSource
@@ -2408,7 +2753,8 @@ items:                                                                # []k8s.io
           iscsi:                                                      # k8s.io/kubernetes/pkg/api/v1.ISCSIVolumeSource
             targetPortal:                                             # string
             iqn:                                                      # string
-            lun:                                                      # int
+            lun:                                                      # int32
+            iscsiInterface:                                           # string
             fsType:                                                   # string
             readOnly:                                                 # bool
           glusterfs:                                                  # k8s.io/kubernetes/pkg/api/v1.GlusterfsVolumeSource
@@ -2429,6 +2775,14 @@ items:                                                                # []k8s.io
             secretRef:                                                # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
               name:                                                   # string
             readOnly:                                                 # bool
+          flexVolume:                                                 # k8s.io/kubernetes/pkg/api/v1.FlexVolumeSource
+            driver:                                                   # string
+            fsType:                                                   # string
+            secretRef:                                                # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
+              name:                                                   # string
+            readOnly:                                                 # bool
+            options:                                                  # map[string]string
+              [string]:                                               # string
           cinder:                                                     # k8s.io/kubernetes/pkg/api/v1.CinderVolumeSource
             volumeID:                                                 # string
             fsType:                                                   # string
@@ -2436,6 +2790,7 @@ items:                                                                # []k8s.io
           cephfs:                                                     # k8s.io/kubernetes/pkg/api/v1.CephFSVolumeSource
             monitors:                                                 # []string
             - [string]                                                #
+            path:                                                     # string
             user:                                                     # string
             secretFile:                                               # string
             secretRef:                                                # k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
@@ -2452,13 +2807,22 @@ items:                                                                # []k8s.io
           fc:                                                         # k8s.io/kubernetes/pkg/api/v1.FCVolumeSource
             targetWWNs:                                               # []string
             - [string]                                                #
-            lun:                                                      # int
+            lun:                                                      # int32
             fsType:                                                   # string
             readOnly:                                                 # bool
+          azureFile:                                                  # k8s.io/kubernetes/pkg/api/v1.AzureFileVolumeSource
+            secretName:                                               # string
+            shareName:                                                # string
+            readOnly:                                                 # bool
+          configMap:                                                  # k8s.io/kubernetes/pkg/api/v1.ConfigMapVolumeSource
+            name:                                                     # string
+            items:                                                    # []k8s.io/kubernetes/pkg/api/v1.KeyToPath
+            - key:                                                    # string
+              path:                                                   # string
           metadata:                                                   # k8s.io/kubernetes/pkg/api/v1.MetadataVolumeSource
-            items:                                                    # []k8s.io/kubernetes/pkg/api/v1.MetadataFile (list of metadata files)
-            - name:                                                   # string (the name of the file to be created)
-              fieldRef:                                               # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector (selects a field of the pod. Supported fields: metadata.annotations, metadata.labels, metadata.name, metadata.namespace)
+            items:                                                    # []k8s.io/kubernetes/pkg/api/v1.MetadataFile
+            - name:                                                   # string
+              fieldRef:                                               # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
                 apiVersion:                                           # string
                 fieldPath:                                            # string
         containers:                                                   # []k8s.io/kubernetes/pkg/api/v1.Container
@@ -2471,8 +2835,8 @@ items:                                                                # []k8s.io
           workingDir:                                                 # string
           ports:                                                      # []k8s.io/kubernetes/pkg/api/v1.ContainerPort
           - name:                                                     # string
-            hostPort:                                                 # int
-            containerPort:                                            # int
+            hostPort:                                                 # int32
+            containerPort:                                            # int32
             protocol: TCP | UDP                                       # k8s.io/kubernetes/pkg/api/v1.Protocol
             hostIP:                                                   # string
           env:                                                        # []k8s.io/kubernetes/pkg/api/v1.EnvVar
@@ -2482,6 +2846,12 @@ items:                                                                # []k8s.io
               fieldRef:                                               # k8s.io/kubernetes/pkg/api/v1.ObjectFieldSelector
                 apiVersion:                                           # string
                 fieldPath:                                            # string
+              configMapKeyRef:                                        # k8s.io/kubernetes/pkg/api/v1.ConfigMapKeySelector
+                name:                                                 # string
+                key:                                                  # string
+              secretKeyRef:                                           # k8s.io/kubernetes/pkg/api/v1.SecretKeySelector
+                name:                                                 # string
+                key:                                                  # string
           resources:                                                  # k8s.io/kubernetes/pkg/api/v1.ResourceRequirements
             limits:                                                   # k8s.io/kubernetes/pkg/api/v1.ResourceList
               [k8s.io/kubernetes/pkg/api/v1.ResourceName]:            # k8s.io/kubernetes/pkg/api/resource.Quantity
@@ -2497,26 +2867,38 @@ items:                                                                # []k8s.io
               - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
               path:                                                   # string
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
               host:                                                   # string
               scheme: HTTP | HTTPS                                    # k8s.io/kubernetes/pkg/api/v1.URIScheme
+              httpHeaders:                                            # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+              - name:                                                 # string
+                value:                                                # string
             tcpSocket:                                                # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
-            initialDelaySeconds:                                      # int64
-            timeoutSeconds:                                           # int64
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+            initialDelaySeconds:                                      # int32
+            timeoutSeconds:                                           # int32
+            periodSeconds:                                            # int32
+            successThreshold:                                         # int32
+            failureThreshold:                                         # int32
           readinessProbe:                                             # k8s.io/kubernetes/pkg/api/v1.Probe
             exec:                                                     # k8s.io/kubernetes/pkg/api/v1.ExecAction
               command:                                                # []string
               - [string]                                              #
             httpGet:                                                  # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
               path:                                                   # string
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
               host:                                                   # string
               scheme: HTTP | HTTPS                                    # k8s.io/kubernetes/pkg/api/v1.URIScheme
+              httpHeaders:                                            # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+              - name:                                                 # string
+                value:                                                # string
             tcpSocket:                                                # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-              port:                                                   # k8s.io/kubernetes/pkg/util.IntOrString
-            initialDelaySeconds:                                      # int64
-            timeoutSeconds:                                           # int64
+              port:                                                   # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+            initialDelaySeconds:                                      # int32
+            timeoutSeconds:                                           # int32
+            periodSeconds:                                            # int32
+            successThreshold:                                         # int32
+            failureThreshold:                                         # int32
           lifecycle:                                                  # k8s.io/kubernetes/pkg/api/v1.Lifecycle
             postStart:                                                # k8s.io/kubernetes/pkg/api/v1.Handler
               exec:                                                   # k8s.io/kubernetes/pkg/api/v1.ExecAction
@@ -2524,22 +2906,28 @@ items:                                                                # []k8s.io
                 - [string]                                            #
               httpGet:                                                # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
                 path:                                                 # string
-                port:                                                 # k8s.io/kubernetes/pkg/util.IntOrString
+                port:                                                 # k8s.io/kubernetes/pkg/util/intstr.IntOrString
                 host:                                                 # string
                 scheme: HTTP | HTTPS                                  # k8s.io/kubernetes/pkg/api/v1.URIScheme
+                httpHeaders:                                          # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+                - name:                                               # string
+                  value:                                              # string
               tcpSocket:                                              # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-                port:                                                 # k8s.io/kubernetes/pkg/util.IntOrString
+                port:                                                 # k8s.io/kubernetes/pkg/util/intstr.IntOrString
             preStop:                                                  # k8s.io/kubernetes/pkg/api/v1.Handler
               exec:                                                   # k8s.io/kubernetes/pkg/api/v1.ExecAction
                 command:                                              # []string
                 - [string]                                            #
               httpGet:                                                # k8s.io/kubernetes/pkg/api/v1.HTTPGetAction
                 path:                                                 # string
-                port:                                                 # k8s.io/kubernetes/pkg/util.IntOrString
+                port:                                                 # k8s.io/kubernetes/pkg/util/intstr.IntOrString
                 host:                                                 # string
                 scheme: HTTP | HTTPS                                  # k8s.io/kubernetes/pkg/api/v1.URIScheme
+                httpHeaders:                                          # []k8s.io/kubernetes/pkg/api/v1.HTTPHeader
+                - name:                                               # string
+                  value:                                              # string
               tcpSocket:                                              # k8s.io/kubernetes/pkg/api/v1.TCPSocketAction
-                port:                                                 # k8s.io/kubernetes/pkg/util.IntOrString
+                port:                                                 # k8s.io/kubernetes/pkg/util/intstr.IntOrString
           terminationMessagePath:                                     # string
           imagePullPolicy: Always | IfNotPresent | Never              # k8s.io/kubernetes/pkg/api/v1.PullPolicy
           securityContext:                                            # k8s.io/kubernetes/pkg/api/v1.SecurityContext
@@ -2556,6 +2944,7 @@ items:                                                                # []k8s.io
               level:                                                  # string
             runAsUser:                                                # int64
             runAsNonRoot:                                             # bool
+            readOnlyRootFilesystem:                                   # bool
           stdin:                                                      # bool
           stdinOnce:                                                  # bool
           tty:                                                        # bool
@@ -2565,7 +2954,7 @@ items:                                                                # []k8s.io
         dnsPolicy: ClusterFirst | Default                             # k8s.io/kubernetes/pkg/api/v1.DNSPolicy
         nodeSelector:                                                 # map[string]string
           [string]:                                                   # string
-        host:                                                         # string (deprecated, use nodeName instead)
+        host:                                                         # string
         serviceAccountName:                                           # string
         serviceAccount:                                               # string
         nodeName:                                                     # string
@@ -2586,7 +2975,8 @@ items:                                                                # []k8s.io
         imagePullSecrets:                                             # []k8s.io/kubernetes/pkg/api/v1.LocalObjectReference
         - name:                                                       # string
   status:                                                             # k8s.io/kubernetes/pkg/api/v1.ReplicationControllerStatus
-    replicas:                                                         # int
+    replicas:                                                         # int32
+    fullyLabeledReplicas:                                             # int32
     observedGeneration:                                               # int64
 
 ResourceQuota
@@ -2614,6 +3004,8 @@ metadata:                                                             # k8s.io/k
 spec:                                                                 # k8s.io/kubernetes/pkg/api/v1.ResourceQuotaSpec
   hard:                                                               # k8s.io/kubernetes/pkg/api/v1.ResourceList
     [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                      # k8s.io/kubernetes/pkg/api/resource.Quantity
+  scopes:                                                             # []k8s.io/kubernetes/pkg/api/v1.ResourceQuotaScope
+  - [k8s.io/kubernetes/pkg/api/v1.ResourceQuotaScope]                 #
 status:                                                               # k8s.io/kubernetes/pkg/api/v1.ResourceQuotaStatus
   hard:                                                               # k8s.io/kubernetes/pkg/api/v1.ResourceList
     [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                      # k8s.io/kubernetes/pkg/api/resource.Quantity
@@ -2651,6 +3043,8 @@ items:                                                                # []k8s.io
   spec:                                                               # k8s.io/kubernetes/pkg/api/v1.ResourceQuotaSpec
     hard:                                                             # k8s.io/kubernetes/pkg/api/v1.ResourceList
       [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                    # k8s.io/kubernetes/pkg/api/resource.Quantity
+    scopes:                                                           # []k8s.io/kubernetes/pkg/api/v1.ResourceQuotaScope
+    - [k8s.io/kubernetes/pkg/api/v1.ResourceQuotaScope]               #
   status:                                                             # k8s.io/kubernetes/pkg/api/v1.ResourceQuotaStatus
     hard:                                                             # k8s.io/kubernetes/pkg/api/v1.ResourceList
       [k8s.io/kubernetes/pkg/api/v1.ResourceName]:                    # k8s.io/kubernetes/pkg/api/resource.Quantity
@@ -2682,7 +3076,7 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 data:                                                                 # map[string][]byte
   [string]:                                                           # []byte
-type: Opaque | kubernetes.io/dockercfg | kubernetes.io/service-account-token # k8s.io/kubernetes/pkg/api/v1.SecretType
+type: Opaque | kubernetes.io/dockercfg | kubernetes.io/service-account-token | kubernetes.io/tls # k8s.io/kubernetes/pkg/api/v1.SecretType
 
 SecretList
 ==========
@@ -2714,7 +3108,7 @@ items:                                                                # []k8s.io
       [string]:                                                       # string
   data:                                                               # map[string][]byte
     [string]:                                                         # []byte
-  type: Opaque | kubernetes.io/dockercfg | kubernetes.io/service-account-token # k8s.io/kubernetes/pkg/api/v1.SecretType
+  type: Opaque | kubernetes.io/dockercfg | kubernetes.io/service-account-token | kubernetes.io/tls # k8s.io/kubernetes/pkg/api/v1.SecretType
 
 SecurityContextConstraints
 ==========================
@@ -2741,9 +3135,15 @@ metadata:                                                             # k8s.io/k
     [string]:                                                         # string
 priority:                                                             # int (determines which SCC is used when multiple SCCs allow a particular pod; higher priority SCCs are preferred)
 allowPrivilegedContainer:                                             # bool (allow containers to run as privileged)
+defaultAddCapabilities:                                               # []k8s.io/kubernetes/pkg/api/v1.Capability (capabilities that are added by default but may be dropped)
+- [k8s.io/kubernetes/pkg/api/v1.Capability]                           #
+requiredDropCapabilities:                                             # []k8s.io/kubernetes/pkg/api/v1.Capability (capabilities that will be dropped by default and may not be added)
+- [k8s.io/kubernetes/pkg/api/v1.Capability]                           #
 allowedCapabilities:                                                  # []k8s.io/kubernetes/pkg/api/v1.Capability (capabilities that are allowed to be added)
 - [k8s.io/kubernetes/pkg/api/v1.Capability]                           #
 allowHostDirVolumePlugin:                                             # bool (allow the use of the host dir volume plugin)
+volumes:                                                              # []k8s.io/kubernetes/pkg/api/v1.FSType
+- [k8s.io/kubernetes/pkg/api/v1.FSType]                               #
 allowHostNetwork:                                                     # bool (allow the use of the hostNetwork in the pod spec)
 allowHostPorts:                                                       # bool (allow the use of the host ports in the containers)
 allowHostPID:                                                         # bool (allow the use of the host pid in the containers)
@@ -2770,6 +3170,7 @@ fsGroup:                                                              # k8s.io/k
   ranges:                                                             # []k8s.io/kubernetes/pkg/api/v1.IDRange (ranges of allowable IDs for fsGroup)
   - min:                                                              # int64 (min value for the range)
     max:                                                              # int64 (min value for the range)
+readOnlyRootFilesystem:                                               # bool (require containers to run with a read only root filesystem)
 users:                                                                # []string (users allowed to use this SecurityContextConstraints)
 - [string]                                                            #
 groups:                                                               # []string (groups allowed to use this SecurityContextConstraints)
@@ -2805,9 +3206,15 @@ items:                                                                # []k8s.io
       [string]:                                                       # string
   priority:                                                           # int (determines which SCC is used when multiple SCCs allow a particular pod; higher priority SCCs are preferred)
   allowPrivilegedContainer:                                           # bool (allow containers to run as privileged)
+  defaultAddCapabilities:                                             # []k8s.io/kubernetes/pkg/api/v1.Capability (capabilities that are added by default but may be dropped)
+  - [k8s.io/kubernetes/pkg/api/v1.Capability]                         #
+  requiredDropCapabilities:                                           # []k8s.io/kubernetes/pkg/api/v1.Capability (capabilities that will be dropped by default and may not be added)
+  - [k8s.io/kubernetes/pkg/api/v1.Capability]                         #
   allowedCapabilities:                                                # []k8s.io/kubernetes/pkg/api/v1.Capability (capabilities that are allowed to be added)
   - [k8s.io/kubernetes/pkg/api/v1.Capability]                         #
   allowHostDirVolumePlugin:                                           # bool (allow the use of the host dir volume plugin)
+  volumes:                                                            # []k8s.io/kubernetes/pkg/api/v1.FSType
+  - [k8s.io/kubernetes/pkg/api/v1.FSType]                             #
   allowHostNetwork:                                                   # bool (allow the use of the hostNetwork in the pod spec)
   allowHostPorts:                                                     # bool (allow the use of the host ports in the containers)
   allowHostPID:                                                       # bool (allow the use of the host pid in the containers)
@@ -2834,6 +3241,7 @@ items:                                                                # []k8s.io
     ranges:                                                           # []k8s.io/kubernetes/pkg/api/v1.IDRange (ranges of allowable IDs for fsGroup)
     - min:                                                            # int64 (min value for the range)
       max:                                                            # int64 (min value for the range)
+  readOnlyRootFilesystem:                                             # bool (require containers to run with a read only root filesystem)
   users:                                                              # []string (users allowed to use this SecurityContextConstraints)
   - [string]                                                          #
   groups:                                                             # []string (groups allowed to use this SecurityContextConstraints)
@@ -2883,12 +3291,12 @@ spec:                                                                 # k8s.io/k
   ports:                                                              # []k8s.io/kubernetes/pkg/api/v1.ServicePort
   - name:                                                             # string
     protocol: TCP | UDP                                               # k8s.io/kubernetes/pkg/api/v1.Protocol
-    port:                                                             # int
-    targetPort:                                                       # k8s.io/kubernetes/pkg/util.IntOrString
-    nodePort:                                                         # int
+    port:                                                             # int32
+    targetPort:                                                       # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+    nodePort:                                                         # int32
   selector:                                                           # map[string]string
     [string]:                                                         # string
-  portalIP:                                                           # string (deprecated, use clusterIP instead)
+  portalIP:                                                           # string
   clusterIP:                                                          # string
   type: ClusterIP | LoadBalancer | NodePort                           # k8s.io/kubernetes/pkg/api/v1.ServiceType
   externalIPs:                                                        # []string
@@ -3010,12 +3418,12 @@ items:                                                                # []k8s.io
     ports:                                                            # []k8s.io/kubernetes/pkg/api/v1.ServicePort
     - name:                                                           # string
       protocol: TCP | UDP                                             # k8s.io/kubernetes/pkg/api/v1.Protocol
-      port:                                                           # int
-      targetPort:                                                     # k8s.io/kubernetes/pkg/util.IntOrString
-      nodePort:                                                       # int
+      port:                                                           # int32
+      targetPort:                                                     # k8s.io/kubernetes/pkg/util/intstr.IntOrString
+      nodePort:                                                       # int32
     selector:                                                         # map[string]string
       [string]:                                                       # string
-    portalIP:                                                         # string (deprecated, use clusterIP instead)
+    portalIP:                                                         # string
     clusterIP:                                                        # string
     type: ClusterIP | LoadBalancer | NodePort                         # k8s.io/kubernetes/pkg/api/v1.ServiceType
     externalIPs:                                                      # []string
@@ -3029,4 +3437,13 @@ items:                                                                # []k8s.io
       ingress:                                                        # []k8s.io/kubernetes/pkg/api/v1.LoadBalancerIngress
       - ip:                                                           # string
         hostname:                                                     # string
+
+ServiceProxyOptions
+===================
+
+ServiceProxyOptions is the query options to a Service's proxy call.
+
+kind: ServiceProxyOptions                                             # string
+apiVersion: v1                                                        # string
+path:                                                                 # string
 

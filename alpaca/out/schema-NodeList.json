@@ -1,0 +1,255 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "items": {
+      "items": {
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "properties": {
+              "annotations": {
+                "items": {
+                  "properties": {
+                    "_key": {
+                      "title": "_key",
+                      "type": "string"
+                    },
+                    "val": {
+                      "title": "val",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "creationTimestamp": {
+                "type": "string"
+              },
+              "deletionGracePeriodSeconds": {
+                "type": "string"
+              },
+              "deletionTimestamp": {
+                "type": "string"
+              },
+              "generateName": {
+                "type": "string"
+              },
+              "generation": {
+                "type": "string"
+              },
+              "labels": {
+                "items": {
+                  "properties": {
+                    "_key": {
+                      "title": "_key",
+                      "type": "string"
+                    },
+                    "val": {
+                      "title": "val",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "name": {
+                "type": "string"
+              },
+              "namespace": {
+                "type": "string"
+              },
+              "resourceVersion": {
+                "type": "string"
+              },
+              "selfLink": {
+                "type": "string"
+              },
+              "uid": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "spec": {
+            "properties": {
+              "externalID": {
+                "type": "string"
+              },
+              "podCIDR": {
+                "type": "string"
+              },
+              "providerID": {
+                "type": "string"
+              },
+              "unschedulable": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "status": {
+            "properties": {
+              "addresses": {
+                "items": {
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "allocatable": {
+                "items": {
+                  "properties": {
+                    "_key": {
+                      "title": "_key",
+                      "type": "string"
+                    },
+                    "val": {
+                      "title": "val",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "capacity": {
+                "items": {
+                  "properties": {
+                    "_key": {
+                      "title": "_key",
+                      "type": "string"
+                    },
+                    "val": {
+                      "title": "val",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "conditions": {
+                "items": {
+                  "properties": {
+                    "lastHeartbeatTime": {
+                      "type": "string"
+                    },
+                    "lastTransitionTime": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "daemonEndpoints": {
+                "properties": {
+                  "kubeletEndpoint": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "images": {
+                "items": {
+                  "properties": {
+                    "names": {
+                      "items": {
+                        "properties": {},
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "sizeBytes": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "nodeInfo": {
+                "properties": {
+                  "bootID": {
+                    "type": "string"
+                  },
+                  "containerRuntimeVersion": {
+                    "type": "string"
+                  },
+                  "kernelVersion": {
+                    "type": "string"
+                  },
+                  "kubeProxyVersion": {
+                    "type": "string"
+                  },
+                  "kubeletVersion": {
+                    "type": "string"
+                  },
+                  "machineID": {
+                    "type": "string"
+                  },
+                  "osImage": {
+                    "type": "string"
+                  },
+                  "systemUUID": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "phase": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "metadata": {
+      "properties": {
+        "resourceVersion": {
+          "type": "string"
+        },
+        "selfLink": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

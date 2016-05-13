@@ -19,9 +19,8 @@ package main
 import (
 	"fmt"
 	"go/doc"
+	"go/types"
 	"strings"
-
-	"golang.org/x/tools/go/types"
 )
 
 func docf(strukt *types.Struct, typename *types.TypeName, docpkg *doc.Package) {

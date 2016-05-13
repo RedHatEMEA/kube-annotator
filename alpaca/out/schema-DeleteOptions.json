@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "gracePeriodSeconds": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

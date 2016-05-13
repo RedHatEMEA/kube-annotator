@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

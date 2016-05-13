@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "exact": {
+      "type": "string"
+    },
+    "export": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

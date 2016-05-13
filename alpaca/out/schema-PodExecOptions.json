@@ -1,0 +1,33 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "command": {
+      "items": {
+        "properties": {},
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "container": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "stderr": {
+      "type": "string"
+    },
+    "stdin": {
+      "type": "string"
+    },
+    "stdout": {
+      "type": "string"
+    },
+    "tty": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

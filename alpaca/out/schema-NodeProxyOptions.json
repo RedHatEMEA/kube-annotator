@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

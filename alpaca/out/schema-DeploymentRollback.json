@@ -1,0 +1,38 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "rollbackTo": {
+      "properties": {
+        "revision": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "updatedAnnotations": {
+      "items": {
+        "properties": {
+          "_key": {
+            "title": "_key",
+            "type": "string"
+          },
+          "val": {
+            "title": "val",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

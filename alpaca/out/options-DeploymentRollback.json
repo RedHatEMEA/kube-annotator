@@ -1,0 +1,49 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    },
+    "name": {
+      "label": "name",
+      "order": 2,
+      "type": "text"
+    },
+    "rollbackTo": {
+      "fields": {
+        "revision": {
+          "label": "revision",
+          "order": 0,
+          "type": "text"
+        }
+      },
+      "label": "rollbackTo",
+      "order": 4
+    },
+    "updatedAnnotations": {
+      "items": {
+        "fields": {
+          "_key": {
+            "label": "key",
+            "type": "text"
+          },
+          "val": {
+            "label": "val",
+            "type": "text"
+          }
+        },
+        "type": "object"
+      },
+      "label": "updatedAnnotations",
+      "order": 3,
+      "type": "map"
+    }
+  },
+  "label": ""
+}
