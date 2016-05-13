@@ -27,6 +27,9 @@
         "creationTimestamp": {
           "type": "string"
         },
+        "deletionGracePeriodSeconds": {
+          "type": "string"
+        },
         "deletionTimestamp": {
           "type": "string"
         },
@@ -72,21 +75,59 @@
     },
     "spec": {
       "properties": {
+        "activeDeadlineSeconds": {
+          "type": "string"
+        },
+        "autoSelector": {
+          "type": "string"
+        },
+        "completions": {
+          "type": "string"
+        },
+        "parallelism": {
+          "type": "string"
+        },
         "selector": {
-          "items": {
-            "properties": {
-              "_key": {
-                "title": "_key",
-                "type": "string"
+          "properties": {
+            "matchExpressions": {
+              "items": {
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "operator": {
+                    "type": "string"
+                  },
+                  "values": {
+                    "items": {
+                      "properties": {},
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
               },
-              "val": {
-                "title": "val",
-                "type": "string"
-              }
+              "type": "array"
             },
-            "type": "object"
+            "matchLabels": {
+              "items": {
+                "properties": {
+                  "_key": {
+                    "title": "_key",
+                    "type": "string"
+                  },
+                  "val": {
+                    "title": "val",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
           },
-          "type": "array"
+          "type": "object"
         },
         "template": {
           "properties": {
@@ -109,6 +150,9 @@
                   "type": "array"
                 },
                 "creationTimestamp": {
+                  "type": "string"
+                },
+                "deletionGracePeriodSeconds": {
                   "type": "string"
                 },
                 "deletionTimestamp": {
@@ -187,12 +231,34 @@
                             },
                             "valueFrom": {
                               "properties": {
+                                "configMapKeyRef": {
+                                  "properties": {
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
                                 "fieldRef": {
                                   "properties": {
                                     "apiVersion": {
                                       "type": "string"
                                     },
                                     "fieldPath": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "secretKeyRef": {
+                                  "properties": {
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "name": {
                                       "type": "string"
                                     }
                                   },
@@ -232,6 +298,20 @@
                                 "properties": {
                                   "host": {
                                     "type": "string"
+                                  },
+                                  "httpHeaders": {
+                                    "items": {
+                                      "properties": {
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
                                   },
                                   "path": {
                                     "type": "string"
@@ -275,6 +355,20 @@
                                   "host": {
                                     "type": "string"
                                   },
+                                  "httpHeaders": {
+                                    "items": {
+                                      "properties": {
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
                                   "path": {
                                     "type": "string"
                                   },
@@ -315,10 +409,27 @@
                             },
                             "type": "object"
                           },
+                          "failureThreshold": {
+                            "type": "string"
+                          },
                           "httpGet": {
                             "properties": {
                               "host": {
                                 "type": "string"
+                              },
+                              "httpHeaders": {
+                                "items": {
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
                               },
                               "path": {
                                 "type": "string"
@@ -333,6 +444,12 @@
                             "type": "object"
                           },
                           "initialDelaySeconds": {
+                            "type": "string"
+                          },
+                          "periodSeconds": {
+                            "type": "string"
+                          },
+                          "successThreshold": {
                             "type": "string"
                           },
                           "tcpSocket": {
@@ -389,10 +506,27 @@
                             },
                             "type": "object"
                           },
+                          "failureThreshold": {
+                            "type": "string"
+                          },
                           "httpGet": {
                             "properties": {
                               "host": {
                                 "type": "string"
+                              },
+                              "httpHeaders": {
+                                "items": {
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
                               },
                               "path": {
                                 "type": "string"
@@ -407,6 +541,12 @@
                             "type": "object"
                           },
                           "initialDelaySeconds": {
+                            "type": "string"
+                          },
+                          "periodSeconds": {
+                            "type": "string"
+                          },
+                          "successThreshold": {
                             "type": "string"
                           },
                           "tcpSocket": {
@@ -484,6 +624,9 @@
                           "privileged": {
                             "type": "string"
                           },
+                          "readOnlyRootFilesystem": {
+                            "type": "string"
+                          },
                           "runAsNonRoot": {
                             "type": "string"
                           },
@@ -511,6 +654,9 @@
                         "type": "object"
                       },
                       "stdin": {
+                        "type": "string"
+                      },
+                      "stdinOnce": {
                         "type": "string"
                       },
                       "terminationMessagePath": {
@@ -550,7 +696,13 @@
                 "host": {
                   "type": "string"
                 },
+                "hostIPC": {
+                  "type": "string"
+                },
                 "hostNetwork": {
+                  "type": "string"
+                },
+                "hostPID": {
                   "type": "string"
                 },
                 "imagePullSecrets": {
@@ -586,6 +738,44 @@
                 "restartPolicy": {
                   "type": "string"
                 },
+                "securityContext": {
+                  "properties": {
+                    "fsGroup": {
+                      "type": "string"
+                    },
+                    "runAsNonRoot": {
+                      "type": "string"
+                    },
+                    "runAsUser": {
+                      "type": "string"
+                    },
+                    "seLinuxOptions": {
+                      "properties": {
+                        "level": {
+                          "type": "string"
+                        },
+                        "role": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "user": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "supplementalGroups": {
+                      "items": {
+                        "properties": {},
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
                 "serviceAccount": {
                   "type": "string"
                 },
@@ -615,6 +805,20 @@
                         },
                         "type": "object"
                       },
+                      "azureFile": {
+                        "properties": {
+                          "readOnly": {
+                            "type": "string"
+                          },
+                          "secretName": {
+                            "type": "string"
+                          },
+                          "shareName": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
                       "cephfs": {
                         "properties": {
                           "monitors": {
@@ -623,6 +827,9 @@
                               "type": "object"
                             },
                             "type": "array"
+                          },
+                          "path": {
+                            "type": "string"
                           },
                           "readOnly": {
                             "type": "string"
@@ -644,9 +851,139 @@
                         },
                         "type": "object"
                       },
+                      "cinder": {
+                        "properties": {
+                          "fsType": {
+                            "type": "string"
+                          },
+                          "readOnly": {
+                            "type": "string"
+                          },
+                          "volumeID": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "configMap": {
+                        "properties": {
+                          "items": {
+                            "items": {
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "path": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "downwardAPI": {
+                        "properties": {
+                          "items": {
+                            "items": {
+                              "properties": {
+                                "fieldRef": {
+                                  "properties": {
+                                    "apiVersion": {
+                                      "type": "string"
+                                    },
+                                    "fieldPath": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "path": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
                       "emptyDir": {
                         "properties": {
                           "medium": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "fc": {
+                        "properties": {
+                          "fsType": {
+                            "type": "string"
+                          },
+                          "lun": {
+                            "type": "string"
+                          },
+                          "readOnly": {
+                            "type": "string"
+                          },
+                          "targetWWNs": {
+                            "items": {
+                              "properties": {},
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "flexVolume": {
+                        "properties": {
+                          "driver": {
+                            "type": "string"
+                          },
+                          "fsType": {
+                            "type": "string"
+                          },
+                          "options": {
+                            "items": {
+                              "properties": {
+                                "_key": {
+                                  "title": "_key",
+                                  "type": "string"
+                                },
+                                "val": {
+                                  "title": "val",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "readOnly": {
+                            "type": "string"
+                          },
+                          "secretRef": {
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "flocker": {
+                        "properties": {
+                          "datasetName": {
                             "type": "string"
                           }
                         },
@@ -671,6 +1008,9 @@
                       },
                       "gitRepo": {
                         "properties": {
+                          "directory": {
+                            "type": "string"
+                          },
                           "repository": {
                             "type": "string"
                           },
@@ -708,6 +1048,9 @@
                             "type": "string"
                           },
                           "iqn": {
+                            "type": "string"
+                          },
+                          "iscsiInterface": {
                             "type": "string"
                           },
                           "lun": {

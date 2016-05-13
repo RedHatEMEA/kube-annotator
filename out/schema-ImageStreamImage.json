@@ -8,6 +8,20 @@
         "apiVersion": {
           "type": "string"
         },
+        "dockerImageLayers": {
+          "items": {
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "size": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
         "dockerImageManifest": {
           "type": "string"
         },
@@ -42,6 +56,9 @@
               "type": "array"
             },
             "creationTimestamp": {
+              "type": "string"
+            },
+            "deletionGracePeriodSeconds": {
               "type": "string"
             },
             "deletionTimestamp": {
@@ -112,6 +129,9 @@
           "type": "array"
         },
         "creationTimestamp": {
+          "type": "string"
+        },
+        "deletionGracePeriodSeconds": {
           "type": "string"
         },
         "deletionTimestamp": {

@@ -30,6 +30,9 @@
         "creationTimestamp": {
           "type": "string"
         },
+        "deletionGracePeriodSeconds": {
+          "type": "string"
+        },
         "deletionTimestamp": {
           "type": "string"
         },
@@ -139,6 +142,9 @@
                     "type": "array"
                   },
                   "creationTimestamp": {
+                    "type": "string"
+                  },
+                  "deletionGracePeriodSeconds": {
                     "type": "string"
                   },
                   "deletionTimestamp": {

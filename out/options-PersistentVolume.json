@@ -27,12 +27,17 @@
             "type": "object"
           },
           "label": "annotations",
-          "order": 10,
+          "order": 11,
           "type": "map"
         },
         "creationTimestamp": {
           "label": "creationTimestamp",
           "order": 7,
+          "type": "text"
+        },
+        "deletionGracePeriodSeconds": {
+          "label": "deletionGracePeriodSeconds",
+          "order": 9,
           "type": "text"
         },
         "deletionTimestamp": {
@@ -65,7 +70,7 @@
             "type": "object"
           },
           "label": "labels",
-          "order": 9,
+          "order": 10,
           "type": "map"
         },
         "name": {
@@ -104,7 +109,7 @@
             "fields": {}
           },
           "label": "accessModes",
-          "order": 9
+          "order": 14
         },
         "awsElasticBlockStore": {
           "fields": {
@@ -131,6 +136,27 @@
           },
           "label": "awsElasticBlockStore",
           "order": 2
+        },
+        "azureFile": {
+          "fields": {
+            "readOnly": {
+              "label": "readOnly",
+              "order": 2,
+              "type": "text"
+            },
+            "secretName": {
+              "label": "secretName",
+              "order": 0,
+              "type": "text"
+            },
+            "shareName": {
+              "label": "shareName",
+              "order": 1,
+              "type": "text"
+            }
+          },
+          "label": "azureFile",
+          "order": 13
         },
         "capacity": {
           "items": {
@@ -159,14 +185,19 @@
               "label": "monitors",
               "order": 0
             },
+            "path": {
+              "label": "path",
+              "order": 1,
+              "type": "text"
+            },
             "readOnly": {
               "label": "readOnly",
-              "order": 4,
+              "order": 5,
               "type": "text"
             },
             "secretFile": {
               "label": "secretFile",
-              "order": 2,
+              "order": 3,
               "type": "text"
             },
             "secretRef": {
@@ -178,15 +209,36 @@
                 }
               },
               "label": "secretRef",
-              "order": 3
+              "order": 4
             },
             "user": {
               "label": "user",
-              "order": 1,
+              "order": 2,
               "type": "text"
             }
           },
           "label": "cephfs",
+          "order": 9
+        },
+        "cinder": {
+          "fields": {
+            "fsType": {
+              "label": "fsType",
+              "order": 1,
+              "type": "text"
+            },
+            "readOnly": {
+              "label": "readOnly",
+              "order": 2,
+              "type": "text"
+            },
+            "volumeID": {
+              "label": "volumeID",
+              "order": 0,
+              "type": "text"
+            }
+          },
+          "label": "cinder",
           "order": 8
         },
         "claimRef": {
@@ -228,7 +280,96 @@
             }
           },
           "label": "claimRef",
+          "order": 15
+        },
+        "fc": {
+          "fields": {
+            "fsType": {
+              "label": "fsType",
+              "order": 2,
+              "type": "text"
+            },
+            "lun": {
+              "label": "lun",
+              "order": 1,
+              "type": "text"
+            },
+            "readOnly": {
+              "label": "readOnly",
+              "order": 3,
+              "type": "text"
+            },
+            "targetWWNs": {
+              "items": {
+                "fields": {}
+              },
+              "label": "targetWWNs",
+              "order": 0
+            }
+          },
+          "label": "fc",
           "order": 10
+        },
+        "flexVolume": {
+          "fields": {
+            "driver": {
+              "label": "driver",
+              "order": 0,
+              "type": "text"
+            },
+            "fsType": {
+              "label": "fsType",
+              "order": 1,
+              "type": "text"
+            },
+            "options": {
+              "items": {
+                "fields": {
+                  "_key": {
+                    "label": "key",
+                    "type": "text"
+                  },
+                  "val": {
+                    "label": "val",
+                    "type": "text"
+                  }
+                },
+                "type": "object"
+              },
+              "label": "options",
+              "order": 4,
+              "type": "map"
+            },
+            "readOnly": {
+              "label": "readOnly",
+              "order": 3,
+              "type": "text"
+            },
+            "secretRef": {
+              "fields": {
+                "name": {
+                  "label": "name",
+                  "order": 0,
+                  "type": "text"
+                }
+              },
+              "label": "secretRef",
+              "order": 2
+            }
+          },
+          "label": "flexVolume",
+          "order": 12
+        },
+        "flocker": {
+          "fields": {
+            "datasetName": {
+              "label": "datasetName",
+              "order": 0,
+              "type": "text"
+            }
+          },
+          "label": "flocker",
+          "order": 11
         },
         "gcePersistentDisk": {
           "fields": {
@@ -292,12 +433,17 @@
           "fields": {
             "fsType": {
               "label": "fsType",
-              "order": 3,
+              "order": 4,
               "type": "text"
             },
             "iqn": {
               "label": "iqn",
               "order": 1,
+              "type": "text"
+            },
+            "iscsiInterface": {
+              "label": "iscsiInterface",
+              "order": 3,
               "type": "text"
             },
             "lun": {
@@ -307,7 +453,7 @@
             },
             "readOnly": {
               "label": "readOnly",
-              "order": 4,
+              "order": 5,
               "type": "text"
             },
             "targetPortal": {
@@ -342,7 +488,7 @@
         },
         "persistentVolumeReclaimPolicy": {
           "label": "persistentVolumeReclaimPolicy",
-          "order": 11,
+          "order": 16,
           "type": "text"
         },
         "rbd": {

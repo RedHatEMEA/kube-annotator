@@ -35,12 +35,17 @@
                   "type": "object"
                 },
                 "label": "annotations",
-                "order": 10,
+                "order": 11,
                 "type": "map"
               },
               "creationTimestamp": {
                 "label": "creationTimestamp",
                 "order": 7,
+                "type": "text"
+              },
+              "deletionGracePeriodSeconds": {
+                "label": "deletionGracePeriodSeconds",
+                "order": 9,
                 "type": "text"
               },
               "deletionTimestamp": {
@@ -73,7 +78,7 @@
                   "type": "object"
                 },
                 "label": "labels",
-                "order": 9,
+                "order": 10,
                 "type": "map"
               },
               "name": {
@@ -107,6 +112,11 @@
           },
           "spec": {
             "fields": {
+              "completionDeadlineSeconds": {
+                "label": "completionDeadlineSeconds",
+                "order": 8,
+                "type": "text"
+              },
               "output": {
                 "fields": {
                   "pushSecret": {
@@ -164,6 +174,31 @@
                 },
                 "label": "output",
                 "order": 5
+              },
+              "postCommit": {
+                "fields": {
+                  "args": {
+                    "items": {
+                      "fields": {}
+                    },
+                    "label": "args",
+                    "order": 1
+                  },
+                  "command": {
+                    "items": {
+                      "fields": {}
+                    },
+                    "label": "command",
+                    "order": 0
+                  },
+                  "script": {
+                    "label": "script",
+                    "order": 2,
+                    "type": "text"
+                  }
+                },
+                "label": "postCommit",
+                "order": 7
               },
               "resources": {
                 "fields": {
@@ -273,8 +308,24 @@
               },
               "source": {
                 "fields": {
+                  "binary": {
+                    "fields": {
+                      "asFile": {
+                        "label": "asFile",
+                        "order": 0,
+                        "type": "text"
+                      }
+                    },
+                    "label": "binary",
+                    "order": 1
+                  },
                   "contextDir": {
                     "label": "contextDir",
+                    "order": 5,
+                    "type": "text"
+                  },
+                  "dockerfile": {
+                    "label": "dockerfile",
                     "order": 2,
                     "type": "text"
                   },
@@ -302,7 +353,109 @@
                       }
                     },
                     "label": "git",
-                    "order": 1
+                    "order": 3
+                  },
+                  "images": {
+                    "items": {
+                      "fields": {
+                        "from": {
+                          "fields": {
+                            "apiVersion": {
+                              "label": "apiVersion",
+                              "order": 4,
+                              "type": "text"
+                            },
+                            "fieldPath": {
+                              "label": "fieldPath",
+                              "order": 6,
+                              "type": "text"
+                            },
+                            "kind": {
+                              "label": "kind",
+                              "order": 0,
+                              "type": "text"
+                            },
+                            "name": {
+                              "label": "name",
+                              "order": 2,
+                              "type": "text"
+                            },
+                            "namespace": {
+                              "label": "namespace",
+                              "order": 1,
+                              "type": "text"
+                            },
+                            "resourceVersion": {
+                              "label": "resourceVersion",
+                              "order": 5,
+                              "type": "text"
+                            },
+                            "uid": {
+                              "label": "uid",
+                              "order": 3,
+                              "type": "text"
+                            }
+                          },
+                          "label": "from",
+                          "order": 0
+                        },
+                        "paths": {
+                          "items": {
+                            "fields": {
+                              "destinationDir": {
+                                "label": "destinationDir",
+                                "order": 1,
+                                "type": "text"
+                              },
+                              "sourcePath": {
+                                "label": "sourcePath",
+                                "order": 0,
+                                "type": "text"
+                              }
+                            }
+                          },
+                          "label": "paths",
+                          "order": 1
+                        },
+                        "pullSecret": {
+                          "fields": {
+                            "name": {
+                              "label": "name",
+                              "order": 0,
+                              "type": "text"
+                            }
+                          },
+                          "label": "pullSecret",
+                          "order": 2
+                        }
+                      }
+                    },
+                    "label": "images",
+                    "order": 4
+                  },
+                  "secrets": {
+                    "items": {
+                      "fields": {
+                        "destinationDir": {
+                          "label": "destinationDir",
+                          "order": 1,
+                          "type": "text"
+                        },
+                        "secret": {
+                          "fields": {
+                            "name": {
+                              "label": "name",
+                              "order": 0,
+                              "type": "text"
+                            }
+                          },
+                          "label": "secret",
+                          "order": 0
+                        }
+                      }
+                    },
+                    "label": "secrets",
+                    "order": 7
                   },
                   "sourceSecret": {
                     "fields": {
@@ -313,7 +466,7 @@
                       }
                     },
                     "label": "sourceSecret",
-                    "order": 3
+                    "order": 6
                   },
                   "type": {
                     "label": "type",
@@ -328,6 +481,11 @@
                 "fields": {
                   "customStrategy": {
                     "fields": {
+                      "buildAPIVersion": {
+                        "label": "buildAPIVersion",
+                        "order": 6,
+                        "type": "text"
+                      },
                       "env": {
                         "items": {
                           "fields": {
@@ -343,6 +501,22 @@
                             },
                             "valueFrom": {
                               "fields": {
+                                "configMapKeyRef": {
+                                  "fields": {
+                                    "key": {
+                                      "label": "key",
+                                      "order": 1,
+                                      "type": "text"
+                                    },
+                                    "name": {
+                                      "label": "name",
+                                      "order": 0,
+                                      "type": "text"
+                                    }
+                                  },
+                                  "label": "configMapKeyRef",
+                                  "order": 1
+                                },
                                 "fieldRef": {
                                   "fields": {
                                     "apiVersion": {
@@ -358,6 +532,22 @@
                                   },
                                   "label": "fieldRef",
                                   "order": 0
+                                },
+                                "secretKeyRef": {
+                                  "fields": {
+                                    "key": {
+                                      "label": "key",
+                                      "order": 1,
+                                      "type": "text"
+                                    },
+                                    "name": {
+                                      "label": "name",
+                                      "order": 0,
+                                      "type": "text"
+                                    }
+                                  },
+                                  "label": "secretKeyRef",
+                                  "order": 2
                                 }
                               },
                               "label": "valueFrom",
@@ -460,6 +650,11 @@
                   },
                   "dockerStrategy": {
                     "fields": {
+                      "dockerfilePath": {
+                        "label": "dockerfilePath",
+                        "order": 5,
+                        "type": "text"
+                      },
                       "env": {
                         "items": {
                           "fields": {
@@ -475,6 +670,22 @@
                             },
                             "valueFrom": {
                               "fields": {
+                                "configMapKeyRef": {
+                                  "fields": {
+                                    "key": {
+                                      "label": "key",
+                                      "order": 1,
+                                      "type": "text"
+                                    },
+                                    "name": {
+                                      "label": "name",
+                                      "order": 0,
+                                      "type": "text"
+                                    }
+                                  },
+                                  "label": "configMapKeyRef",
+                                  "order": 1
+                                },
                                 "fieldRef": {
                                   "fields": {
                                     "apiVersion": {
@@ -490,6 +701,22 @@
                                   },
                                   "label": "fieldRef",
                                   "order": 0
+                                },
+                                "secretKeyRef": {
+                                  "fields": {
+                                    "key": {
+                                      "label": "key",
+                                      "order": 1,
+                                      "type": "text"
+                                    },
+                                    "name": {
+                                      "label": "name",
+                                      "order": 0,
+                                      "type": "text"
+                                    }
+                                  },
+                                  "label": "secretKeyRef",
+                                  "order": 2
                                 }
                               },
                               "label": "valueFrom",
@@ -583,6 +810,22 @@
                             },
                             "valueFrom": {
                               "fields": {
+                                "configMapKeyRef": {
+                                  "fields": {
+                                    "key": {
+                                      "label": "key",
+                                      "order": 1,
+                                      "type": "text"
+                                    },
+                                    "name": {
+                                      "label": "name",
+                                      "order": 0,
+                                      "type": "text"
+                                    }
+                                  },
+                                  "label": "configMapKeyRef",
+                                  "order": 1
+                                },
                                 "fieldRef": {
                                   "fields": {
                                     "apiVersion": {
@@ -598,6 +841,22 @@
                                   },
                                   "label": "fieldRef",
                                   "order": 0
+                                },
+                                "secretKeyRef": {
+                                  "fields": {
+                                    "key": {
+                                      "label": "key",
+                                      "order": 1,
+                                      "type": "text"
+                                    },
+                                    "name": {
+                                      "label": "name",
+                                      "order": 0,
+                                      "type": "text"
+                                    }
+                                  },
+                                  "label": "secretKeyRef",
+                                  "order": 2
                                 }
                               },
                               "label": "valueFrom",

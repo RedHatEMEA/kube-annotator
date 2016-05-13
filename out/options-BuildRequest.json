@@ -5,6 +5,89 @@
       "order": 1,
       "type": "text"
     },
+    "binary": {
+      "fields": {
+        "asFile": {
+          "label": "asFile",
+          "order": 0,
+          "type": "text"
+        }
+      },
+      "label": "binary",
+      "order": 6
+    },
+    "env": {
+      "items": {
+        "fields": {
+          "name": {
+            "label": "name",
+            "order": 0,
+            "type": "text"
+          },
+          "value": {
+            "label": "value",
+            "order": 1,
+            "type": "text"
+          },
+          "valueFrom": {
+            "fields": {
+              "configMapKeyRef": {
+                "fields": {
+                  "key": {
+                    "label": "key",
+                    "order": 1,
+                    "type": "text"
+                  },
+                  "name": {
+                    "label": "name",
+                    "order": 0,
+                    "type": "text"
+                  }
+                },
+                "label": "configMapKeyRef",
+                "order": 1
+              },
+              "fieldRef": {
+                "fields": {
+                  "apiVersion": {
+                    "label": "apiVersion",
+                    "order": 0,
+                    "type": "text"
+                  },
+                  "fieldPath": {
+                    "label": "fieldPath",
+                    "order": 1,
+                    "type": "text"
+                  }
+                },
+                "label": "fieldRef",
+                "order": 0
+              },
+              "secretKeyRef": {
+                "fields": {
+                  "key": {
+                    "label": "key",
+                    "order": 1,
+                    "type": "text"
+                  },
+                  "name": {
+                    "label": "name",
+                    "order": 0,
+                    "type": "text"
+                  }
+                },
+                "label": "secretKeyRef",
+                "order": 2
+              }
+            },
+            "label": "valueFrom",
+            "order": 2
+          }
+        }
+      },
+      "label": "env",
+      "order": 8
+    },
     "from": {
       "fields": {
         "apiVersion": {
@@ -53,7 +136,7 @@
     },
     "lastVersion": {
       "label": "lastVersion",
-      "order": 6,
+      "order": 7,
       "type": "text"
     },
     "metadata": {
@@ -73,12 +156,17 @@
             "type": "object"
           },
           "label": "annotations",
-          "order": 10,
+          "order": 11,
           "type": "map"
         },
         "creationTimestamp": {
           "label": "creationTimestamp",
           "order": 7,
+          "type": "text"
+        },
+        "deletionGracePeriodSeconds": {
+          "label": "deletionGracePeriodSeconds",
+          "order": 9,
           "type": "text"
         },
         "deletionTimestamp": {
@@ -111,7 +199,7 @@
             "type": "object"
           },
           "label": "labels",
-          "order": 9,
+          "order": 10,
           "type": "map"
         },
         "name": {

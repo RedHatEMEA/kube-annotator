@@ -1,0 +1,25 @@
+{
+  "fields": {
+    "apiVersion": {
+      "label": "apiVersion",
+      "order": 1,
+      "type": "text"
+    },
+    "exact": {
+      "label": "exact",
+      "order": 3,
+      "type": "text"
+    },
+    "export": {
+      "label": "export",
+      "order": 2,
+      "type": "text"
+    },
+    "kind": {
+      "label": "kind",
+      "order": 0,
+      "type": "text"
+    }
+  },
+  "label": ""
+}

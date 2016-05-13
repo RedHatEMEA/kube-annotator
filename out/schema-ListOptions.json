@@ -15,6 +15,9 @@
     "resourceVersion": {
       "type": "string"
     },
+    "timeoutSeconds": {
+      "type": "string"
+    },
     "watch": {
       "type": "string"
     }

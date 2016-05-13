@@ -40,12 +40,17 @@
                   "type": "object"
                 },
                 "label": "annotations",
-                "order": 10,
+                "order": 11,
                 "type": "map"
               },
               "creationTimestamp": {
                 "label": "creationTimestamp",
                 "order": 7,
+                "type": "text"
+              },
+              "deletionGracePeriodSeconds": {
+                "label": "deletionGracePeriodSeconds",
+                "order": 9,
                 "type": "text"
               },
               "deletionTimestamp": {
@@ -78,7 +83,7 @@
                   "type": "object"
                 },
                 "label": "labels",
-                "order": 9,
+                "order": 10,
                 "type": "map"
               },
               "name": {
@@ -147,12 +152,17 @@
                             "type": "object"
                           },
                           "label": "annotations",
-                          "order": 10,
+                          "order": 11,
                           "type": "map"
                         },
                         "creationTimestamp": {
                           "label": "creationTimestamp",
                           "order": 7,
+                          "type": "text"
+                        },
+                        "deletionGracePeriodSeconds": {
+                          "label": "deletionGracePeriodSeconds",
+                          "order": 9,
                           "type": "text"
                         },
                         "deletionTimestamp": {
@@ -185,7 +195,7 @@
                             "type": "object"
                           },
                           "label": "labels",
-                          "order": 9,
+                          "order": 10,
                           "type": "map"
                         },
                         "name": {
@@ -220,6 +230,13 @@
                     "rules": {
                       "items": {
                         "fields": {
+                          "apiGroups": {
+                            "items": {
+                              "fields": {}
+                            },
+                            "label": "apiGroups",
+                            "order": 2
+                          },
                           "attributeRestrictions": {
                             "label": "attributeRestrictions",
                             "order": 1,
@@ -230,21 +247,21 @@
                               "fields": {}
                             },
                             "label": "nonResourceURLs",
-                            "order": 4
+                            "order": 5
                           },
                           "resourceNames": {
                             "items": {
                               "fields": {}
                             },
                             "label": "resourceNames",
-                            "order": 3
+                            "order": 4
                           },
                           "resources": {
                             "items": {
                               "fields": {}
                             },
                             "label": "resources",
-                            "order": 2
+                            "order": 3
                           },
                           "verbs": {
                             "items": {

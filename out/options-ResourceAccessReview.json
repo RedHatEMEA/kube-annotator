@@ -7,7 +7,7 @@
     },
     "content": {
       "label": "content",
-      "order": 6,
+      "order": 8,
       "type": "text"
     },
     "kind": {
@@ -22,12 +22,22 @@
     },
     "resource": {
       "label": "resource",
+      "order": 6,
+      "type": "text"
+    },
+    "resourceAPIGroup": {
+      "label": "resourceAPIGroup",
       "order": 4,
+      "type": "text"
+    },
+    "resourceAPIVersion": {
+      "label": "resourceAPIVersion",
+      "order": 5,
       "type": "text"
     },
     "resourceName": {
       "label": "resourceName",
-      "order": 5,
+      "order": 7,
       "type": "text"
     },
     "verb": {

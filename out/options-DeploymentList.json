@@ -35,12 +35,17 @@
                   "type": "object"
                 },
                 "label": "annotations",
-                "order": 10,
+                "order": 11,
                 "type": "map"
               },
               "creationTimestamp": {
                 "label": "creationTimestamp",
                 "order": 7,
+                "type": "text"
+              },
+              "deletionGracePeriodSeconds": {
+                "label": "deletionGracePeriodSeconds",
+                "order": 9,
                 "type": "text"
               },
               "deletionTimestamp": {
@@ -73,7 +78,7 @@
                   "type": "object"
                 },
                 "label": "labels",
-                "order": 9,
+                "order": 10,
                 "type": "map"
               },
               "name": {
@@ -107,448 +112,103 @@
           },
           "spec": {
             "fields": {
-              "replicas": {
-                "label": "replicas",
-                "order": 2,
+              "minReadySeconds": {
+                "label": "minReadySeconds",
+                "order": 4,
                 "type": "text"
               },
+              "paused": {
+                "label": "paused",
+                "order": 6,
+                "type": "text"
+              },
+              "replicas": {
+                "label": "replicas",
+                "order": 0,
+                "type": "text"
+              },
+              "revisionHistoryLimit": {
+                "label": "revisionHistoryLimit",
+                "order": 5,
+                "type": "text"
+              },
+              "rollbackTo": {
+                "fields": {
+                  "revision": {
+                    "label": "revision",
+                    "order": 0,
+                    "type": "text"
+                  }
+                },
+                "label": "rollbackTo",
+                "order": 7
+              },
               "selector": {
-                "items": {
-                  "fields": {
-                    "_key": {
-                      "label": "key",
-                      "type": "text"
+                "fields": {
+                  "matchExpressions": {
+                    "items": {
+                      "fields": {
+                        "key": {
+                          "label": "key",
+                          "order": 0,
+                          "type": "text"
+                        },
+                        "operator": {
+                          "label": "operator",
+                          "order": 1,
+                          "type": "text"
+                        },
+                        "values": {
+                          "items": {
+                            "fields": {}
+                          },
+                          "label": "values",
+                          "order": 2
+                        }
+                      }
                     },
-                    "val": {
-                      "label": "val",
-                      "type": "text"
-                    }
+                    "label": "matchExpressions",
+                    "order": 1
                   },
-                  "type": "object"
+                  "matchLabels": {
+                    "items": {
+                      "fields": {
+                        "_key": {
+                          "label": "key",
+                          "type": "text"
+                        },
+                        "val": {
+                          "label": "val",
+                          "type": "text"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "label": "matchLabels",
+                    "order": 0,
+                    "type": "map"
+                  }
                 },
                 "label": "selector",
-                "order": 3,
-                "type": "map"
+                "order": 1
               },
               "strategy": {
                 "fields": {
-                  "customParams": {
+                  "rollingUpdate": {
                     "fields": {
-                      "command": {
-                        "items": {
-                          "fields": {}
-                        },
-                        "label": "command",
-                        "order": 2
-                      },
-                      "environment": {
-                        "items": {
-                          "fields": {
-                            "name": {
-                              "label": "name",
-                              "order": 0,
-                              "type": "text"
-                            },
-                            "value": {
-                              "label": "value",
-                              "order": 1,
-                              "type": "text"
-                            },
-                            "valueFrom": {
-                              "fields": {
-                                "fieldRef": {
-                                  "fields": {
-                                    "apiVersion": {
-                                      "label": "apiVersion",
-                                      "order": 0,
-                                      "type": "text"
-                                    },
-                                    "fieldPath": {
-                                      "label": "fieldPath",
-                                      "order": 1,
-                                      "type": "text"
-                                    }
-                                  },
-                                  "label": "fieldRef",
-                                  "order": 0
-                                }
-                              },
-                              "label": "valueFrom",
-                              "order": 2
-                            }
-                          }
-                        },
-                        "label": "environment",
-                        "order": 1
-                      },
-                      "image": {
-                        "label": "image",
-                        "order": 0,
-                        "type": "text"
-                      }
-                    },
-                    "label": "customParams",
-                    "order": 1
-                  },
-                  "recreateParams": {
-                    "fields": {
-                      "post": {
-                        "fields": {
-                          "execNewPod": {
-                            "fields": {
-                              "command": {
-                                "items": {
-                                  "fields": {}
-                                },
-                                "label": "command",
-                                "order": 0
-                              },
-                              "containerName": {
-                                "label": "containerName",
-                                "order": 2,
-                                "type": "text"
-                              },
-                              "env": {
-                                "items": {
-                                  "fields": {
-                                    "name": {
-                                      "label": "name",
-                                      "order": 0,
-                                      "type": "text"
-                                    },
-                                    "value": {
-                                      "label": "value",
-                                      "order": 1,
-                                      "type": "text"
-                                    },
-                                    "valueFrom": {
-                                      "fields": {
-                                        "fieldRef": {
-                                          "fields": {
-                                            "apiVersion": {
-                                              "label": "apiVersion",
-                                              "order": 0,
-                                              "type": "text"
-                                            },
-                                            "fieldPath": {
-                                              "label": "fieldPath",
-                                              "order": 1,
-                                              "type": "text"
-                                            }
-                                          },
-                                          "label": "fieldRef",
-                                          "order": 0
-                                        }
-                                      },
-                                      "label": "valueFrom",
-                                      "order": 2
-                                    }
-                                  }
-                                },
-                                "label": "env",
-                                "order": 1
-                              }
-                            },
-                            "label": "execNewPod",
-                            "order": 1
-                          },
-                          "failurePolicy": {
-                            "label": "failurePolicy",
-                            "order": 0,
-                            "type": "text"
-                          }
-                        },
-                        "label": "post",
-                        "order": 1
-                      },
-                      "pre": {
-                        "fields": {
-                          "execNewPod": {
-                            "fields": {
-                              "command": {
-                                "items": {
-                                  "fields": {}
-                                },
-                                "label": "command",
-                                "order": 0
-                              },
-                              "containerName": {
-                                "label": "containerName",
-                                "order": 2,
-                                "type": "text"
-                              },
-                              "env": {
-                                "items": {
-                                  "fields": {
-                                    "name": {
-                                      "label": "name",
-                                      "order": 0,
-                                      "type": "text"
-                                    },
-                                    "value": {
-                                      "label": "value",
-                                      "order": 1,
-                                      "type": "text"
-                                    },
-                                    "valueFrom": {
-                                      "fields": {
-                                        "fieldRef": {
-                                          "fields": {
-                                            "apiVersion": {
-                                              "label": "apiVersion",
-                                              "order": 0,
-                                              "type": "text"
-                                            },
-                                            "fieldPath": {
-                                              "label": "fieldPath",
-                                              "order": 1,
-                                              "type": "text"
-                                            }
-                                          },
-                                          "label": "fieldRef",
-                                          "order": 0
-                                        }
-                                      },
-                                      "label": "valueFrom",
-                                      "order": 2
-                                    }
-                                  }
-                                },
-                                "label": "env",
-                                "order": 1
-                              }
-                            },
-                            "label": "execNewPod",
-                            "order": 1
-                          },
-                          "failurePolicy": {
-                            "label": "failurePolicy",
-                            "order": 0,
-                            "type": "text"
-                          }
-                        },
-                        "label": "pre",
-                        "order": 0
-                      }
-                    },
-                    "label": "recreateParams",
-                    "order": 2
-                  },
-                  "resources": {
-                    "fields": {
-                      "limits": {
-                        "items": {
-                          "fields": {
-                            "_key": {
-                              "label": "key",
-                              "type": "text"
-                            },
-                            "val": {
-                              "label": "val",
-                              "type": "text"
-                            }
-                          },
-                          "type": "object"
-                        },
-                        "label": "limits",
-                        "order": 0,
-                        "type": "map"
-                      },
-                      "requests": {
-                        "items": {
-                          "fields": {
-                            "_key": {
-                              "label": "key",
-                              "type": "text"
-                            },
-                            "val": {
-                              "label": "val",
-                              "type": "text"
-                            }
-                          },
-                          "type": "object"
-                        },
-                        "label": "requests",
-                        "order": 1,
-                        "type": "map"
-                      }
-                    },
-                    "label": "resources",
-                    "order": 4
-                  },
-                  "rollingParams": {
-                    "fields": {
-                      "intervalSeconds": {
-                        "label": "intervalSeconds",
-                        "order": 1,
-                        "type": "text"
-                      },
                       "maxSurge": {
                         "label": "maxSurge",
-                        "order": 4,
+                        "order": 1,
                         "type": "text"
                       },
                       "maxUnavailable": {
                         "label": "maxUnavailable",
-                        "order": 3,
-                        "type": "text"
-                      },
-                      "post": {
-                        "fields": {
-                          "execNewPod": {
-                            "fields": {
-                              "command": {
-                                "items": {
-                                  "fields": {}
-                                },
-                                "label": "command",
-                                "order": 0
-                              },
-                              "containerName": {
-                                "label": "containerName",
-                                "order": 2,
-                                "type": "text"
-                              },
-                              "env": {
-                                "items": {
-                                  "fields": {
-                                    "name": {
-                                      "label": "name",
-                                      "order": 0,
-                                      "type": "text"
-                                    },
-                                    "value": {
-                                      "label": "value",
-                                      "order": 1,
-                                      "type": "text"
-                                    },
-                                    "valueFrom": {
-                                      "fields": {
-                                        "fieldRef": {
-                                          "fields": {
-                                            "apiVersion": {
-                                              "label": "apiVersion",
-                                              "order": 0,
-                                              "type": "text"
-                                            },
-                                            "fieldPath": {
-                                              "label": "fieldPath",
-                                              "order": 1,
-                                              "type": "text"
-                                            }
-                                          },
-                                          "label": "fieldRef",
-                                          "order": 0
-                                        }
-                                      },
-                                      "label": "valueFrom",
-                                      "order": 2
-                                    }
-                                  }
-                                },
-                                "label": "env",
-                                "order": 1
-                              }
-                            },
-                            "label": "execNewPod",
-                            "order": 1
-                          },
-                          "failurePolicy": {
-                            "label": "failurePolicy",
-                            "order": 0,
-                            "type": "text"
-                          }
-                        },
-                        "label": "post",
-                        "order": 7
-                      },
-                      "pre": {
-                        "fields": {
-                          "execNewPod": {
-                            "fields": {
-                              "command": {
-                                "items": {
-                                  "fields": {}
-                                },
-                                "label": "command",
-                                "order": 0
-                              },
-                              "containerName": {
-                                "label": "containerName",
-                                "order": 2,
-                                "type": "text"
-                              },
-                              "env": {
-                                "items": {
-                                  "fields": {
-                                    "name": {
-                                      "label": "name",
-                                      "order": 0,
-                                      "type": "text"
-                                    },
-                                    "value": {
-                                      "label": "value",
-                                      "order": 1,
-                                      "type": "text"
-                                    },
-                                    "valueFrom": {
-                                      "fields": {
-                                        "fieldRef": {
-                                          "fields": {
-                                            "apiVersion": {
-                                              "label": "apiVersion",
-                                              "order": 0,
-                                              "type": "text"
-                                            },
-                                            "fieldPath": {
-                                              "label": "fieldPath",
-                                              "order": 1,
-                                              "type": "text"
-                                            }
-                                          },
-                                          "label": "fieldRef",
-                                          "order": 0
-                                        }
-                                      },
-                                      "label": "valueFrom",
-                                      "order": 2
-                                    }
-                                  }
-                                },
-                                "label": "env",
-                                "order": 1
-                              }
-                            },
-                            "label": "execNewPod",
-                            "order": 1
-                          },
-                          "failurePolicy": {
-                            "label": "failurePolicy",
-                            "order": 0,
-                            "type": "text"
-                          }
-                        },
-                        "label": "pre",
-                        "order": 6
-                      },
-                      "timeoutSeconds": {
-                        "label": "timeoutSeconds",
-                        "order": 2,
-                        "type": "text"
-                      },
-                      "updatePercent": {
-                        "label": "updatePercent",
-                        "order": 5,
-                        "type": "text"
-                      },
-                      "updatePeriodSeconds": {
-                        "label": "updatePeriodSeconds",
                         "order": 0,
                         "type": "text"
                       }
                     },
-                    "label": "rollingParams",
-                    "order": 3
+                    "label": "rollingUpdate",
+                    "order": 1
                   },
                   "type": {
                     "label": "type",
@@ -557,7 +217,7 @@
                   }
                 },
                 "label": "strategy",
-                "order": 0
+                "order": 3
               },
               "template": {
                 "fields": {
@@ -578,12 +238,17 @@
                           "type": "object"
                         },
                         "label": "annotations",
-                        "order": 10,
+                        "order": 11,
                         "type": "map"
                       },
                       "creationTimestamp": {
                         "label": "creationTimestamp",
                         "order": 7,
+                        "type": "text"
+                      },
+                      "deletionGracePeriodSeconds": {
+                        "label": "deletionGracePeriodSeconds",
+                        "order": 9,
                         "type": "text"
                       },
                       "deletionTimestamp": {
@@ -616,7 +281,7 @@
                           "type": "object"
                         },
                         "label": "labels",
-                        "order": 9,
+                        "order": 10,
                         "type": "map"
                       },
                       "name": {
@@ -687,6 +352,22 @@
                                   },
                                   "valueFrom": {
                                     "fields": {
+                                      "configMapKeyRef": {
+                                        "fields": {
+                                          "key": {
+                                            "label": "key",
+                                            "order": 1,
+                                            "type": "text"
+                                          },
+                                          "name": {
+                                            "label": "name",
+                                            "order": 0,
+                                            "type": "text"
+                                          }
+                                        },
+                                        "label": "configMapKeyRef",
+                                        "order": 1
+                                      },
                                       "fieldRef": {
                                         "fields": {
                                           "apiVersion": {
@@ -702,6 +383,22 @@
                                         },
                                         "label": "fieldRef",
                                         "order": 0
+                                      },
+                                      "secretKeyRef": {
+                                        "fields": {
+                                          "key": {
+                                            "label": "key",
+                                            "order": 1,
+                                            "type": "text"
+                                          },
+                                          "name": {
+                                            "label": "name",
+                                            "order": 0,
+                                            "type": "text"
+                                          }
+                                        },
+                                        "label": "secretKeyRef",
+                                        "order": 2
                                       }
                                     },
                                     "label": "valueFrom",
@@ -745,6 +442,24 @@
                                           "label": "host",
                                           "order": 2,
                                           "type": "text"
+                                        },
+                                        "httpHeaders": {
+                                          "items": {
+                                            "fields": {
+                                              "name": {
+                                                "label": "name",
+                                                "order": 0,
+                                                "type": "text"
+                                              },
+                                              "value": {
+                                                "label": "value",
+                                                "order": 1,
+                                                "type": "text"
+                                              }
+                                            }
+                                          },
+                                          "label": "httpHeaders",
+                                          "order": 4
                                         },
                                         "path": {
                                           "label": "path",
@@ -802,6 +517,24 @@
                                           "order": 2,
                                           "type": "text"
                                         },
+                                        "httpHeaders": {
+                                          "items": {
+                                            "fields": {
+                                              "name": {
+                                                "label": "name",
+                                                "order": 0,
+                                                "type": "text"
+                                              },
+                                              "value": {
+                                                "label": "value",
+                                                "order": 1,
+                                                "type": "text"
+                                              }
+                                            }
+                                          },
+                                          "label": "httpHeaders",
+                                          "order": 4
+                                        },
                                         "path": {
                                           "label": "path",
                                           "order": 0,
@@ -855,12 +588,35 @@
                                   "label": "exec",
                                   "order": 0
                                 },
+                                "failureThreshold": {
+                                  "label": "failureThreshold",
+                                  "order": 7,
+                                  "type": "text"
+                                },
                                 "httpGet": {
                                   "fields": {
                                     "host": {
                                       "label": "host",
                                       "order": 2,
                                       "type": "text"
+                                    },
+                                    "httpHeaders": {
+                                      "items": {
+                                        "fields": {
+                                          "name": {
+                                            "label": "name",
+                                            "order": 0,
+                                            "type": "text"
+                                          },
+                                          "value": {
+                                            "label": "value",
+                                            "order": 1,
+                                            "type": "text"
+                                          }
+                                        }
+                                      },
+                                      "label": "httpHeaders",
+                                      "order": 4
                                     },
                                     "path": {
                                       "label": "path",
@@ -884,6 +640,16 @@
                                 "initialDelaySeconds": {
                                   "label": "initialDelaySeconds",
                                   "order": 3,
+                                  "type": "text"
+                                },
+                                "periodSeconds": {
+                                  "label": "periodSeconds",
+                                  "order": 5,
+                                  "type": "text"
+                                },
+                                "successThreshold": {
+                                  "label": "successThreshold",
+                                  "order": 6,
                                   "type": "text"
                                 },
                                 "tcpSocket": {
@@ -959,12 +725,35 @@
                                   "label": "exec",
                                   "order": 0
                                 },
+                                "failureThreshold": {
+                                  "label": "failureThreshold",
+                                  "order": 7,
+                                  "type": "text"
+                                },
                                 "httpGet": {
                                   "fields": {
                                     "host": {
                                       "label": "host",
                                       "order": 2,
                                       "type": "text"
+                                    },
+                                    "httpHeaders": {
+                                      "items": {
+                                        "fields": {
+                                          "name": {
+                                            "label": "name",
+                                            "order": 0,
+                                            "type": "text"
+                                          },
+                                          "value": {
+                                            "label": "value",
+                                            "order": 1,
+                                            "type": "text"
+                                          }
+                                        }
+                                      },
+                                      "label": "httpHeaders",
+                                      "order": 4
                                     },
                                     "path": {
                                       "label": "path",
@@ -988,6 +777,16 @@
                                 "initialDelaySeconds": {
                                   "label": "initialDelaySeconds",
                                   "order": 3,
+                                  "type": "text"
+                                },
+                                "periodSeconds": {
+                                  "label": "periodSeconds",
+                                  "order": 5,
+                                  "type": "text"
+                                },
+                                "successThreshold": {
+                                  "label": "successThreshold",
+                                  "order": 6,
                                   "type": "text"
                                 },
                                 "tcpSocket": {
@@ -1079,6 +878,11 @@
                                   "order": 1,
                                   "type": "text"
                                 },
+                                "readOnlyRootFilesystem": {
+                                  "label": "readOnlyRootFilesystem",
+                                  "order": 5,
+                                  "type": "text"
+                                },
                                 "runAsNonRoot": {
                                   "label": "runAsNonRoot",
                                   "order": 4,
@@ -1124,6 +928,11 @@
                               "order": 15,
                               "type": "text"
                             },
+                            "stdinOnce": {
+                              "label": "stdinOnce",
+                              "order": 16,
+                              "type": "text"
+                            },
                             "terminationMessagePath": {
                               "label": "terminationMessagePath",
                               "order": 12,
@@ -1131,7 +940,7 @@
                             },
                             "tty": {
                               "label": "tty",
-                              "order": 16,
+                              "order": 17,
                               "type": "text"
                             },
                             "volumeMounts": {
@@ -1177,9 +986,19 @@
                         "order": 7,
                         "type": "text"
                       },
+                      "hostIPC": {
+                        "label": "hostIPC",
+                        "order": 13,
+                        "type": "text"
+                      },
                       "hostNetwork": {
                         "label": "hostNetwork",
                         "order": 11,
+                        "type": "text"
+                      },
+                      "hostPID": {
+                        "label": "hostPID",
+                        "order": 12,
                         "type": "text"
                       },
                       "imagePullSecrets": {
@@ -1193,7 +1012,7 @@
                           }
                         },
                         "label": "imagePullSecrets",
-                        "order": 12
+                        "order": 15
                       },
                       "nodeName": {
                         "label": "nodeName",
@@ -1222,6 +1041,60 @@
                         "label": "restartPolicy",
                         "order": 2,
                         "type": "text"
+                      },
+                      "securityContext": {
+                        "fields": {
+                          "fsGroup": {
+                            "label": "fsGroup",
+                            "order": 4,
+                            "type": "text"
+                          },
+                          "runAsNonRoot": {
+                            "label": "runAsNonRoot",
+                            "order": 2,
+                            "type": "text"
+                          },
+                          "runAsUser": {
+                            "label": "runAsUser",
+                            "order": 1,
+                            "type": "text"
+                          },
+                          "seLinuxOptions": {
+                            "fields": {
+                              "level": {
+                                "label": "level",
+                                "order": 3,
+                                "type": "text"
+                              },
+                              "role": {
+                                "label": "role",
+                                "order": 1,
+                                "type": "text"
+                              },
+                              "type": {
+                                "label": "type",
+                                "order": 2,
+                                "type": "text"
+                              },
+                              "user": {
+                                "label": "user",
+                                "order": 0,
+                                "type": "text"
+                              }
+                            },
+                            "label": "seLinuxOptions",
+                            "order": 0
+                          },
+                          "supplementalGroups": {
+                            "items": {
+                              "fields": {}
+                            },
+                            "label": "supplementalGroups",
+                            "order": 3
+                          }
+                        },
+                        "label": "securityContext",
+                        "order": 14
                       },
                       "serviceAccount": {
                         "label": "serviceAccount",
@@ -1267,6 +1140,27 @@
                               "label": "awsElasticBlockStore",
                               "order": 4
                             },
+                            "azureFile": {
+                              "fields": {
+                                "readOnly": {
+                                  "label": "readOnly",
+                                  "order": 2,
+                                  "type": "text"
+                                },
+                                "secretName": {
+                                  "label": "secretName",
+                                  "order": 0,
+                                  "type": "text"
+                                },
+                                "shareName": {
+                                  "label": "shareName",
+                                  "order": 1,
+                                  "type": "text"
+                                }
+                              },
+                              "label": "azureFile",
+                              "order": 18
+                            },
                             "cephfs": {
                               "fields": {
                                 "monitors": {
@@ -1276,14 +1170,19 @@
                                   "label": "monitors",
                                   "order": 0
                                 },
+                                "path": {
+                                  "label": "path",
+                                  "order": 1,
+                                  "type": "text"
+                                },
                                 "readOnly": {
                                   "label": "readOnly",
-                                  "order": 4,
+                                  "order": 5,
                                   "type": "text"
                                 },
                                 "secretFile": {
                                   "label": "secretFile",
-                                  "order": 2,
+                                  "order": 3,
                                   "type": "text"
                                 },
                                 "secretRef": {
@@ -1295,16 +1194,101 @@
                                     }
                                   },
                                   "label": "secretRef",
-                                  "order": 3
+                                  "order": 4
                                 },
                                 "user": {
                                   "label": "user",
-                                  "order": 1,
+                                  "order": 2,
                                   "type": "text"
                                 }
                               },
                               "label": "cephfs",
-                              "order": 12
+                              "order": 14
+                            },
+                            "cinder": {
+                              "fields": {
+                                "fsType": {
+                                  "label": "fsType",
+                                  "order": 1,
+                                  "type": "text"
+                                },
+                                "readOnly": {
+                                  "label": "readOnly",
+                                  "order": 2,
+                                  "type": "text"
+                                },
+                                "volumeID": {
+                                  "label": "volumeID",
+                                  "order": 0,
+                                  "type": "text"
+                                }
+                              },
+                              "label": "cinder",
+                              "order": 13
+                            },
+                            "configMap": {
+                              "fields": {
+                                "items": {
+                                  "items": {
+                                    "fields": {
+                                      "key": {
+                                        "label": "key",
+                                        "order": 0,
+                                        "type": "text"
+                                      },
+                                      "path": {
+                                        "label": "path",
+                                        "order": 1,
+                                        "type": "text"
+                                      }
+                                    }
+                                  },
+                                  "label": "items",
+                                  "order": 1
+                                },
+                                "name": {
+                                  "label": "name",
+                                  "order": 0,
+                                  "type": "text"
+                                }
+                              },
+                              "label": "configMap",
+                              "order": 19
+                            },
+                            "downwardAPI": {
+                              "fields": {
+                                "items": {
+                                  "items": {
+                                    "fields": {
+                                      "fieldRef": {
+                                        "fields": {
+                                          "apiVersion": {
+                                            "label": "apiVersion",
+                                            "order": 0,
+                                            "type": "text"
+                                          },
+                                          "fieldPath": {
+                                            "label": "fieldPath",
+                                            "order": 1,
+                                            "type": "text"
+                                          }
+                                        },
+                                        "label": "fieldRef",
+                                        "order": 1
+                                      },
+                                      "path": {
+                                        "label": "path",
+                                        "order": 0,
+                                        "type": "text"
+                                      }
+                                    }
+                                  },
+                                  "label": "items",
+                                  "order": 0
+                                }
+                              },
+                              "label": "downwardAPI",
+                              "order": 16
                             },
                             "emptyDir": {
                               "fields": {
@@ -1316,6 +1300,95 @@
                               },
                               "label": "emptyDir",
                               "order": 2
+                            },
+                            "fc": {
+                              "fields": {
+                                "fsType": {
+                                  "label": "fsType",
+                                  "order": 2,
+                                  "type": "text"
+                                },
+                                "lun": {
+                                  "label": "lun",
+                                  "order": 1,
+                                  "type": "text"
+                                },
+                                "readOnly": {
+                                  "label": "readOnly",
+                                  "order": 3,
+                                  "type": "text"
+                                },
+                                "targetWWNs": {
+                                  "items": {
+                                    "fields": {}
+                                  },
+                                  "label": "targetWWNs",
+                                  "order": 0
+                                }
+                              },
+                              "label": "fc",
+                              "order": 17
+                            },
+                            "flexVolume": {
+                              "fields": {
+                                "driver": {
+                                  "label": "driver",
+                                  "order": 0,
+                                  "type": "text"
+                                },
+                                "fsType": {
+                                  "label": "fsType",
+                                  "order": 1,
+                                  "type": "text"
+                                },
+                                "options": {
+                                  "items": {
+                                    "fields": {
+                                      "_key": {
+                                        "label": "key",
+                                        "type": "text"
+                                      },
+                                      "val": {
+                                        "label": "val",
+                                        "type": "text"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "label": "options",
+                                  "order": 4,
+                                  "type": "map"
+                                },
+                                "readOnly": {
+                                  "label": "readOnly",
+                                  "order": 3,
+                                  "type": "text"
+                                },
+                                "secretRef": {
+                                  "fields": {
+                                    "name": {
+                                      "label": "name",
+                                      "order": 0,
+                                      "type": "text"
+                                    }
+                                  },
+                                  "label": "secretRef",
+                                  "order": 2
+                                }
+                              },
+                              "label": "flexVolume",
+                              "order": 12
+                            },
+                            "flocker": {
+                              "fields": {
+                                "datasetName": {
+                                  "label": "datasetName",
+                                  "order": 0,
+                                  "type": "text"
+                                }
+                              },
+                              "label": "flocker",
+                              "order": 15
                             },
                             "gcePersistentDisk": {
                               "fields": {
@@ -1345,6 +1418,11 @@
                             },
                             "gitRepo": {
                               "fields": {
+                                "directory": {
+                                  "label": "directory",
+                                  "order": 2,
+                                  "type": "text"
+                                },
                                 "repository": {
                                   "label": "repository",
                                   "order": 0,
@@ -1395,12 +1473,17 @@
                               "fields": {
                                 "fsType": {
                                   "label": "fsType",
-                                  "order": 3,
+                                  "order": 4,
                                   "type": "text"
                                 },
                                 "iqn": {
                                   "label": "iqn",
                                   "order": 1,
+                                  "type": "text"
+                                },
+                                "iscsiInterface": {
+                                  "label": "iscsiInterface",
+                                  "order": 3,
                                   "type": "text"
                                 },
                                 "lun": {
@@ -1410,7 +1493,7 @@
                                 },
                                 "readOnly": {
                                   "label": "readOnly",
-                                  "order": 4,
+                                  "order": 5,
                                   "type": "text"
                                 },
                                 "targetPortal": {
@@ -1455,7 +1538,7 @@
                                 }
                               },
                               "label": "metadata",
-                              "order": 13
+                              "order": 20
                             },
                             "name": {
                               "label": "name",
@@ -1575,84 +1658,7 @@
                   }
                 },
                 "label": "template",
-                "order": 4
-              },
-              "triggers": {
-                "items": {
-                  "fields": {
-                    "imageChangeParams": {
-                      "fields": {
-                        "automatic": {
-                          "label": "automatic",
-                          "order": 0,
-                          "type": "text"
-                        },
-                        "containerNames": {
-                          "items": {
-                            "fields": {}
-                          },
-                          "label": "containerNames",
-                          "order": 1
-                        },
-                        "from": {
-                          "fields": {
-                            "apiVersion": {
-                              "label": "apiVersion",
-                              "order": 4,
-                              "type": "text"
-                            },
-                            "fieldPath": {
-                              "label": "fieldPath",
-                              "order": 6,
-                              "type": "text"
-                            },
-                            "kind": {
-                              "label": "kind",
-                              "order": 0,
-                              "type": "text"
-                            },
-                            "name": {
-                              "label": "name",
-                              "order": 2,
-                              "type": "text"
-                            },
-                            "namespace": {
-                              "label": "namespace",
-                              "order": 1,
-                              "type": "text"
-                            },
-                            "resourceVersion": {
-                              "label": "resourceVersion",
-                              "order": 5,
-                              "type": "text"
-                            },
-                            "uid": {
-                              "label": "uid",
-                              "order": 3,
-                              "type": "text"
-                            }
-                          },
-                          "label": "from",
-                          "order": 2
-                        },
-                        "lastTriggeredImage": {
-                          "label": "lastTriggeredImage",
-                          "order": 3,
-                          "type": "text"
-                        }
-                      },
-                      "label": "imageChangeParams",
-                      "order": 1
-                    },
-                    "type": {
-                      "label": "type",
-                      "order": 0,
-                      "type": "text"
-                    }
-                  }
-                },
-                "label": "triggers",
-                "order": 1
+                "order": 2
               }
             },
             "label": "spec",
@@ -1660,80 +1666,29 @@
           },
           "status": {
             "fields": {
-              "details": {
-                "fields": {
-                  "causes": {
-                    "items": {
-                      "fields": {
-                        "imageTrigger": {
-                          "fields": {
-                            "from": {
-                              "fields": {
-                                "apiVersion": {
-                                  "label": "apiVersion",
-                                  "order": 4,
-                                  "type": "text"
-                                },
-                                "fieldPath": {
-                                  "label": "fieldPath",
-                                  "order": 6,
-                                  "type": "text"
-                                },
-                                "kind": {
-                                  "label": "kind",
-                                  "order": 0,
-                                  "type": "text"
-                                },
-                                "name": {
-                                  "label": "name",
-                                  "order": 2,
-                                  "type": "text"
-                                },
-                                "namespace": {
-                                  "label": "namespace",
-                                  "order": 1,
-                                  "type": "text"
-                                },
-                                "resourceVersion": {
-                                  "label": "resourceVersion",
-                                  "order": 5,
-                                  "type": "text"
-                                },
-                                "uid": {
-                                  "label": "uid",
-                                  "order": 3,
-                                  "type": "text"
-                                }
-                              },
-                              "label": "from",
-                              "order": 0
-                            }
-                          },
-                          "label": "imageTrigger",
-                          "order": 1
-                        },
-                        "type": {
-                          "label": "type",
-                          "order": 0,
-                          "type": "text"
-                        }
-                      }
-                    },
-                    "label": "causes",
-                    "order": 1
-                  },
-                  "message": {
-                    "label": "message",
-                    "order": 0,
-                    "type": "text"
-                  }
-                },
-                "label": "details",
-                "order": 1
+              "availableReplicas": {
+                "label": "availableReplicas",
+                "order": 3,
+                "type": "text"
               },
-              "latestVersion": {
-                "label": "latestVersion",
+              "observedGeneration": {
+                "label": "observedGeneration",
                 "order": 0,
+                "type": "text"
+              },
+              "replicas": {
+                "label": "replicas",
+                "order": 1,
+                "type": "text"
+              },
+              "unavailableReplicas": {
+                "label": "unavailableReplicas",
+                "order": 4,
+                "type": "text"
+              },
+              "updatedReplicas": {
+                "label": "updatedReplicas",
+                "order": 2,
                 "type": "text"
               }
             },

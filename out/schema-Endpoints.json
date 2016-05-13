@@ -27,6 +27,9 @@
         "creationTimestamp": {
           "type": "string"
         },
+        "deletionGracePeriodSeconds": {
+          "type": "string"
+        },
         "deletionTimestamp": {
           "type": "string"
         },
@@ -74,6 +77,43 @@
       "items": {
         "properties": {
           "addresses": {
+            "items": {
+              "properties": {
+                "ip": {
+                  "type": "string"
+                },
+                "targetRef": {
+                  "properties": {
+                    "apiVersion": {
+                      "type": "string"
+                    },
+                    "fieldPath": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    },
+                    "resourceVersion": {
+                      "type": "string"
+                    },
+                    "uid": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "notReadyAddresses": {
             "items": {
               "properties": {
                 "ip": {

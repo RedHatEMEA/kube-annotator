@@ -33,6 +33,9 @@
               "creationTimestamp": {
                 "type": "string"
               },
+              "deletionGracePeriodSeconds": {
+                "type": "string"
+              },
               "deletionTimestamp": {
                 "type": "string"
               },
@@ -90,6 +93,13 @@
                       "type": "string"
                     }
                   },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "scopes": {
+                "items": {
+                  "properties": {},
                   "type": "object"
                 },
                 "type": "array"

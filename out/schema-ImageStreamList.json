@@ -33,6 +33,9 @@
               "creationTimestamp": {
                 "type": "string"
               },
+              "deletionGracePeriodSeconds": {
+                "type": "string"
+              },
               "deletionTimestamp": {
                 "type": "string"
               },
@@ -126,7 +129,24 @@
                       },
                       "type": "object"
                     },
+                    "generation": {
+                      "type": "string"
+                    },
+                    "importPolicy": {
+                      "properties": {
+                        "insecure": {
+                          "type": "string"
+                        },
+                        "scheduled": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
                     "name": {
+                      "type": "string"
+                    },
+                    "reference": {
                       "type": "string"
                     }
                   },
@@ -145,6 +165,32 @@
               "tags": {
                 "items": {
                   "properties": {
+                    "conditions": {
+                      "items": {
+                        "properties": {
+                          "generation": {
+                            "type": "string"
+                          },
+                          "lastTransitionTime": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "reason": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
                     "items": {
                       "items": {
                         "properties": {
@@ -152,6 +198,9 @@
                             "type": "string"
                           },
                           "dockerImageReference": {
+                            "type": "string"
+                          },
+                          "generation": {
                             "type": "string"
                           },
                           "image": {

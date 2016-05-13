@@ -25,6 +25,11 @@
       "order": 5,
       "type": "text"
     },
+    "timeoutSeconds": {
+      "label": "timeoutSeconds",
+      "order": 6,
+      "type": "text"
+    },
     "watch": {
       "label": "watch",
       "order": 4,

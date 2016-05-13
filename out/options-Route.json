@@ -27,12 +27,17 @@
             "type": "object"
           },
           "label": "annotations",
-          "order": 10,
+          "order": 11,
           "type": "map"
         },
         "creationTimestamp": {
           "label": "creationTimestamp",
           "order": 7,
+          "type": "text"
+        },
+        "deletionGracePeriodSeconds": {
+          "label": "deletionGracePeriodSeconds",
+          "order": 9,
           "type": "text"
         },
         "deletionTimestamp": {
@@ -65,7 +70,7 @@
             "type": "object"
           },
           "label": "labels",
-          "order": 9,
+          "order": 10,
           "type": "map"
         },
         "name": {
@@ -109,6 +114,17 @@
           "order": 1,
           "type": "text"
         },
+        "port": {
+          "fields": {
+            "targetPort": {
+              "label": "targetPort",
+              "order": 0,
+              "type": "text"
+            }
+          },
+          "label": "port",
+          "order": 3
+        },
         "tls": {
           "fields": {
             "caCertificate": {
@@ -126,6 +142,11 @@
               "order": 4,
               "type": "text"
             },
+            "insecureEdgeTerminationPolicy": {
+              "label": "insecureEdgeTerminationPolicy",
+              "order": 5,
+              "type": "text"
+            },
             "key": {
               "label": "key",
               "order": 2,
@@ -138,7 +159,7 @@
             }
           },
           "label": "tls",
-          "order": 3
+          "order": 4
         },
         "to": {
           "fields": {

@@ -27,6 +27,9 @@
         "creationTimestamp": {
           "type": "string"
         },
+        "deletionGracePeriodSeconds": {
+          "type": "string"
+        },
         "deletionTimestamp": {
           "type": "string"
         },
@@ -72,6 +75,9 @@
     },
     "spec": {
       "properties": {
+        "completionDeadlineSeconds": {
+          "type": "string"
+        },
         "output": {
           "properties": {
             "pushSecret": {
@@ -107,6 +113,28 @@
                 }
               },
               "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "postCommit": {
+          "properties": {
+            "args": {
+              "items": {
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "command": {
+              "items": {
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "script": {
+              "type": "string"
             }
           },
           "type": "object"
@@ -194,7 +222,18 @@
         },
         "source": {
           "properties": {
+            "binary": {
+              "properties": {
+                "asFile": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
             "contextDir": {
+              "type": "string"
+            },
+            "dockerfile": {
               "type": "string"
             },
             "git": {
@@ -214,6 +253,81 @@
               },
               "type": "object"
             },
+            "images": {
+              "items": {
+                "properties": {
+                  "from": {
+                    "properties": {
+                      "apiVersion": {
+                        "type": "string"
+                      },
+                      "fieldPath": {
+                        "type": "string"
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "type": "string"
+                      },
+                      "resourceVersion": {
+                        "type": "string"
+                      },
+                      "uid": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "paths": {
+                    "items": {
+                      "properties": {
+                        "destinationDir": {
+                          "type": "string"
+                        },
+                        "sourcePath": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "pullSecret": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "secrets": {
+              "items": {
+                "properties": {
+                  "destinationDir": {
+                    "type": "string"
+                  },
+                  "secret": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
             "sourceSecret": {
               "properties": {
                 "name": {
@@ -232,6 +346,9 @@
           "properties": {
             "customStrategy": {
               "properties": {
+                "buildAPIVersion": {
+                  "type": "string"
+                },
                 "env": {
                   "items": {
                     "properties": {
@@ -243,12 +360,34 @@
                       },
                       "valueFrom": {
                         "properties": {
+                          "configMapKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
                           "fieldRef": {
                             "properties": {
                               "apiVersion": {
                                 "type": "string"
                               },
                               "fieldPath": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "secretKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
                                 "type": "string"
                               }
                             },
@@ -326,6 +465,9 @@
             },
             "dockerStrategy": {
               "properties": {
+                "dockerfilePath": {
+                  "type": "string"
+                },
                 "env": {
                   "items": {
                     "properties": {
@@ -337,12 +479,34 @@
                       },
                       "valueFrom": {
                         "properties": {
+                          "configMapKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
                           "fieldRef": {
                             "properties": {
                               "apiVersion": {
                                 "type": "string"
                               },
                               "fieldPath": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "secretKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
                                 "type": "string"
                               }
                             },
@@ -412,12 +576,34 @@
                       },
                       "valueFrom": {
                         "properties": {
+                          "configMapKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
                           "fieldRef": {
                             "properties": {
                               "apiVersion": {
                                 "type": "string"
                               },
                               "fieldPath": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "secretKeyRef": {
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
                                 "type": "string"
                               }
                             },

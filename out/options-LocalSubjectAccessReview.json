@@ -7,7 +7,7 @@
     },
     "content": {
       "label": "content",
-      "order": 6,
+      "order": 8,
       "type": "text"
     },
     "groups": {
@@ -15,7 +15,7 @@
         "fields": {}
       },
       "label": "groups",
-      "order": 8
+      "order": 10
     },
     "kind": {
       "label": "kind",
@@ -29,17 +29,27 @@
     },
     "resource": {
       "label": "resource",
+      "order": 6,
+      "type": "text"
+    },
+    "resourceAPIGroup": {
+      "label": "resourceAPIGroup",
       "order": 4,
+      "type": "text"
+    },
+    "resourceAPIVersion": {
+      "label": "resourceAPIVersion",
+      "order": 5,
       "type": "text"
     },
     "resourceName": {
       "label": "resourceName",
-      "order": 5,
+      "order": 7,
       "type": "text"
     },
     "user": {
       "label": "user",
-      "order": 7,
+      "order": 9,
       "type": "text"
     },
     "verb": {

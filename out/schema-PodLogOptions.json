@@ -12,7 +12,22 @@
     "kind": {
       "type": "string"
     },
+    "limitBytes": {
+      "type": "string"
+    },
     "previous": {
+      "type": "string"
+    },
+    "sinceSeconds": {
+      "type": "string"
+    },
+    "sinceTime": {
+      "type": "string"
+    },
+    "tailLines": {
+      "type": "string"
+    },
+    "timestamps": {
       "type": "string"
     }
   },

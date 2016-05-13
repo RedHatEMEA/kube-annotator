@@ -20,9 +20,34 @@
       "order": 0,
       "type": "text"
     },
+    "limitBytes": {
+      "label": "limitBytes",
+      "order": 9,
+      "type": "text"
+    },
     "previous": {
       "label": "previous",
       "order": 4,
+      "type": "text"
+    },
+    "sinceSeconds": {
+      "label": "sinceSeconds",
+      "order": 5,
+      "type": "text"
+    },
+    "sinceTime": {
+      "label": "sinceTime",
+      "order": 6,
+      "type": "text"
+    },
+    "tailLines": {
+      "label": "tailLines",
+      "order": 8,
+      "type": "text"
+    },
+    "timestamps": {
+      "label": "timestamps",
+      "order": 7,
       "type": "text"
     }
   },

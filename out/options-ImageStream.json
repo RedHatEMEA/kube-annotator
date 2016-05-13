@@ -27,12 +27,17 @@
             "type": "object"
           },
           "label": "annotations",
-          "order": 10,
+          "order": 11,
           "type": "map"
         },
         "creationTimestamp": {
           "label": "creationTimestamp",
           "order": 7,
+          "type": "text"
+        },
+        "deletionGracePeriodSeconds": {
+          "label": "deletionGracePeriodSeconds",
+          "order": 9,
           "type": "text"
         },
         "deletionTimestamp": {
@@ -65,7 +70,7 @@
             "type": "object"
           },
           "label": "labels",
-          "order": 9,
+          "order": 10,
           "type": "map"
         },
         "name": {
@@ -166,9 +171,35 @@
                 "label": "from",
                 "order": 2
               },
+              "generation": {
+                "label": "generation",
+                "order": 4,
+                "type": "text"
+              },
+              "importPolicy": {
+                "fields": {
+                  "insecure": {
+                    "label": "insecure",
+                    "order": 0,
+                    "type": "text"
+                  },
+                  "scheduled": {
+                    "label": "scheduled",
+                    "order": 1,
+                    "type": "text"
+                  }
+                },
+                "label": "importPolicy",
+                "order": 5
+              },
               "name": {
                 "label": "name",
                 "order": 0,
+                "type": "text"
+              },
+              "reference": {
+                "label": "reference",
+                "order": 3,
                 "type": "text"
               }
             }

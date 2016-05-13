@@ -33,6 +33,9 @@
               "creationTimestamp": {
                 "type": "string"
               },
+              "deletionGracePeriodSeconds": {
+                "type": "string"
+              },
               "deletionTimestamp": {
                 "type": "string"
               },
@@ -102,6 +105,20 @@
                 },
                 "type": "object"
               },
+              "azureFile": {
+                "properties": {
+                  "readOnly": {
+                    "type": "string"
+                  },
+                  "secretName": {
+                    "type": "string"
+                  },
+                  "shareName": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
               "capacity": {
                 "items": {
                   "properties": {
@@ -127,6 +144,9 @@
                     },
                     "type": "array"
                   },
+                  "path": {
+                    "type": "string"
+                  },
                   "readOnly": {
                     "type": "string"
                   },
@@ -142,6 +162,20 @@
                     "type": "object"
                   },
                   "user": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "cinder": {
+                "properties": {
+                  "fsType": {
+                    "type": "string"
+                  },
+                  "readOnly": {
+                    "type": "string"
+                  },
+                  "volumeID": {
                     "type": "string"
                   }
                 },
@@ -168,6 +202,73 @@
                     "type": "string"
                   },
                   "uid": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "fc": {
+                "properties": {
+                  "fsType": {
+                    "type": "string"
+                  },
+                  "lun": {
+                    "type": "string"
+                  },
+                  "readOnly": {
+                    "type": "string"
+                  },
+                  "targetWWNs": {
+                    "items": {
+                      "properties": {},
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "flexVolume": {
+                "properties": {
+                  "driver": {
+                    "type": "string"
+                  },
+                  "fsType": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "items": {
+                      "properties": {
+                        "_key": {
+                          "title": "_key",
+                          "type": "string"
+                        },
+                        "val": {
+                          "title": "val",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "readOnly": {
+                    "type": "string"
+                  },
+                  "secretRef": {
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "flocker": {
+                "properties": {
+                  "datasetName": {
                     "type": "string"
                   }
                 },
@@ -218,6 +319,9 @@
                     "type": "string"
                   },
                   "iqn": {
+                    "type": "string"
+                  },
+                  "iscsiInterface": {
                     "type": "string"
                   },
                   "lun": {

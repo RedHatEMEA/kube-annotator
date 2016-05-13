@@ -1,0 +1,159 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "items": {
+      "items": {
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "properties": {
+              "annotations": {
+                "items": {
+                  "properties": {
+                    "_key": {
+                      "title": "_key",
+                      "type": "string"
+                    },
+                    "val": {
+                      "title": "val",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "creationTimestamp": {
+                "type": "string"
+              },
+              "deletionGracePeriodSeconds": {
+                "type": "string"
+              },
+              "deletionTimestamp": {
+                "type": "string"
+              },
+              "generateName": {
+                "type": "string"
+              },
+              "generation": {
+                "type": "string"
+              },
+              "labels": {
+                "items": {
+                  "properties": {
+                    "_key": {
+                      "title": "_key",
+                      "type": "string"
+                    },
+                    "val": {
+                      "title": "val",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "name": {
+                "type": "string"
+              },
+              "namespace": {
+                "type": "string"
+              },
+              "resourceVersion": {
+                "type": "string"
+              },
+              "selfLink": {
+                "type": "string"
+              },
+              "uid": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "spec": {
+            "properties": {
+              "cpuUtilization": {
+                "properties": {
+                  "targetPercentage": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "maxReplicas": {
+                "type": "string"
+              },
+              "minReplicas": {
+                "type": "string"
+              },
+              "scaleRef": {
+                "properties": {
+                  "apiVersion": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "subresource": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "status": {
+            "properties": {
+              "currentCPUUtilizationPercentage": {
+                "type": "string"
+              },
+              "currentReplicas": {
+                "type": "string"
+              },
+              "desiredReplicas": {
+                "type": "string"
+              },
+              "lastScaleTime": {
+                "type": "string"
+              },
+              "observedGeneration": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "metadata": {
+      "properties": {
+        "resourceVersion": {
+          "type": "string"
+        },
+        "selfLink": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

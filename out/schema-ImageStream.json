@@ -27,6 +27,9 @@
         "creationTimestamp": {
           "type": "string"
         },
+        "deletionGracePeriodSeconds": {
+          "type": "string"
+        },
         "deletionTimestamp": {
           "type": "string"
         },
@@ -120,7 +123,24 @@
                 },
                 "type": "object"
               },
+              "generation": {
+                "type": "string"
+              },
+              "importPolicy": {
+                "properties": {
+                  "insecure": {
+                    "type": "string"
+                  },
+                  "scheduled": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
               "name": {
+                "type": "string"
+              },
+              "reference": {
                 "type": "string"
               }
             },

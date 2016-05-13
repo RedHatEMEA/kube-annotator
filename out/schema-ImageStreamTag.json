@@ -3,10 +3,53 @@
     "apiVersion": {
       "type": "string"
     },
+    "conditions": {
+      "items": {
+        "properties": {
+          "generation": {
+            "type": "string"
+          },
+          "lastTransitionTime": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "generation": {
+      "type": "string"
+    },
     "image": {
       "properties": {
         "apiVersion": {
           "type": "string"
+        },
+        "dockerImageLayers": {
+          "items": {
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "size": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
         },
         "dockerImageManifest": {
           "type": "string"
@@ -42,6 +85,9 @@
               "type": "array"
             },
             "creationTimestamp": {
+              "type": "string"
+            },
+            "deletionGracePeriodSeconds": {
               "type": "string"
             },
             "deletionTimestamp": {
@@ -114,6 +160,9 @@
         "creationTimestamp": {
           "type": "string"
         },
+        "deletionGracePeriodSeconds": {
+          "type": "string"
+        },
         "deletionTimestamp": {
           "type": "string"
         },
@@ -152,6 +201,73 @@
           "type": "string"
         },
         "uid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tag": {
+      "properties": {
+        "annotations": {
+          "items": {
+            "properties": {
+              "_key": {
+                "title": "_key",
+                "type": "string"
+              },
+              "val": {
+                "title": "val",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "from": {
+          "properties": {
+            "apiVersion": {
+              "type": "string"
+            },
+            "fieldPath": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "namespace": {
+              "type": "string"
+            },
+            "resourceVersion": {
+              "type": "string"
+            },
+            "uid": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "generation": {
+          "type": "string"
+        },
+        "importPolicy": {
+          "properties": {
+            "insecure": {
+              "type": "string"
+            },
+            "scheduled": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        },
+        "reference": {
           "type": "string"
         }
       },

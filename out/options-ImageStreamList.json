@@ -35,12 +35,17 @@
                   "type": "object"
                 },
                 "label": "annotations",
-                "order": 10,
+                "order": 11,
                 "type": "map"
               },
               "creationTimestamp": {
                 "label": "creationTimestamp",
                 "order": 7,
+                "type": "text"
+              },
+              "deletionGracePeriodSeconds": {
+                "label": "deletionGracePeriodSeconds",
+                "order": 9,
                 "type": "text"
               },
               "deletionTimestamp": {
@@ -73,7 +78,7 @@
                   "type": "object"
                 },
                 "label": "labels",
-                "order": 9,
+                "order": 10,
                 "type": "map"
               },
               "name": {
@@ -174,9 +179,35 @@
                       "label": "from",
                       "order": 2
                     },
+                    "generation": {
+                      "label": "generation",
+                      "order": 4,
+                      "type": "text"
+                    },
+                    "importPolicy": {
+                      "fields": {
+                        "insecure": {
+                          "label": "insecure",
+                          "order": 0,
+                          "type": "text"
+                        },
+                        "scheduled": {
+                          "label": "scheduled",
+                          "order": 1,
+                          "type": "text"
+                        }
+                      },
+                      "label": "importPolicy",
+                      "order": 5
+                    },
                     "name": {
                       "label": "name",
                       "order": 0,
+                      "type": "text"
+                    },
+                    "reference": {
+                      "label": "reference",
+                      "order": 3,
                       "type": "text"
                     }
                   }
@@ -198,6 +229,44 @@
               "tags": {
                 "items": {
                   "fields": {
+                    "conditions": {
+                      "items": {
+                        "fields": {
+                          "generation": {
+                            "label": "generation",
+                            "order": 5,
+                            "type": "text"
+                          },
+                          "lastTransitionTime": {
+                            "label": "lastTransitionTime",
+                            "order": 2,
+                            "type": "text"
+                          },
+                          "message": {
+                            "label": "message",
+                            "order": 4,
+                            "type": "text"
+                          },
+                          "reason": {
+                            "label": "reason",
+                            "order": 3,
+                            "type": "text"
+                          },
+                          "status": {
+                            "label": "status",
+                            "order": 1,
+                            "type": "text"
+                          },
+                          "type": {
+                            "label": "type",
+                            "order": 0,
+                            "type": "text"
+                          }
+                        }
+                      },
+                      "label": "conditions",
+                      "order": 2
+                    },
                     "items": {
                       "items": {
                         "fields": {
@@ -209,6 +278,11 @@
                           "dockerImageReference": {
                             "label": "dockerImageReference",
                             "order": 1,
+                            "type": "text"
+                          },
+                          "generation": {
+                            "label": "generation",
+                            "order": 3,
                             "type": "text"
                           },
                           "image": {

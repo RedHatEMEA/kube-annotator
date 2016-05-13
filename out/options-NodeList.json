@@ -35,12 +35,17 @@
                   "type": "object"
                 },
                 "label": "annotations",
-                "order": 10,
+                "order": 11,
                 "type": "map"
               },
               "creationTimestamp": {
                 "label": "creationTimestamp",
                 "order": 7,
+                "type": "text"
+              },
+              "deletionGracePeriodSeconds": {
+                "label": "deletionGracePeriodSeconds",
+                "order": 9,
                 "type": "text"
               },
               "deletionTimestamp": {
@@ -73,7 +78,7 @@
                   "type": "object"
                 },
                 "label": "labels",
-                "order": 9,
+                "order": 10,
                 "type": "map"
               },
               "name": {
@@ -149,7 +154,25 @@
                   }
                 },
                 "label": "addresses",
-                "order": 3
+                "order": 4
+              },
+              "allocatable": {
+                "items": {
+                  "fields": {
+                    "_key": {
+                      "label": "key",
+                      "type": "text"
+                    },
+                    "val": {
+                      "label": "val",
+                      "type": "text"
+                    }
+                  },
+                  "type": "object"
+                },
+                "label": "allocatable",
+                "order": 1,
+                "type": "map"
               },
               "capacity": {
                 "items": {
@@ -205,7 +228,38 @@
                   }
                 },
                 "label": "conditions",
-                "order": 2
+                "order": 3
+              },
+              "daemonEndpoints": {
+                "fields": {
+                  "kubeletEndpoint": {
+                    "label": "kubeletEndpoint",
+                    "order": 0,
+                    "type": "text"
+                  }
+                },
+                "label": "daemonEndpoints",
+                "order": 5
+              },
+              "images": {
+                "items": {
+                  "fields": {
+                    "names": {
+                      "items": {
+                        "fields": {}
+                      },
+                      "label": "names",
+                      "order": 0
+                    },
+                    "sizeBytes": {
+                      "label": "sizeBytes",
+                      "order": 1,
+                      "type": "text"
+                    }
+                  }
+                },
+                "label": "images",
+                "order": 7
               },
               "nodeInfo": {
                 "fields": {
@@ -251,11 +305,11 @@
                   }
                 },
                 "label": "nodeInfo",
-                "order": 4
+                "order": 6
               },
               "phase": {
                 "label": "phase",
-                "order": 1,
+                "order": 2,
                 "type": "text"
               }
             },

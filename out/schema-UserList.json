@@ -50,6 +50,9 @@
               "creationTimestamp": {
                 "type": "string"
               },
+              "deletionGracePeriodSeconds": {
+                "type": "string"
+              },
               "deletionTimestamp": {
                 "type": "string"
               },

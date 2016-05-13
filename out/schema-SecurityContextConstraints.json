@@ -3,7 +3,13 @@
     "allowHostDirVolumePlugin": {
       "type": "string"
     },
+    "allowHostIPC": {
+      "type": "string"
+    },
     "allowHostNetwork": {
+      "type": "string"
+    },
+    "allowHostPID": {
       "type": "string"
     },
     "allowHostPorts": {
@@ -21,6 +27,35 @@
     },
     "apiVersion": {
       "type": "string"
+    },
+    "defaultAddCapabilities": {
+      "items": {
+        "properties": {},
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "fsGroup": {
+      "properties": {
+        "ranges": {
+          "items": {
+            "properties": {
+              "max": {
+                "type": "string"
+              },
+              "min": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
     },
     "groups": {
       "items": {
@@ -51,6 +86,9 @@
           "type": "array"
         },
         "creationTimestamp": {
+          "type": "string"
+        },
+        "deletionGracePeriodSeconds": {
           "type": "string"
         },
         "deletionTimestamp": {
@@ -96,6 +134,19 @@
       },
       "type": "object"
     },
+    "priority": {
+      "type": "string"
+    },
+    "readOnlyRootFilesystem": {
+      "type": "string"
+    },
+    "requiredDropCapabilities": {
+      "items": {
+        "properties": {},
+        "type": "object"
+      },
+      "type": "array"
+    },
     "runAsUser": {
       "properties": {
         "type": {
@@ -138,7 +189,36 @@
       },
       "type": "object"
     },
+    "supplementalGroups": {
+      "properties": {
+        "ranges": {
+          "items": {
+            "properties": {
+              "max": {
+                "type": "string"
+              },
+              "min": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "users": {
+      "items": {
+        "properties": {},
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "volumes": {
       "items": {
         "properties": {},
         "type": "object"

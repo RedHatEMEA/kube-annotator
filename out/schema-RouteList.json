@@ -33,6 +33,9 @@
               "creationTimestamp": {
                 "type": "string"
               },
+              "deletionGracePeriodSeconds": {
+                "type": "string"
+              },
               "deletionTimestamp": {
                 "type": "string"
               },
@@ -84,6 +87,14 @@
               "path": {
                 "type": "string"
               },
+              "port": {
+                "properties": {
+                  "targetPort": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
               "tls": {
                 "properties": {
                   "caCertificate": {
@@ -93,6 +104,9 @@
                     "type": "string"
                   },
                   "destinationCACertificate": {
+                    "type": "string"
+                  },
+                  "insecureEdgeTerminationPolicy": {
                     "type": "string"
                   },
                   "key": {
@@ -134,7 +148,46 @@
             "type": "object"
           },
           "status": {
-            "type": "string"
+            "properties": {
+              "ingress": {
+                "items": {
+                  "properties": {
+                    "conditions": {
+                      "items": {
+                        "properties": {
+                          "lastTransitionTime": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "reason": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "host": {
+                      "type": "string"
+                    },
+                    "routerName": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "type": "object"
           }
         },
         "type": "object"

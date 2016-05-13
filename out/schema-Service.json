@@ -27,6 +27,9 @@
         "creationTimestamp": {
           "type": "string"
         },
+        "deletionGracePeriodSeconds": {
+          "type": "string"
+        },
         "deletionTimestamp": {
           "type": "string"
         },
@@ -81,6 +84,16 @@
             "type": "object"
           },
           "type": "array"
+        },
+        "externalIPs": {
+          "items": {
+            "properties": {},
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "loadBalancerIP": {
+          "type": "string"
         },
         "portalIP": {
           "type": "string"

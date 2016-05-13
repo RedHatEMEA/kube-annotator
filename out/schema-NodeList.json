@@ -33,6 +33,9 @@
               "creationTimestamp": {
                 "type": "string"
               },
+              "deletionGracePeriodSeconds": {
+                "type": "string"
+              },
               "deletionTimestamp": {
                 "type": "string"
               },
@@ -109,6 +112,22 @@
                 },
                 "type": "array"
               },
+              "allocatable": {
+                "items": {
+                  "properties": {
+                    "_key": {
+                      "title": "_key",
+                      "type": "string"
+                    },
+                    "val": {
+                      "title": "val",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
               "capacity": {
                 "items": {
                   "properties": {
@@ -144,6 +163,32 @@
                       "type": "string"
                     },
                     "type": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "daemonEndpoints": {
+                "properties": {
+                  "kubeletEndpoint": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "images": {
+                "items": {
+                  "properties": {
+                    "names": {
+                      "items": {
+                        "properties": {},
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "sizeBytes": {
                       "type": "string"
                     }
                   },

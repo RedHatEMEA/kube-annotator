@@ -33,6 +33,9 @@
               "creationTimestamp": {
                 "type": "string"
               },
+              "deletionGracePeriodSeconds": {
+                "type": "string"
+              },
               "deletionTimestamp": {
                 "type": "string"
               },
@@ -78,351 +81,44 @@
           },
           "spec": {
             "properties": {
-              "replicas": {
-                "type": "string"
-              },
               "selector": {
-                "items": {
-                  "properties": {
-                    "_key": {
-                      "title": "_key",
-                      "type": "string"
-                    },
-                    "val": {
-                      "title": "val",
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                },
-                "type": "array"
-              },
-              "strategy": {
                 "properties": {
-                  "customParams": {
-                    "properties": {
-                      "command": {
-                        "items": {
-                          "properties": {},
-                          "type": "object"
+                  "matchExpressions": {
+                    "items": {
+                      "properties": {
+                        "key": {
+                          "type": "string"
                         },
-                        "type": "array"
-                      },
-                      "environment": {
-                        "items": {
-                          "properties": {
-                            "name": {
-                              "type": "string"
-                            },
-                            "value": {
-                              "type": "string"
-                            },
-                            "valueFrom": {
-                              "properties": {
-                                "fieldRef": {
-                                  "properties": {
-                                    "apiVersion": {
-                                      "type": "string"
-                                    },
-                                    "fieldPath": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "type": "object"
-                                }
-                              },
-                              "type": "object"
-                            }
-                          },
-                          "type": "object"
+                        "operator": {
+                          "type": "string"
                         },
-                        "type": "array"
-                      },
-                      "image": {
-                        "type": "string"
-                      }
-                    },
-                    "type": "object"
-                  },
-                  "recreateParams": {
-                    "properties": {
-                      "post": {
-                        "properties": {
-                          "execNewPod": {
-                            "properties": {
-                              "command": {
-                                "items": {
-                                  "properties": {},
-                                  "type": "object"
-                                },
-                                "type": "array"
-                              },
-                              "containerName": {
-                                "type": "string"
-                              },
-                              "env": {
-                                "items": {
-                                  "properties": {
-                                    "name": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    },
-                                    "valueFrom": {
-                                      "properties": {
-                                        "fieldRef": {
-                                          "properties": {
-                                            "apiVersion": {
-                                              "type": "string"
-                                            },
-                                            "fieldPath": {
-                                              "type": "string"
-                                            }
-                                          },
-                                          "type": "object"
-                                        }
-                                      },
-                                      "type": "object"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "type": "array"
-                              }
-                            },
+                        "values": {
+                          "items": {
+                            "properties": {},
                             "type": "object"
                           },
-                          "failurePolicy": {
-                            "type": "string"
-                          }
-                        },
-                        "type": "object"
+                          "type": "array"
+                        }
                       },
-                      "pre": {
-                        "properties": {
-                          "execNewPod": {
-                            "properties": {
-                              "command": {
-                                "items": {
-                                  "properties": {},
-                                  "type": "object"
-                                },
-                                "type": "array"
-                              },
-                              "containerName": {
-                                "type": "string"
-                              },
-                              "env": {
-                                "items": {
-                                  "properties": {
-                                    "name": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    },
-                                    "valueFrom": {
-                                      "properties": {
-                                        "fieldRef": {
-                                          "properties": {
-                                            "apiVersion": {
-                                              "type": "string"
-                                            },
-                                            "fieldPath": {
-                                              "type": "string"
-                                            }
-                                          },
-                                          "type": "object"
-                                        }
-                                      },
-                                      "type": "object"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "type": "array"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "failurePolicy": {
-                            "type": "string"
-                          }
-                        },
-                        "type": "object"
-                      }
+                      "type": "object"
                     },
-                    "type": "object"
+                    "type": "array"
                   },
-                  "resources": {
-                    "properties": {
-                      "limits": {
-                        "items": {
-                          "properties": {
-                            "_key": {
-                              "title": "_key",
-                              "type": "string"
-                            },
-                            "val": {
-                              "title": "val",
-                              "type": "string"
-                            }
-                          },
-                          "type": "object"
+                  "matchLabels": {
+                    "items": {
+                      "properties": {
+                        "_key": {
+                          "title": "_key",
+                          "type": "string"
                         },
-                        "type": "array"
+                        "val": {
+                          "title": "val",
+                          "type": "string"
+                        }
                       },
-                      "requests": {
-                        "items": {
-                          "properties": {
-                            "_key": {
-                              "title": "_key",
-                              "type": "string"
-                            },
-                            "val": {
-                              "title": "val",
-                              "type": "string"
-                            }
-                          },
-                          "type": "object"
-                        },
-                        "type": "array"
-                      }
+                      "type": "object"
                     },
-                    "type": "object"
-                  },
-                  "rollingParams": {
-                    "properties": {
-                      "intervalSeconds": {
-                        "type": "string"
-                      },
-                      "maxSurge": {
-                        "type": "string"
-                      },
-                      "maxUnavailable": {
-                        "type": "string"
-                      },
-                      "post": {
-                        "properties": {
-                          "execNewPod": {
-                            "properties": {
-                              "command": {
-                                "items": {
-                                  "properties": {},
-                                  "type": "object"
-                                },
-                                "type": "array"
-                              },
-                              "containerName": {
-                                "type": "string"
-                              },
-                              "env": {
-                                "items": {
-                                  "properties": {
-                                    "name": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    },
-                                    "valueFrom": {
-                                      "properties": {
-                                        "fieldRef": {
-                                          "properties": {
-                                            "apiVersion": {
-                                              "type": "string"
-                                            },
-                                            "fieldPath": {
-                                              "type": "string"
-                                            }
-                                          },
-                                          "type": "object"
-                                        }
-                                      },
-                                      "type": "object"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "type": "array"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "failurePolicy": {
-                            "type": "string"
-                          }
-                        },
-                        "type": "object"
-                      },
-                      "pre": {
-                        "properties": {
-                          "execNewPod": {
-                            "properties": {
-                              "command": {
-                                "items": {
-                                  "properties": {},
-                                  "type": "object"
-                                },
-                                "type": "array"
-                              },
-                              "containerName": {
-                                "type": "string"
-                              },
-                              "env": {
-                                "items": {
-                                  "properties": {
-                                    "name": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    },
-                                    "valueFrom": {
-                                      "properties": {
-                                        "fieldRef": {
-                                          "properties": {
-                                            "apiVersion": {
-                                              "type": "string"
-                                            },
-                                            "fieldPath": {
-                                              "type": "string"
-                                            }
-                                          },
-                                          "type": "object"
-                                        }
-                                      },
-                                      "type": "object"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "type": "array"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "failurePolicy": {
-                            "type": "string"
-                          }
-                        },
-                        "type": "object"
-                      },
-                      "timeoutSeconds": {
-                        "type": "string"
-                      },
-                      "updatePercent": {
-                        "type": "string"
-                      },
-                      "updatePeriodSeconds": {
-                        "type": "string"
-                      }
-                    },
-                    "type": "object"
-                  },
-                  "type": {
-                    "type": "string"
+                    "type": "array"
                   }
                 },
                 "type": "object"
@@ -448,6 +144,9 @@
                         "type": "array"
                       },
                       "creationTimestamp": {
+                        "type": "string"
+                      },
+                      "deletionGracePeriodSeconds": {
                         "type": "string"
                       },
                       "deletionTimestamp": {
@@ -526,12 +225,34 @@
                                   },
                                   "valueFrom": {
                                     "properties": {
+                                      "configMapKeyRef": {
+                                        "properties": {
+                                          "key": {
+                                            "type": "string"
+                                          },
+                                          "name": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
                                       "fieldRef": {
                                         "properties": {
                                           "apiVersion": {
                                             "type": "string"
                                           },
                                           "fieldPath": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "secretKeyRef": {
+                                        "properties": {
+                                          "key": {
+                                            "type": "string"
+                                          },
+                                          "name": {
                                             "type": "string"
                                           }
                                         },
@@ -571,6 +292,20 @@
                                       "properties": {
                                         "host": {
                                           "type": "string"
+                                        },
+                                        "httpHeaders": {
+                                          "items": {
+                                            "properties": {
+                                              "name": {
+                                                "type": "string"
+                                              },
+                                              "value": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
                                         },
                                         "path": {
                                           "type": "string"
@@ -614,6 +349,20 @@
                                         "host": {
                                           "type": "string"
                                         },
+                                        "httpHeaders": {
+                                          "items": {
+                                            "properties": {
+                                              "name": {
+                                                "type": "string"
+                                              },
+                                              "value": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
                                         "path": {
                                           "type": "string"
                                         },
@@ -654,10 +403,27 @@
                                   },
                                   "type": "object"
                                 },
+                                "failureThreshold": {
+                                  "type": "string"
+                                },
                                 "httpGet": {
                                   "properties": {
                                     "host": {
                                       "type": "string"
+                                    },
+                                    "httpHeaders": {
+                                      "items": {
+                                        "properties": {
+                                          "name": {
+                                            "type": "string"
+                                          },
+                                          "value": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "type": "array"
                                     },
                                     "path": {
                                       "type": "string"
@@ -672,6 +438,12 @@
                                   "type": "object"
                                 },
                                 "initialDelaySeconds": {
+                                  "type": "string"
+                                },
+                                "periodSeconds": {
+                                  "type": "string"
+                                },
+                                "successThreshold": {
                                   "type": "string"
                                 },
                                 "tcpSocket": {
@@ -728,10 +500,27 @@
                                   },
                                   "type": "object"
                                 },
+                                "failureThreshold": {
+                                  "type": "string"
+                                },
                                 "httpGet": {
                                   "properties": {
                                     "host": {
                                       "type": "string"
+                                    },
+                                    "httpHeaders": {
+                                      "items": {
+                                        "properties": {
+                                          "name": {
+                                            "type": "string"
+                                          },
+                                          "value": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "type": "array"
                                     },
                                     "path": {
                                       "type": "string"
@@ -746,6 +535,12 @@
                                   "type": "object"
                                 },
                                 "initialDelaySeconds": {
+                                  "type": "string"
+                                },
+                                "periodSeconds": {
+                                  "type": "string"
+                                },
+                                "successThreshold": {
                                   "type": "string"
                                 },
                                 "tcpSocket": {
@@ -823,6 +618,9 @@
                                 "privileged": {
                                   "type": "string"
                                 },
+                                "readOnlyRootFilesystem": {
+                                  "type": "string"
+                                },
                                 "runAsNonRoot": {
                                   "type": "string"
                                 },
@@ -850,6 +648,9 @@
                               "type": "object"
                             },
                             "stdin": {
+                              "type": "string"
+                            },
+                            "stdinOnce": {
                               "type": "string"
                             },
                             "terminationMessagePath": {
@@ -889,7 +690,13 @@
                       "host": {
                         "type": "string"
                       },
+                      "hostIPC": {
+                        "type": "string"
+                      },
                       "hostNetwork": {
+                        "type": "string"
+                      },
+                      "hostPID": {
                         "type": "string"
                       },
                       "imagePullSecrets": {
@@ -925,6 +732,44 @@
                       "restartPolicy": {
                         "type": "string"
                       },
+                      "securityContext": {
+                        "properties": {
+                          "fsGroup": {
+                            "type": "string"
+                          },
+                          "runAsNonRoot": {
+                            "type": "string"
+                          },
+                          "runAsUser": {
+                            "type": "string"
+                          },
+                          "seLinuxOptions": {
+                            "properties": {
+                              "level": {
+                                "type": "string"
+                              },
+                              "role": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "user": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "supplementalGroups": {
+                            "items": {
+                              "properties": {},
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
                       "serviceAccount": {
                         "type": "string"
                       },
@@ -954,6 +799,20 @@
                               },
                               "type": "object"
                             },
+                            "azureFile": {
+                              "properties": {
+                                "readOnly": {
+                                  "type": "string"
+                                },
+                                "secretName": {
+                                  "type": "string"
+                                },
+                                "shareName": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
                             "cephfs": {
                               "properties": {
                                 "monitors": {
@@ -962,6 +821,9 @@
                                     "type": "object"
                                   },
                                   "type": "array"
+                                },
+                                "path": {
+                                  "type": "string"
                                 },
                                 "readOnly": {
                                   "type": "string"
@@ -983,9 +845,139 @@
                               },
                               "type": "object"
                             },
+                            "cinder": {
+                              "properties": {
+                                "fsType": {
+                                  "type": "string"
+                                },
+                                "readOnly": {
+                                  "type": "string"
+                                },
+                                "volumeID": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "configMap": {
+                              "properties": {
+                                "items": {
+                                  "items": {
+                                    "properties": {
+                                      "key": {
+                                        "type": "string"
+                                      },
+                                      "path": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "downwardAPI": {
+                              "properties": {
+                                "items": {
+                                  "items": {
+                                    "properties": {
+                                      "fieldRef": {
+                                        "properties": {
+                                          "apiVersion": {
+                                            "type": "string"
+                                          },
+                                          "fieldPath": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "path": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "type": "object"
+                            },
                             "emptyDir": {
                               "properties": {
                                 "medium": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "fc": {
+                              "properties": {
+                                "fsType": {
+                                  "type": "string"
+                                },
+                                "lun": {
+                                  "type": "string"
+                                },
+                                "readOnly": {
+                                  "type": "string"
+                                },
+                                "targetWWNs": {
+                                  "items": {
+                                    "properties": {},
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "flexVolume": {
+                              "properties": {
+                                "driver": {
+                                  "type": "string"
+                                },
+                                "fsType": {
+                                  "type": "string"
+                                },
+                                "options": {
+                                  "items": {
+                                    "properties": {
+                                      "_key": {
+                                        "title": "_key",
+                                        "type": "string"
+                                      },
+                                      "val": {
+                                        "title": "val",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "readOnly": {
+                                  "type": "string"
+                                },
+                                "secretRef": {
+                                  "properties": {
+                                    "name": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "flocker": {
+                              "properties": {
+                                "datasetName": {
                                   "type": "string"
                                 }
                               },
@@ -1010,6 +1002,9 @@
                             },
                             "gitRepo": {
                               "properties": {
+                                "directory": {
+                                  "type": "string"
+                                },
                                 "repository": {
                                   "type": "string"
                                 },
@@ -1047,6 +1042,9 @@
                                   "type": "string"
                                 },
                                 "iqn": {
+                                  "type": "string"
+                                },
+                                "iscsiInterface": {
                                   "type": "string"
                                 },
                                 "lun": {
@@ -1172,118 +1170,19 @@
                   }
                 },
                 "type": "object"
-              },
-              "triggers": {
-                "items": {
-                  "properties": {
-                    "imageChangeParams": {
-                      "properties": {
-                        "automatic": {
-                          "type": "string"
-                        },
-                        "containerNames": {
-                          "items": {
-                            "properties": {},
-                            "type": "object"
-                          },
-                          "type": "array"
-                        },
-                        "from": {
-                          "properties": {
-                            "apiVersion": {
-                              "type": "string"
-                            },
-                            "fieldPath": {
-                              "type": "string"
-                            },
-                            "kind": {
-                              "type": "string"
-                            },
-                            "name": {
-                              "type": "string"
-                            },
-                            "namespace": {
-                              "type": "string"
-                            },
-                            "resourceVersion": {
-                              "type": "string"
-                            },
-                            "uid": {
-                              "type": "string"
-                            }
-                          },
-                          "type": "object"
-                        },
-                        "lastTriggeredImage": {
-                          "type": "string"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "type": {
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                },
-                "type": "array"
               }
             },
             "type": "object"
           },
           "status": {
             "properties": {
-              "details": {
-                "properties": {
-                  "causes": {
-                    "items": {
-                      "properties": {
-                        "imageTrigger": {
-                          "properties": {
-                            "from": {
-                              "properties": {
-                                "apiVersion": {
-                                  "type": "string"
-                                },
-                                "fieldPath": {
-                                  "type": "string"
-                                },
-                                "kind": {
-                                  "type": "string"
-                                },
-                                "name": {
-                                  "type": "string"
-                                },
-                                "namespace": {
-                                  "type": "string"
-                                },
-                                "resourceVersion": {
-                                  "type": "string"
-                                },
-                                "uid": {
-                                  "type": "string"
-                                }
-                              },
-                              "type": "object"
-                            }
-                          },
-                          "type": "object"
-                        },
-                        "type": {
-                          "type": "string"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "type": "array"
-                  },
-                  "message": {
-                    "type": "string"
-                  }
-                },
-                "type": "object"
+              "currentNumberScheduled": {
+                "type": "string"
               },
-              "latestVersion": {
+              "desiredNumberScheduled": {
+                "type": "string"
+              },
+              "numberMisscheduled": {
                 "type": "string"
               }
             },

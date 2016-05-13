@@ -3,13 +3,37 @@
     "apiVersion": {
       "type": "string"
     },
+    "container": {
+      "type": "string"
+    },
     "follow": {
       "type": "string"
     },
     "kind": {
       "type": "string"
     },
+    "limitBytes": {
+      "type": "string"
+    },
     "nowait": {
+      "type": "string"
+    },
+    "previous": {
+      "type": "string"
+    },
+    "sinceSeconds": {
+      "type": "string"
+    },
+    "sinceTime": {
+      "type": "string"
+    },
+    "tailLines": {
+      "type": "string"
+    },
+    "timestamps": {
+      "type": "string"
+    },
+    "version": {
       "type": "string"
     }
   },

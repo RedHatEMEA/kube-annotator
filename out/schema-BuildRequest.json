@@ -3,6 +3,66 @@
     "apiVersion": {
       "type": "string"
     },
+    "binary": {
+      "properties": {
+        "asFile": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "env": {
+      "items": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "valueFrom": {
+            "properties": {
+              "configMapKeyRef": {
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "fieldRef": {
+                "properties": {
+                  "apiVersion": {
+                    "type": "string"
+                  },
+                  "fieldPath": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "secretKeyRef": {
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
     "from": {
       "properties": {
         "apiVersion": {
@@ -54,6 +114,9 @@
           "type": "array"
         },
         "creationTimestamp": {
+          "type": "string"
+        },
+        "deletionGracePeriodSeconds": {
           "type": "string"
         },
         "deletionTimestamp": {

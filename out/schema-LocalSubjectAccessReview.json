@@ -22,6 +22,12 @@
     "resource": {
       "type": "string"
     },
+    "resourceAPIGroup": {
+      "type": "string"
+    },
+    "resourceAPIVersion": {
+      "type": "string"
+    },
     "resourceName": {
       "type": "string"
     },

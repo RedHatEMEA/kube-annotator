@@ -88,12 +88,17 @@
             "type": "object"
           },
           "label": "annotations",
-          "order": 10,
+          "order": 11,
           "type": "map"
         },
         "creationTimestamp": {
           "label": "creationTimestamp",
           "order": 7,
+          "type": "text"
+        },
+        "deletionGracePeriodSeconds": {
+          "label": "deletionGracePeriodSeconds",
+          "order": 9,
           "type": "text"
         },
         "deletionTimestamp": {
@@ -126,7 +131,7 @@
             "type": "object"
           },
           "label": "labels",
-          "order": 9,
+          "order": 10,
           "type": "map"
         },
         "name": {
@@ -178,6 +183,11 @@
       },
       "label": "source",
       "order": 6
+    },
+    "type": {
+      "label": "type",
+      "order": 10,
+      "type": "text"
     }
   },
   "label": ""
